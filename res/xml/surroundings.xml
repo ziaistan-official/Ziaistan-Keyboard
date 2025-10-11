@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  This file defines the keyboard neighbor data for the Keyboard-Aware Suggester.
+  Each <char> tag defines a character and its neighbors on the keyboard.
+  The "value" attribute is the character itself.
+  The "neighbors" attribute is a string of characters that are physically close to the key.
+  This data is used to find likely substitutions for typos.
+  You can edit this file to customize the neighbor data for your specific keyboard layout.
+-->
+<surroundings>
+    <!-- QWERTY Layout with second-degree neighbors and special characters -->
+
+    <char value="'" neighbors=";" />
+    <char value="," neighbors="m." />
+    <char value="." neighbors=",/" />
+    <char value="/" neighbors="." />
+    <char value=";" neighbors="l'" />
+    <char value="a" neighbors="qwszx" />
+    <char value="b" neighbors="vghn" />
+    <char value="c" neighbors="xdfv" />
+    <char value="d" neighbors="serfcxv" />
+    <char value="e" neighbors="wsdr34" />
+    <char value="f" neighbors="drtgvc" />
+    <char value="g" neighbors="ftyhbv" />
+    <char value="h" neighbors="gyujnb" />
+    <char value="i" neighbors="ujko89" />
+    <char value="j" neighbors="huikmn" />
+    <char value="k" neighbors="jiolm" />
+    <char value="l" neighbors="kop;'" />
+    <char value="m" neighbors="njk,." />
+    <char value="n" neighbors="bhjm" />
+    <char value="o" neighbors="iklp90" />
+    <char value="p" neighbors="ol" />
+    <char value="q" neighbors="aws12" />
+    <char value="r" neighbors="edft45" />
+    <char value="s" neighbors="awedxzc" />
+    <char value="t" neighbors="rfgy56" />
+    <char value="u" neighbors="yhji78" />
+    <char value="v" neighbors="cfgb" />
+    <char value="w" neighbors="qase23" />
+    <char value="x" neighbors="zsdc" />
+    <char value="y" neighbors="tghu67" />
+    <char value="z" neighbors="asxd" />
+
+    <!-- Urdu Phonetic Layout -->
+    <char value="ا" neighbors="برڑ" />
+    <char value="ب" neighbors="اپرڑز" />
+    <char value="پ" neighbors="بتڑزژ" />
+    <char value="ت" neighbors="پٹژزس" />
+    <char value="ٹ" neighbors="تثسژش" />
+    <char value="ث" neighbors="ٹجشسص" />
+    <char value="ج" neighbors="ثچصشض" />
+    <char value="چ" neighbors="جحضصط" />
+    <char value="ح" neighbors="چخطضظ" />
+    <char value="خ" neighbors="حدظطع" />
+    <char value="د" neighbors="خڈعظغ" />
+    <char value="ڈ" neighbors="دذغعف" />
+    <char value="ذ" neighbors="ڈفغ" />
+    <char value="ر" neighbors="اڑق" />
+    <char value="ڑ" neighbors="رزبک" />
+    <char value="ز" neighbors="ڑژپگ" />
+    <char value="ژ" neighbors="زستل" />
+    <char value="س" neighbors="ژشٹم" />
+    <char value="ش" neighbors="سصثن" />
+    <char value="ص" neighbors="شضجں" />
+    <char value="ض" neighbors="صطچو" />
+    <char value="ط" neighbors="ضظحہ" />
+    <char value="ظ" neighbors="طعخھ" />
+    <char value="ع" neighbors="ظغدء" />
+    <char value="غ" neighbors="عفڈی" />
+    <char value="ف" neighbors="غذے" />
+    <char value="ق" neighbors="رکڑ" />
+    <char value="ک" neighbors="قگڑرز" />
+    <char value="گ" neighbors="کلز" />
+    <char value="ل" neighbors="گمژ" />
+    <char value="م" neighbors="لنس" />
+    <char value="ن" neighbors="مںش" />
+    <char value="ں" neighbors="نوص" />
+    <char value="و" neighbors="ںہض" />
+    <char value="ہ" neighbors="وھط" />
+    <char value="ھ" neighbors="ہءظ" />
+    <char value="ء" neighbors="ھیع" />
+    <char value="ی" neighbors="ءےغ" />
+    <char value="ے" neighbors="یفغ" />
+</surroundings>

@@ -16,17 +16,17 @@ public class SuggestionProvider {
     private static final int MAX_SUGGESTIONS = 20;
     private static final String CUSTOM_DICTIONARY_FILE = "custom.txt";
 
-    private static class TrieNode {
-        Map<Character, TrieNode> children = new HashMap<>();
-        boolean isEndOfWord;
+    public static class TrieNode {
+        public Map<Character, TrieNode> children = new HashMap<>();
+        public boolean isEndOfWord;
     }
 
-    private final TrieNode customRoot;
-    private final TrieNode commonRoot;
-    private final TrieNode wordlistRoot;
+    public final TrieNode customRoot;
+    public final TrieNode commonRoot;
+    public final TrieNode wordlistRoot;
     private final Context context;
 
-    private volatile boolean commonLoaded = false;
+    public volatile boolean commonLoaded = false;
     private volatile boolean wordlistLoaded = false;
 
     public SuggestionProvider(Context context) {

@@ -8,5 +8,5 @@ public class KeyboardExecutors {
      * A high-priority executor for running background tasks that need to complete quickly,
      * such as on-the-fly auto-correction.
      */
-    public static final ExecutorService HIGH_PRIORITY_EXECUTOR = Executors.newFixedThreadPool(Math.max(1, Runtime.getRuntime().availableProcessors() / 2));
+    public static final ExecutorService HIGH_PRIORITY_EXECUTOR = Executors.newCachedThreadPool();
 }
