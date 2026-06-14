@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<keyboard name="Urdu Phonetic" script="urdu" bottom_row="true" wordlist="wordlist_ur">
+  <modmap>
+
+    <fn a="home" b="۔"/>
+    <fn a="up" b="،"/>
+    <fn a="end" b="؟"/>
+    <fn a="page_up" b="!"/>
+    <fn a="cut" b="("/>
+    <fn a="paste" b=")"/>
+    <fn a="delete" b="&quot;"/>
+    <fn a="esc" b="'"/>
+    <fn a="left" b="&lt;"/>
+    <fn a="down" b="&gt;"/>
+    <fn a="right" b="|"/>
+    <fn a="page_down" b="\\"/>
+    <fn a="copy" b="_"/>
+    <fn a="capslock" b="+"/>
+    <fn a="shift" b="-"/>
+    <fn a="backspace" b="="/>
+
+
+    <fn a="ذ" b="۱"/>
+    <fn a="ڈ" b="۲"/>
+    <fn a="د" b="۳"/>
+    <fn a="خ" b="۴"/>
+    <fn a="ح" b="۵"/>
+    <fn a="چ" b="۶"/>
+    <fn a="ج" b="۷"/>
+    <fn a="ث" b="۸"/>
+    <fn a="ٹ" b="۹"/>
+    <fn a="ت" b="۰"/>
+    <fn a="پ" b="-"/>
+    <fn a="ب" b="="/>
+    <fn a="ا" b="آ"/>
+
+
+    <fn a="ف" b="("/>
+    <fn a="غ" b=")"/>
+    <fn a="ع" b="["/>
+    <fn a="ظ" b="]"/>
+    <fn a="ط" b="{"/>
+    <fn a="ض" b="}"/>
+    <fn a="ص" b="_"/>
+    <fn a="ش" b="-"/>
+    <fn a="س" b="+"/>
+    <fn a="ژ" b="="/>
+    <fn a="ز" b="|"/>
+    <fn a="ڑ" b="\\"/>
+    <fn a="ر" b="~"/>
+
+
+    <fn a="ے" b="!"/>
+    <fn a="ی" b="\@"/>
+    <fn a="ء" b="\#"/>
+    <fn a="ھ" b="$"/>
+    <fn a="ہ" b="%"/>
+    <fn a="و" b="^"/>
+    <fn a="ں" b="&amp;"/>
+    <fn a="ن" b="*"/>
+    <fn a="م" b="?"/>
+    <fn a="ل" b="."/>
+    <fn a="گ" b=","/>
+    <fn a="ک" b="'"/>
+    <fn a="ق" b="&quot;"/>
+  </modmap>
+
+
+  <row height="0.7">
+    <key width="1.5" c="alt" s="meta" sw_color_dark="244,77,85" sw_color_light="148,10,15" c_color_dark="244,77,85" c_color_light="148,10,15" ne_color_dark="244,77,85" ne_color_light="148,10,15"/>
+    <key width="1.5" c="paste" e="switch_clipboard" nw="cut" sw="copy" nw_color_dark="255,0,0" nw_color_light="139,0,0" sw_color_dark="0,255,0" sw_color_light="0,100,0" e_color_dark="255,255,0" e_color_light="255,140,0"/>
+    <key width="1.5" c="page_up"/>
+    <key width="1.5" c="home" w="config" w_color_dark="238,58,190" w_color_light="99,9,74"/>
+    <key width="1.5" c="up" n="selectAll" n_color_dark="255,255,0" n_color_light="255,140,0"/>
+    <key width="1.5" c="end" e="esc" e_color_dark="238,58,190" e_color_light="99,9,74"/>
+    <key width="2.5" c="delete" ne="forward_delete_word"  e="forward_delete_word" se="forward_delete_word" ne_color_dark="255,0,0" ne_color_light="139,0,0"/>
+    <key width="2.5" c="backspace" nw="delete_word" w="delete_word" sw="delete_word" nw_color_dark="255,0,0" nw_color_light="139,0,0"/>
+  </row>
+  <row height="0.7">
+    <key width="1.5" c="▣⌧▣:selectAll,delete_word"/>
+    <key width="1.5" c="switch_emoji" se="switch_glyphs" e="redo" w="undo" w_color_dark="255,215,0" w_color_light="184,134,11" e_color_dark="255,255,0" e_color_light="255,140,0"/>
+    <key width="1.5" c="page_down"/>
+    <key width="1.5" c="left" w="◐:shift,move_word_backward_1" w_color_dark="255,255,0" w_color_light="255,140,0"/>
+    <key width="1.5" c="down" s="◒:move_word_backward_1,shift,move_word_forward_1" s_color_dark="255,255,0" s_color_light="255,140,0"/>
+    <key width="1.5" c="right" e="◑:shift,move_word_forward_1" e_color_dark="255,255,0" e_color_light="255,140,0"/>
+    <key width="2.5" c="shift" se="loc capslock" n="cursor_up" s="cursor_down" w="cursor_left" e="cursor_right" n_color_dark="10,255,251" n_color_light="0,163,159" w_color_dark="10,255,251" w_color_light="0,163,159" s_color_dark="10,255,251" s_color_light="0,163,159" e_color_dark="10,255,251" e_color_light="0,163,159"/>
+    <key width="2.5" c="capslock"/>
+  </row>
+  
+
+  <row>
+    <key width="1.05" c="ذ" ne="ذَ" nw="ذِ" se="ذٌ" sw="ذّ"/>
+    <key width="1.05" c="ڈ" ne="ڈَ" nw="ڈِ" se="ڈٌ" sw="ڈّ"/>
+    <key width="1.05" c="د" ne="دَ" nw="دِ" se="دٌ" sw="دّ"/>
+    <key width="1.05" c="خ" ne="خَ" nw="خِ" se="خٌ" sw="خّ"/>
+    <key width="1.05" c="ح" ne="حَ" nw="حِ" se="حٌ" sw="حّ"/>
+    <key width="1.05" c="چ" ne="چَ" nw="چِ" se="چٌ" sw="چّ"/>
+    <key width="1.05" c="ج" ne="جَ" nw="جِ" se="جٌ" sw="جّ"/>
+    <key width="1.05" c="ث" ne="ثَ" nw="ثِ" se="ثٌ" sw="ثّ"/>
+    <key width="1.05" c="ٹ" ne="ٹَ" nw="ٹِ" se="ٹٌ" sw="ٹّ"/>
+    <key width="1.05" c="ت" ne="تَ" nw="تِ" se="تٌ" sw="تّ"/>
+    <key width="1.05" c="پ" ne="پَ" nw="پِ" se="پٌ" sw="پّ"/>
+    <key width="1.05" c="ب" ne="بَ" nw="بِ" se="بٌ" sw="بّ"/>
+    <key width="1.05" c="ا" ne="اَ" nw="اِ" se="اٌ" sw="اّ"/>
+  </row>
+  <row>
+    <key width="1.05" c="ف" ne="فَ" nw="فِ" se="فٌ" sw="فّ"/>
+    <key width="1.05" c="غ" ne="غَ" nw="غِ" se="غٌ" sw="غّ"/>
+    <key width="1.05" c="ع" ne="عَ" nw="عِ" se="عٌ" sw="عّ"/>
+    <key width="1.05" c="ظ" ne="ظَ" nw="ظِ" se="ظٌ" sw="ظّ"/>
+    <key width="1.05" c="ط" ne="طَ" nw="طِ" se="طٌ" sw="طّ"/>
+    <key width="1.05" c="ض" ne="ضَ" nw="ضِ" se="ضٌ" sw="ضّ"/>
+    <key width="1.05" c="ص" ne="صَ" nw="صِ" se="صٌ" sw="صّ"/>
+    <key width="1.05" c="ش" ne="شَ" nw="شِ" se="شٌ" sw="شّ"/>
+    <key width="1.05" c="س" ne="سَ" nw="سِ" se="سٌ" sw="سّ"/>
+    <key width="1.05" c="ژ" ne="ژَ" nw="ژِ" se="ژٌ" sw="ژّ"/>
+    <key width="1.05" c="ز" ne="زَ" nw="زِ" se="زٌ" sw="زّ"/>
+    <key width="1.05" c="ڑ" ne="ڑَ" nw="ڑِ" se="ڑٌ" sw="ڑّ"/>
+    <key width="1.05" c="ر" ne="رَ" nw="رِ" se="رٌ" sw="رّ"/>
+  </row>
+  <row>
+    <key width="1.05" c="ے" ne="ےَ" nw="ےِ" se="ےٌ" sw="ےّ"/>
+    <key width="1.05" c="ی" ne="یَ" nw="یِ" se="یٌ" sw="یّ"/>
+    <key width="1.05" c="ء" ne="ءَ" nw="ءِ" se="ءٌ" sw="ءّ"/>
+    <key width="1.05" c="ھ" ne="ھَ" nw="ھِ" se="ھٌ" sw="ھّ"/>
+    <key width="1.05" c="ہ" ne="ہَ" nw="ہِ" se="ہٌ" sw="ہّ"/>
+    <key width="1.05" c="و" ne="وَ" nw="وِ" se="وٌ" sw="وّ"/>
+    <key width="1.37" c="ں" ne="َ" nw="ِ" se="ُ" sw="ً" n="ٍ" w="ٌ" e="ّ" s="ٗ"/>
+    <key width="1.05" c="ن" ne="نَ" nw="نِ" se="نٌ" sw="نّ"/>
+    <key width="1.05" c="م" ne="مَ" nw="مِ" se="مٌ" sw="مّ"/>
+    <key width="1.05" c="ل" ne="لَ" nw="لِ" se="لٌ" sw="لّ" n="learn_from_text"/>
+    <key width="1.05" c="گ" ne="گَ" nw="گِ" se="گٌ" sw="گّ"/>
+    <key width="1.05" c="ک" ne="کَ" nw="کِ" se="کٌ" sw="کّ"/>
+    <key width="1.05" c="ق" ne="قَ" nw="قِ" se="قٌ" sw="قّ"/>
+  </row>
+</keyboard>

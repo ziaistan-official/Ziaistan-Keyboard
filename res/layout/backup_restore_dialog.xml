@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Backup &amp; Restore"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manage your keyboard settings and data."
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Local Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Local Storage"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btn_backup_local"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Backup Everything to Local"
+            android:backgroundTint="#4CAF50"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btn_restore_local"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Restore Everything from Local"
+            android:backgroundTint="#2196F3"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Drive Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Google Drive"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btn_google_sign_in"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign In with Google"
+            android:backgroundTint="#DB4437"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btn_backup_drive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Backup Everything to Drive"
+            android:backgroundTint="#673AB7"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btn_restore_drive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Restore Everything from Drive"
+            android:backgroundTint="#FF9800"
+            android:layout_marginBottom="24dp" />
+
+        <Button
+            android:id="@+id/btn_close"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Close"
+            android:backgroundTint="#757575"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>

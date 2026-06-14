@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+  <PreferenceScreen android:title="@string/pref_category_layout">
+    <juloo.keyboard2.prefs.LayoutsPreference/>
+    <PreferenceScreen android:title="@string/pref_extra_keys_title">
+      <PreferenceScreen android:title="@string/pref_extra_keys_custom">
+        <juloo.keyboard2.prefs.CustomExtraKeysPreference/>
+      </PreferenceScreen>
+      <juloo.keyboard2.prefs.ExtraKeysPreference android:title="@string/pref_extra_keys_internal"/>
+    </PreferenceScreen>
+    <ListPreference android:key="number_row" android:title="@string/pref_number_row_title" android:summary="%s" android:defaultValue="symbols" android:entries="@array/pref_show_number_row_entries" android:entryValues="@array/pref_show_number_row_values"/>
+    <ListPreference android:key="show_numpad" android:title="@string/pref_show_numpad_title" android:summary="%s" android:defaultValue="1" android:entries="@array/pref_show_numpad_entries" android:entryValues="@array/pref_show_numpad_values"/>
+    <ListPreference android:key="numpad_layout" android:title="@string/pref_numpad_layout" android:summary="%s" android:defaultValue="high_first" android:entries="@array/pref_numpad_layout_entries" android:entryValues="@array/pref_numpad_layout_values"/>
+    <SwitchPreference android:key="show_emoji_key" android:title="@string/pref_show_emoji_key" android:defaultValue="true"/>
+    <SwitchPreference android:key="show_language_key" android:title="@string/pref_show_language_key" android:defaultValue="true"/>
+    <SwitchPreference android:key="show_number_row_password" android:title="@string/pref_show_number_row_password" android:defaultValue="true"/>
+    <SwitchPreference android:key="show_clipboard_suggestion" android:title="@string/pref_show_clipboard_suggestion" android:defaultValue="true"/>
+  </PreferenceScreen>
+  <PreferenceScreen android:title="@string/pref_category_typing">
+    <SwitchPreference android:key="vibrate_on_space" android:title="@string/pref_vibrate_on_space" android:defaultValue="true" android:dependency="vibrate_custom"/>
+    <SwitchPreference android:key="vibrate_on_delete" android:title="@string/pref_vibrate_on_delete" android:defaultValue="true" android:dependency="vibrate_custom"/>
+    <SwitchPreference android:key="vibrate_on_action" android:title="@string/pref_vibrate_on_action" android:defaultValue="true" android:dependency="vibrate_custom"/>
+    <SwitchPreference android:key="sound_on_space" android:title="@string/pref_sound_on_space" android:defaultValue="true" android:dependency="sound_on_keypress"/>
+    <SwitchPreference android:key="sound_on_delete" android:title="@string/pref_sound_on_delete" android:defaultValue="true" android:dependency="sound_on_keypress"/>
+    <SwitchPreference android:key="sound_on_action" android:title="@string/pref_sound_on_action" android:defaultValue="true" android:dependency="sound_on_keypress"/>
+    <ListPreference android:key="swipe_dist" android:title="@string/pref_swipe_dist_title" android:summary="@string/pref_swipe_dist_summary" android:defaultValue="15" android:entries="@array/pref_swipe_dist_entries" android:entryValues="@array/pref_swipe_dist_values"/>
+    <ListPreference android:key="circle_sensitivity" android:title="@string/pref_circle_sensitivity_title" android:summary="%s" android:defaultValue="2" android:entries="@array/pref_circle_sensitivity_entries" android:entryValues="@array/pref_circle_sensitivity_values"/>
+    <ListPreference android:key="slider_sensitivity" android:title="@string/pref_slider_sensitivity_title" android:summary="%s" android:defaultValue="15" android:entries="@array/pref_slider_sensitivity_entries" android:entryValues="@array/pref_slider_sensitivity_values"/>
+    <juloo.keyboard2.prefs.IntSlideBarPreference android:key="longpress_timeout" android:title="@string/pref_long_timeout_title" android:summary="%sms" android:defaultValue="600" min="50" max="2000"/>
+    <CheckBoxPreference android:key="keyrepeat_enabled" android:title="@string/pref_keyrepeat_enabled" android:defaultValue="true"/>
+    <juloo.keyboard2.prefs.IntSlideBarPreference android:key="longpress_interval" android:dependency="keyrepeat_enabled" android:title="@string/pref_long_interval_title" android:summary="%sms" android:defaultValue="25" min="5" max="100"/>
+    <CheckBoxPreference android:key="lock_double_tap" android:title="@string/pref_lock_double_tap_title" android:summary="@string/pref_lock_double_tap_summary" android:defaultValue="true"/>
+    <CheckBoxPreference android:key="vibrate_custom" android:title="@string/pref_vibrate_custom" android:defaultValue="false"/>
+    <juloo.keyboard2.prefs.IntSlideBarPreference android:dependency="vibrate_custom" android:key="vibrate_duration" android:title="@string/pref_vibrate_duration_title" android:summary="%sms" android:defaultValue="20" min="0" max="100"/>
+    <SwitchPreference android:key="vibrate_on_correction" android:title="Vibrate on correction" android:summary="Vibrate when text is auto-corrected" android:defaultValue="false"/>
+    <SwitchPreference android:key="sound_on_keypress" android:title="Sound on keypress" android:defaultValue="false"/>
+  </PreferenceScreen>
+  <PreferenceScreen android:title="@string/pref_category_behavior">
+    <SwitchPreference android:key="popup_on_keypress" android:title="Popup on keypress" android:summary="Show a popup on keypress" android:defaultValue="true"/>
+    <SwitchPreference android:key="circle_gestures" android:title="Circle Gestures" android:summary="Enable circle gestures" android:defaultValue="true"/>
+    <SwitchPreference android:key="encapsulation" android:title="Encapsulation" android:summary="Enable encapsulation" android:defaultValue="true"/>
+    <SwitchPreference android:key="case_conversion_and_formatting" android:title="Case Conversion and Formatting" android:summary="Enable case conversion and formatting" android:defaultValue="true"/>
+    <SwitchPreference android:key="swipe_space_cursor" android:title="@string/pref_swipe_space_cursor" android:defaultValue="true"/>
+    <SwitchPreference android:key="swipe_delete_word" android:title="@string/pref_swipe_delete_word" android:defaultValue="true"/>
+    <SwitchPreference android:key="long_press_space_cursor" android:title="@string/pref_long_press_space_cursor" android:defaultValue="true"/>
+    <SwitchPreference android:key="delete_swallows_space" android:title="@string/pref_delete_swallows_space" android:defaultValue="false"/>
+    <SwitchPreference android:key="smart_punctuation" android:title="@string/pref_smart_punctuation" android:defaultValue="false"/>
+    <SwitchPreference android:key="auto_switch_back_emoji" android:title="@string/pref_auto_switch_back_emoji" android:defaultValue="true"/>
+    <SwitchPreference android:key="auto_add_user_words" android:title="@string/pref_auto_add_user_words" android:defaultValue="false"/>
+    <SwitchPreference android:key="block_offensive_words" android:title="@string/pref_block_offensive_words" android:defaultValue="true"/>
+    <SwitchPreference android:key="incognito_mode" android:title="@string/pref_incognito_mode" android:summary="@string/pref_incognito_mode_summary" android:defaultValue="false"/>
+    <CheckBoxPreference android:key="autocapitalisation" android:title="@string/pref_autocapitalisation_title" android:summary="@string/pref_autocapitalisation_summary" android:defaultValue="true"/>
+    <CheckBoxPreference android:key="enable_suggestions" android:title="@string/pref_enable_suggestions_title" android:summary="@string/pref_enable_suggestions_summary" android:defaultValue="true"/>
+    <CheckBoxPreference android:key="suggestion_strip_on_top" android:title="@string/pref_suggestion_strip_on_top_title" android:summary="@string/pref_suggestion_strip_on_top_summary" android:defaultValue="true" android:dependency="enable_suggestions"/>
+    <CheckBoxPreference android:key="switch_input_immediate" android:title="@string/pref_switch_input_immediate_title" android:summary="@string/pref_switch_input_immediate_summary" android:defaultValue="false"/>
+    <PreferenceScreen
+        android:title="Custom Dictionary"
+        android:summary="Manage custom dictionary words">
+        <intent android:action="juloo.keyboard2.CUSTOM_DICTIONARY_SETTINGS"/>
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:title="Auto Suggestions Customizations"
+        android:summary="Change priority order and colors">
+        <intent android:action="juloo.keyboard2.AUTO_SUGGESTION_SETTINGS"/>
+    </PreferenceScreen>
+    <ListPreference android:key="number_entry_layout" android:title="@string/pref_number_entry_title" android:summary="%s" android:defaultValue="pin" android:entries="@array/pref_number_entry_entries" android:entryValues="@array/pref_number_entry_values"/>
+    <SwitchPreference android:key="swap_enter_action_key" android:title="Swap Enter and Action/Emoji keys" android:defaultValue="false"/>
+    <SwitchPreference android:key="double_space_period" android:title="Double space period" android:summary="Insert a period when double tapping space" android:defaultValue="false"/>
+    <SwitchPreference android:key="auto_correct_space" android:title="Auto-correct on space" android:summary="Apply auto-correction when pressing space" android:defaultValue="true"/>
+    <SwitchPreference android:key="revert_on_backspace" android:title="Revert on backspace" android:summary="Revert auto-correction when pressing backspace" android:defaultValue="true"/>
+    <SwitchPreference android:key="space_after_suggestion" android:title="Space after suggestion" android:summary="Insert a space after selecting a suggestion" android:defaultValue="true"/>
+    <SwitchPreference android:key="learn_new_words" android:title="Learn new words" android:summary="Learn new words from typing" android:defaultValue="true"/>
+    <SwitchPreference android:key="shortcut_learn_d" android:title="Shortcut: Learn (d)" android:summary="Enable 'd' on selection to learn word" android:defaultValue="true"/>
+    <SwitchPreference android:key="shortcut_translate_t" android:title="Shortcut: Translate (t)" android:summary="Enable 't' on selection to translate" android:defaultValue="true"/>
+    <SwitchPreference android:key="shortcut_keep_k" android:title="Shortcut: Keep (k)" android:summary="Enable 'k' on selection to save to Keep" android:defaultValue="true"/>
+    <SwitchPreference android:key="shortcut_obsidian_o" android:title="Shortcut: Obsidian (o)" android:summary="Enable 'o' on selection to save to Obsidian" android:defaultValue="true"/>
+    <SwitchPreference android:key="shortcut_chrome_c" android:title="Shortcut: Search (c)" android:summary="Enable 'c' on selection to search in Chrome" android:defaultValue="true"/>
+    <SwitchPreference android:key="format_bold_b" android:title="Shortcut: Bold (b)" android:summary="Enable 'b' on selection to bold text" android:defaultValue="true"/>
+    <SwitchPreference android:key="format_italic_i" android:title="Shortcut: Italic (i)" android:summary="Enable 'i' on selection to italicize text" android:defaultValue="true"/>
+    <SwitchPreference android:key="format_upper_u" android:title="Shortcut: Uppercase (u)" android:summary="Enable 'u' on selection to uppercase text" android:defaultValue="true"/>
+    <SwitchPreference android:key="format_lower_l" android:title="Shortcut: Lowercase (l)" android:summary="Enable 'l' on selection to lowercase text" android:defaultValue="true"/>
+    <SwitchPreference android:key="format_sentence_s" android:title="Shortcut: Sentence case (s)" android:summary="Enable 's' on selection to sentence case text" android:defaultValue="true"/>
+    <PreferenceCategory android:title="Typing HUD">
+        <SwitchPreference android:key="enable_typing_hud" android:title="@string/pref_enable_typing_hud" android:summary="@string/pref_enable_typing_hud_summary" android:defaultValue="false"/>
+        <juloo.keyboard2.prefs.IntSlideBarPreference android:key="typing_hud_duration" android:title="@string/pref_typing_hud_duration" android:summary="%sms" android:defaultValue="3000" min="500" max="10000" android:dependency="enable_typing_hud"/>
+        <EditTextPreference android:key="typing_hud_bg_color" android:title="@string/pref_typing_hud_bg_color" android:defaultValue="CC000000" android:dependency="enable_typing_hud"/>
+        <EditTextPreference android:key="typing_hud_txt_color" android:title="@string/pref_typing_hud_txt_color" android:defaultValue="FFFFFFFF" android:dependency="enable_typing_hud"/>
+        <juloo.keyboard2.prefs.IntSlideBarPreference android:key="typing_hud_txt_size" android:title="@string/pref_typing_hud_txt_size" android:summary="%ssp" android:defaultValue="18" min="10" max="40" android:dependency="enable_typing_hud"/>
+    </PreferenceCategory>
+  </PreferenceScreen>
+  <PreferenceScreen android:title="@string/pref_category_style">
+    <ListPreference android:key="app_theme" android:title="@string/pref_app_theme" android:summary="%s" android:defaultValue="system" android:entries="@array/pref_app_theme_entries" android:entryValues="@array/pref_app_theme_values"/>
+    <ListPreference android:key="theme" android:title="@string/pref_theme" android:summary="%s" android:defaultValue="galactic" android:entries="@array/pref_theme_entries" android:entryValues="@array/pref_theme_values"/>
+    <SwitchPreference android:key="key_text_bold" android:title="Bold key text" android:defaultValue="true"/>
+    <SwitchPreference android:key="show_sublabels" android:title="Show secondary characters" android:defaultValue="true"/>
+    <SwitchPreference android:key="colored_sublabels" android:title="@string/pref_colored_sublabels" android:defaultValue="false"/>
+    <SwitchPreference android:key="draw_key_borders" android:title="@string/pref_draw_key_borders" android:defaultValue="false"/>
+    <PreferenceScreen
+        android:title="Live Layout Customization"
+        android:summary="Premium real-time keyboard layout editor">
+        <intent android:action="juloo.keyboard2.LIVE_LAYOUT_CUSTOMIZATION"/>
+    </PreferenceScreen>
+    <SwitchPreference android:key="disable_animations" android:title="@string/pref_disable_animations" android:defaultValue="false"/>
+    <SwitchPreference android:key="show_gesture_trail" android:title="@string/pref_show_gesture_trail" android:defaultValue="true"/>
+    <ListPreference android:key="gesture_trail_style" android:title="@string/pref_gesture_trail_style" android:summary="%s" android:defaultValue="0" android:entries="@array/pref_gesture_trail_style_entries" android:entryValues="@array/pref_gesture_trail_style_values" android:dependency="show_gesture_trail"/>
+    <juloo.keyboard2.prefs.SlideBarPreference android:key="gesture_trail_width_factor" android:title="@string/pref_gesture_trail_width_factor" android:summary="%s" android:defaultValue="1.0" min="0.5" max="3.0" android:dependency="show_gesture_trail"/>
+    <juloo.keyboard2.prefs.SlideBarPreference android:key="gesture_trail_length_factor" android:title="@string/pref_gesture_trail_length_factor" android:summary="%s" android:defaultValue="1.0" min="0.5" max="3.0" android:dependency="show_gesture_trail"/>
+    <SwitchPreference android:key="force_landscape_fullscreen" android:title="@string/pref_force_landscape_fullscreen" android:defaultValue="false"/>
+    <SwitchPreference android:key="use_system_font" android:title="Use system font" android:defaultValue="false"/>
+    <juloo.keyboard2.prefs.IntSlideBarPreference android:key="label_brightness" android:title="@string/pref_label_brightness" android:summary="%s%%" android:defaultValue="100" min="50" max="100"/>
+    <juloo.keyboard2.prefs.IntSlideBarPreference android:key="keyboard_opacity" android:title="@string/pref_keyboard_opacity" android:summary="%s%%" android:defaultValue="100" min="0" max="100"/>
+    <juloo.keyboard2.prefs.IntSlideBarPreference android:key="key_opacity" android:title="@string/pref_key_opacity" android:summary="%s%%" android:defaultValue="100" min="0" max="100"/>
+    <juloo.keyboard2.prefs.IntSlideBarPreference android:key="key_activated_opacity" android:title="@string/pref_key_activated_opacity" android:summary="%s%%" android:defaultValue="100" min="0" max="100"/>
+    <PreferenceScreen android:title="@string/pref_margin_bottom_title">
+      <juloo.keyboard2.prefs.IntSlideBarPreference android:key="margin_bottom_portrait" android:title="@string/pref_portrait" android:summary="%sdp" android:defaultValue="0" min="0" max="100"/>
+      <juloo.keyboard2.prefs.IntSlideBarPreference android:key="margin_bottom_landscape" android:title="@string/pref_landscape" android:summary="%sdp" android:defaultValue="3" min="0" max="100"/>
+      <juloo.keyboard2.prefs.IntSlideBarPreference android:key="margin_bottom_portrait_unfolded" android:title="@string/pref_portrait_unfolded" android:summary="%sdp" android:defaultValue="7" min="0" max="100"/>
+      <juloo.keyboard2.prefs.IntSlideBarPreference android:key="margin_bottom_landscape_unfolded" android:title="@string/pref_landscape_unfolded" android:summary="%sdp" android:defaultValue="3" min="0" max="100"/>
+    </PreferenceScreen>
+    <PreferenceScreen android:title="@string/pref_keyboard_height_title">
+      <juloo.keyboard2.prefs.IntSlideBarPreference android:key="keyboard_height" android:title="@string/pref_portrait" android:summary="%s%%" android:defaultValue="20" min="10" max="100"/>
+      <juloo.keyboard2.prefs.IntSlideBarPreference android:key="keyboard_height_landscape" android:title="@string/pref_landscape" android:summary="%s%%" android:defaultValue="20" min="20" max="65"/>
+      <juloo.keyboard2.prefs.IntSlideBarPreference android:key="keyboard_height_unfolded" android:title="@string/pref_portrait_unfolded" android:summary="%s%%" android:defaultValue="35" min="10" max="50"/>
+      <juloo.keyboard2.prefs.IntSlideBarPreference android:key="keyboard_height_landscape_unfolded" android:title="@string/pref_landscape_unfolded" android:summary="%s%%" android:defaultValue="50" min="20" max="65"/>
+    </PreferenceScreen>
+    <PreferenceScreen android:title="@string/pref_horizontal_margin_title">
+      <juloo.keyboard2.prefs.IntSlideBarPreference android:key="horizontal_margin_portrait" android:title="@string/pref_portrait" android:summary="%sdp" android:defaultValue="15" min="0" max="30"/>
+      <juloo.keyboard2.prefs.IntSlideBarPreference android:key="horizontal_margin_landscape" android:title="@string/pref_landscape" android:summary="%sdp" android:defaultValue="28" min="0" max="200"/>
+      <juloo.keyboard2.prefs.IntSlideBarPreference android:key="horizontal_margin_portrait_unfolded" android:title="@string/pref_portrait_unfolded" android:summary="%sdp" android:defaultValue="3" min="0" max="30"/>
+      <juloo.keyboard2.prefs.IntSlideBarPreference android:key="horizontal_margin_landscape_unfolded" android:title="@string/pref_landscape_unfolded" android:summary="%sdp" android:defaultValue="28" min="0" max="200"/>
+    </PreferenceScreen>
+    <juloo.keyboard2.prefs.SlideBarPreference android:key="character_size" android:title="@string/pref_character_size_title" android:summary="@string/pref_character_size_summary" android:defaultValue="1.15" min="0.75" max="1.5"/>
+    <juloo.keyboard2.prefs.SlideBarPreference android:key="key_vertical_margin" android:title="@string/pref_key_vertical_space" android:summary="%s%%" android:defaultValue="1.5" min="0" max="5"/>
+    <juloo.keyboard2.prefs.SlideBarPreference android:key="key_horizontal_margin" android:title="@string/pref_key_horizontal_space" android:summary="%s%%" android:defaultValue="2" min="0" max="5"/>
+    <CheckBoxPreference android:key="border_config" android:title="@string/pref_border_config_title" android:defaultValue="false"/>
+    <juloo.keyboard2.prefs.IntSlideBarPreference android:key="custom_border_radius" android:title="@string/pref_corners_radius_title" android:summary="%s%%" android:defaultValue="0" min="0" max="100" android:dependency="border_config"/>
+    <juloo.keyboard2.prefs.SlideBarPreference android:key="custom_border_line_width" android:title="@string/pref_border_width_title" android:summary="%sdp" android:defaultValue="0" min="0" max="5" android:dependency="border_config"/>
+  </PreferenceScreen>
+  <PreferenceScreen android:title="@string/pref_category_clipboard">
+    <SwitchPreference
+        android:key="clipboard_history_enabled"
+        android:title="@string/pref_clipboard_history_title"
+        android:summary="@string/pref_clipboard_history_summary"
+        android:defaultValue="true"/>
+    <ListPreference
+        android:key="clipboard_history_duration"
+        android:title="@string/pref_clipboard_history_duration"
+        android:summary="%s"
+        android:defaultValue="2147483647"
+        android:entries="@array/pref_clipboard_duration_entries"
+        android:entryValues="@array/pref_clipboard_duration_values"
+        android:dependency="clipboard_history_enabled"/>
+    <CheckBoxPreference
+        android:key="clipboard_actions_on_top"
+        android:title="@string/pref_clipboard_actions_on_top_title"
+        android:summary="@string/pref_clipboard_actions_on_top_summary"
+        android:defaultValue="false"/>
+    <SwitchPreference
+        android:key="enable_typing_history"
+        android:title="Enable Typing History"
+        android:summary="Record typing sessions to prevent data loss"
+        android:defaultValue="true"/>
+   </PreferenceScreen>
+   <PreferenceScreen android:title="Password Manager">
+       <intent android:action="android.intent.action.MAIN" android:targetPackage="juloo.keyboard2" android:targetClass="juloo.keyboard2.passwordmanager.ui.PasswordManagerActivity"/>
+   </PreferenceScreen>
+   <PreferenceScreen android:title="Side Panel Navigation">
+       <intent android:action="android.intent.action.MAIN" android:targetPackage="juloo.keyboard2" android:targetClass="juloo.keyboard2.SidePanelSettingsActivity"/>
+   </PreferenceScreen>
+   <PreferenceScreen android:title="Side Panel Tweaks" android:summary="Adjust sensitivity and appearance">
+       <juloo.keyboard2.prefs.IntSlideBarPreference
+           android:key="side_panel_sensitivity"
+           android:title="Trigger Sensitivity (Width)"
+           android:summary="%sdp"
+           android:defaultValue="20"
+           android:min="5"
+           android:max="50" />
+       <juloo.keyboard2.prefs.IntSlideBarPreference
+           android:key="side_panel_transparency"
+           android:title="Trigger Transparency (Visual Debug)"
+           android:summary="%s%%"
+           android:defaultValue="0"
+           android:min="0"
+           android:max="100" />
+   </PreferenceScreen>
+   <PreferenceScreen android:title="Backup &amp; Restore" android:summary="Save or restore keyboard settings">
+       <intent android:action="android.intent.action.MAIN" android:targetPackage="juloo.keyboard2" android:targetClass="juloo.keyboard2.BackupRestoreActivity"/>
+   </PreferenceScreen>
+   <PreferenceScreen android:title="@string/pref_category_emoji">
+       <SwitchPreference android:key="emoji_show_recent" android:title="@string/pref_emoji_show_recent" android:defaultValue="true"/>
+       <SwitchPreference android:key="emoji_show_kaomoji" android:title="@string/pref_emoji_show_kaomoji" android:defaultValue="true"/>
+       <SwitchPreference android:key="emoji_vibrate" android:title="@string/pref_emoji_vibrate" android:defaultValue="true"/>
+       <SwitchPreference android:key="emoji_sound" android:title="@string/pref_emoji_sound" android:defaultValue="false"/>
+       <SwitchPreference android:key="emoji_long_press_name" android:title="@string/pref_emoji_long_press_name" android:defaultValue="true"/>
+       <SwitchPreference android:key="emoji_favorites_enabled" android:title="@string/pref_emoji_favorites_enabled" android:defaultValue="true"/>
+       <SwitchPreference android:key="emoji_long_press_add_favorite" android:title="@string/pref_emoji_long_press_add_favorite" android:defaultValue="false" android:dependency="emoji_favorites_enabled"/>
+       <SwitchPreference android:key="emoji_favorites_first" android:title="@string/pref_emoji_favorites_first" android:defaultValue="false" android:dependency="emoji_favorites_enabled"/>
+       <juloo.keyboard2.prefs.SlideBarPreference android:key="emoji_size_factor" android:title="@string/pref_emoji_size_factor" android:summary="%s" android:defaultValue="1.0" min="0.5" max="2.0"/>
+       <juloo.keyboard2.prefs.SlideBarPreference android:key="emoji_kaomoji_size_factor" android:title="@string/pref_emoji_kaomoji_size_factor" android:summary="%s" android:defaultValue="1.0" min="0.5" max="2.0"/>
+       <juloo.keyboard2.prefs.IntSlideBarPreference android:key="emoji_columns_portrait" android:title="@string/pref_emoji_columns_portrait" android:summary="%s" android:defaultValue="7" min="3" max="15"/>
+       <juloo.keyboard2.prefs.IntSlideBarPreference android:key="emoji_columns_landscape" android:title="@string/pref_emoji_columns_landscape" android:summary="%s" android:defaultValue="10" min="5" max="20"/>
+       <juloo.keyboard2.prefs.IntSlideBarPreference android:key="emoji_history_size" android:title="@string/pref_emoji_history_size" android:summary="%s" android:defaultValue="50" min="10" max="100"/>
+       <PreferenceScreen android:title="@string/pref_emoji_clear_history" android:summary="@string/pref_emoji_clear_history_summary">
+           <intent android:action="juloo.keyboard2.CLEAR_EMOJI_HISTORY"/>
+       </PreferenceScreen>
+       <PreferenceScreen android:title="@string/pref_emoji_clear_favorites" android:summary="@string/pref_emoji_clear_favorites_summary" android:dependency="emoji_favorites_enabled">
+           <intent android:action="juloo.keyboard2.CLEAR_EMOJI_FAVORITES"/>
+       </PreferenceScreen>
+   </PreferenceScreen>
+</PreferenceScreen>

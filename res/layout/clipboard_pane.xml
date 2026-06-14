@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<juloo.keyboard2.ClipboardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/clipboard_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="?attr/colorKeyboard">
+
+        <FrameLayout
+            android:id="@+id/clipboard_action_row_container_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/clipboard_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <juloo.keyboard2.Keyboard2View
+            android:id="@+id/clipboard_bottom_row_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorKeyboard" />
+
+        <FrameLayout
+            android:id="@+id/clipboard_action_row_container_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include layout="@layout/clipboard_action_row" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/close_clipboard_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_arrow_downward"
+        android:contentDescription="@string/close_clipboard" />
+
+
+    <FrameLayout
+        android:id="@+id/clipboard_undo_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="80dp"
+        android:visibility="gone"
+        android:background="@drawable/rounded_background"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/clipboard_undo_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/undo"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
+    </FrameLayout>
+
+</juloo.keyboard2.ClipboardView>

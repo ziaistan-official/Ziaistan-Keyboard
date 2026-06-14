@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<row height="0.75">
+  <key key0="1" ne="!" se="|" n="move_word_backward_1" s="move_word_forward_1" ne_color_dark="70,243,53" ne_color_light="229,50,245" se_color_dark="176,180,33" se_color_light="38,33,181" n_color_dark="8,236,186" n_color_light="202,2,52" s_color_dark="8,236,186" s_color_light="202,2,52"/>
+  <key key0="2" ne="@" se="—" n="move_word_backward_2" s="move_word_forward_2" ne_color_dark="70,243,53" ne_color_light="229,50,245" se_color_dark="176,180,33" se_color_light="38,33,181" n_color_dark="8,236,186" n_color_light="202,2,52" s_color_dark="8,236,186" s_color_light="202,2,52"/>
+  <key key0="3" ne="#" se="*" n="move_word_backward_3" s="move_word_forward_3" ne_color_dark="70,243,53" ne_color_light="229,50,245" se_color_dark="176,180,33" se_color_light="38,33,181" n_color_dark="8,236,186" n_color_light="202,2,52" s_color_dark="8,236,186" s_color_light="202,2,52"/>
+  <key key0="4" ne="$" se="€" n="move_word_backward_4" s="move_word_forward_4" ne_color_dark="70,243,53" ne_color_light="229,50,245" se_color_dark="176,180,33" se_color_light="38,33,181" n_color_dark="8,236,186" n_color_light="202,2,52" s_color_dark="8,236,186" s_color_light="202,2,52"/>
+  <key key0="5" ne="%" se="[" n="move_word_backward_5" s="move_word_forward_5" ne_color_dark="70,243,53" ne_color_light="229,50,245" se_color_dark="176,180,33" se_color_light="38,33,181" n_color_dark="8,236,186" n_color_light="202,2,52" s_color_dark="8,236,186" s_color_light="202,2,52"/>
+  <key key0="6" ne="^" se="]" ne_color_dark="70,243,53" ne_color_light="229,50,245" se_color_dark="176,180,33" se_color_light="38,33,181"/>
+  <key key0="7" ne="&amp;" se="‌…" ne_color_dark="70,243,53" ne_color_light="229,50,245" se_color_dark="176,180,33" se_color_light="38,33,181"/>
+  <key key0="8" ne="؟" se="¿" ne_color_dark="70,243,53" ne_color_light="229,50,245" se_color_dark="176,180,33" se_color_light="38,33,181"/>
+  <key key0="9" ne="(" se="{" ne_color_dark="70,243,53" ne_color_light="229,50,245" se_color_dark="176,180,33" se_color_light="38,33,181"/>
+  <key key0="0" ne=")" se="}" ne_color_dark="70,243,53" ne_color_light="229,50,245" se_color_dark="176,180,33" se_color_light="38,33,181"/>
+</row>

@@ -1,0 +1,5 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/SuggestionTextStyle"
+    android:maxLines="1"
+    android:singleLine="true"
+    android:ellipsize="none" />

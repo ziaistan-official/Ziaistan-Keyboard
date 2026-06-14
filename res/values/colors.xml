@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="menu_background_dark">#000000</color>
+    <color name="menu_text_aqua">#E0FFFF</color>
+
+    <color name="theme_ocean_bg">#001F3F</color>
+    <color name="theme_ocean_accent">#7FDBFF</color>
+    <color name="theme_forest_bg">#002b20</color>
+    <color name="theme_forest_accent">#69f0ae</color>
+    <color name="theme_sunset_bg">#3E2723</color>
+    <color name="theme_sunset_accent">#FFAB91</color>
+    <color name="theme_midnight_bg">#1A1A2E</color>
+    <color name="theme_midnight_accent">#E94560</color>
+</resources>

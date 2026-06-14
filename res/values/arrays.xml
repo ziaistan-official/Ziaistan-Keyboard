@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="pref_show_number_row_values">
+    <item>no_number_row</item>
+    <item>no_symbols</item>
+    <item>symbols</item>
+  </string-array>
+  <string-array name="pref_show_number_row_entries">
+    <item>@string/pref_show_number_row_no_number_row</item>
+    <item>@string/pref_show_number_row_no_symbols</item>
+    <item>@string/pref_show_number_row_symbols</item>
+  </string-array>
+  <string-array name="pref_show_numpad_values">
+    <item>never</item>
+    <item>landscape</item>
+    <item>always</item>
+  </string-array>
+  <string-array name="pref_show_numpad_entries">
+    <item>@string/pref_show_numpad_never</item>
+    <item>@string/pref_show_numpad_landscape</item>
+    <item>@string/pref_show_numpad_always</item>
+  </string-array>
+  <string-array name="pref_numpad_layout_values">
+    <item>high_first</item>
+    <item>low_first</item>
+  </string-array>
+  <string-array name="pref_numpad_layout_entries">
+    <item>@string/pref_numpad_layout_e_high_first</item>
+    <item>@string/pref_numpad_layout_e_low_first</item>
+  </string-array>
+  <string-array name="pref_theme_entries">
+    <item>@string/pref_theme_e_system</item>
+    <item>@string/pref_theme_e_dark</item>
+    <item>@string/pref_theme_e_light</item>
+    <item>@string/pref_theme_e_black</item>
+    <item>@string/pref_theme_e_altblack</item>
+    <item>@string/pref_theme_e_white</item>
+    <item>@string/pref_theme_e_epaper</item>
+    <item>@string/pref_theme_e_desert</item>
+    <item>@string/pref_theme_e_jungle</item>
+    <item>@string/pref_theme_e_monet</item>
+    <item>@string/pref_theme_e_monetlight</item>
+    <item>@string/pref_theme_e_monetdark</item>
+    <item>@string/pref_theme_e_rosepine</item>
+    <item>@string/pref_theme_e_everforestlight</item>
+    <item>@string/pref_theme_e_cobalt</item>
+    <item>@string/pref_theme_e_pine</item>
+    <item>@string/pref_theme_e_epaperblack</item>
+    <item>@string/pref_theme_e_goldenpearl</item>
+    <item>@string/pref_theme_e_cyberdream</item>
+    <item>@string/pref_theme_e_holographic</item>
+    <item>@string/pref_theme_e_cosmic</item>
+    <item>@string/pref_theme_e_neonpunk</item>
+    <item>@string/pref_theme_e_galactic</item>
+    <item>@string/pref_theme_e_quantum</item>
+    <item>Water Drop</item>
+    <item>Sponge</item>
+    <item>Metal</item>
+    <item>Wood</item>
+    <item>Glass</item>
+    <item>Plastic</item>
+    <item>Leather</item>
+    <item>Denim</item>
+    <item>Stone</item>
+    <item>Brick</item>
+    <item>Marble</item>
+    <item>Carbon Fiber</item>
+    <item>Circuit</item>
+    <item>Grid</item>
+    <item>Paper</item>
+    <item>Cork</item>
+    <item>Fabric</item>
+    <item>Knitted</item>
+    <item>Ice</item>
+    <item>Fire</item>
+    <item>Sky</item>
+    <item>Sand</item>
+    <item>Forest Camo</item>
+    <item>Chalkboard</item>
+    <item>Retro</item>
+    <item>Neon Grid</item>
+    <item>Cyber City</item>
+    <item>Laser</item>
+    <item>Plasma</item>
+    <item>Hacker</item>
+    <item>Synthwave</item>
+    <item>Matrix</item>
+    <item>Terminal</item>
+    <item>Glitch</item>
+    <item>Future</item>
+    <item>Hexagon</item>
+    <item>Circle</item>
+    <item>Leaf</item>
+    <item>Gem</item>
+    <item>Shield</item>
+    <item>Star</item>
+    <item>Bubble</item>
+    <item>Tile</item>
+    <item>Puzzle</item>
+    <item>Diamond</item>
+    <item>Cyberpunk</item>
+    <item>Liquid Glass</item>
+    <item>Mechanical RGB</item>
+    <item>Magma Ember</item>
+    <item>Ink Parchment</item>
+    <item>Cosmic Nebula</item>
+    <item>Sakura Garden</item>
+    <item>Retro 8-Bit</item>
+    <item>Golden Era</item>
+    <item>Deep Ocean</item>
+    <item>Neon Rain</item>
+    <item>Candy Crush</item>
+    <item>Steampunk</item>
+    <item>Holographic</item>
+    <item>Spirit Realm</item>
+    <item>Golden Luxury</item>
+    <item>Sakura Breeze</item>
+    <item>Bioluminescence</item>
+    <item>Retro Arcade</item>
+    <item>Crystal Prism</item>
+    <item>Vaporwave</item>
+    <item>Noir Rain</item>
+    <item>Paper Cutout</item>
+    <item>Star Field</item>
+    <item>Gears</item>
+  </string-array>
+  <string-array name="pref_theme_values">
+    <item>system</item>
+    <item>dark</item>
+    <item>light</item>
+    <item>black</item>
+    <item>altblack</item>
+    <item>white</item>
+    <item>epaper</item>
+    <item>desert</item>
+    <item>jungle</item>
+    <item>monet</item>
+    <item>monetlight</item>
+    <item>monetdark</item>
+    <item>rosepine</item>
+    <item>everforestlight</item>
+    <item>cobalt</item>
+    <item>pine</item>
+    <item>epaperblack</item>
+    <item>goldenpearl</item>
+    <item>cyberdream</item>
+    <item>holographic</item>
+    <item>cosmic</item>
+    <item>neonpunk</item>
+    <item>galactic</item>
+    <item>quantum</item>
+    <item>waterdrop</item>
+    <item>sponge</item>
+    <item>metal</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>plastic</item>
+    <item>leather</item>
+    <item>denim</item>
+    <item>stone</item>
+    <item>brick</item>
+    <item>marble</item>
+    <item>carbonfiber</item>
+    <item>circuit</item>
+    <item>grid</item>
+    <item>paper</item>
+    <item>cork</item>
+    <item>fabric</item>
+    <item>knitted</item>
+    <item>ice</item>
+    <item>fire</item>
+    <item>sky</item>
+    <item>sand</item>
+    <item>forestcamo</item>
+    <item>chalkboard</item>
+    <item>retro</item>
+    <item>neongrid</item>
+    <item>cybercity</item>
+    <item>laser</item>
+    <item>plasma</item>
+    <item>hacker</item>
+    <item>synthwave</item>
+    <item>matrix</item>
+    <item>terminal</item>
+    <item>glitch</item>
+    <item>future</item>
+    <item>hexagon</item>
+    <item>circle</item>
+    <item>leaf</item>
+    <item>gem</item>
+    <item>shield</item>
+    <item>star</item>
+    <item>bubble</item>
+    <item>tile</item>
+    <item>puzzle</item>
+    <item>diamond</item>
+    <item>cyberpunk</item>
+    <item>liquid_glass</item>
+    <item>mechanical_rgb</item>
+    <item>magma_ember</item>
+    <item>ink_parchment</item>
+    <item>cosmic_nebula</item>
+    <item>sakura_garden</item>
+    <item>retro_8bit</item>
+    <item>golden_era</item>
+    <item>deep_ocean</item>
+    <item>neon_rain</item>
+    <item>candy_crush</item>
+    <item>steampunk</item>
+    <item>holographic</item>
+    <item>spirit_realm</item>
+    <item>golden_luxury</item>
+    <item>sakura_breeze</item>
+    <item>bioluminescence</item>
+    <item>retro_arcade</item>
+    <item>crystal_prism</item>
+    <item>vaporwave</item>
+    <item>noir_rain</item>
+    <item>paper_cutout</item>
+    <item>star_field</item>
+    <item>gears</item>
+  </string-array>
+  <string-array name="pref_swipe_dist_entries">
+    <item>@string/pref_swipe_dist_e_very_short</item>
+    <item>@string/pref_swipe_dist_e_short</item>
+    <item>@string/pref_swipe_dist_e_default</item>
+    <item>@string/pref_swipe_dist_e_far</item>
+    <item>@string/pref_swipe_dist_e_very_far</item>
+  </string-array>
+  <string-array name="pref_swipe_dist_values">
+    <item>5</item>
+    <item>7.5</item>
+    <item>15</item>
+    <item>25</item>
+    <item>35</item>
+  </string-array>
+  <string-array name="pref_circle_sensitivity_entries">
+    <item>@string/pref_circle_sensitivity_e_high</item>
+    <item>@string/pref_circle_sensitivity_e_medium</item>
+    <item>@string/pref_circle_sensitivity_e_low</item>
+    <item>@string/pref_circle_sensitivity_e_disabled</item>
+  </string-array>
+  <string-array name="pref_circle_sensitivity_values">
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+    <item>12</item>
+  </string-array>
+  <string-array name="pref_number_entry_entries">
+    <item>@string/pref_number_entry_layout_pin</item>
+    <item>@string/pref_number_entry_layout_number</item>
+    <item>@string/pref_number_entry_layout_normal</item>
+  </string-array>
+  <string-array name="pref_number_entry_values">
+    <item>pin</item>
+    <item>number</item>
+    <item>normal</item>
+  </string-array>
+  <string-array name="pref_slider_sensitivity_entries">
+    <item>@string/pref_slider_sensitivity_slow</item>
+    <item>@string/pref_slider_sensitivity_medium</item>
+    <item>@string/pref_slider_sensitivity_fast</item>
+  </string-array>
+  <string-array name="pref_slider_sensitivity_values">
+    <item>60</item>
+    <item>30</item>
+    <item>15</item>
+  </string-array>
+    <string-array name="pref_clipboard_duration_entries">
+        <item>@string/pref_clipboard_history_duration_1</item>
+        <item>@string/pref_clipboard_history_duration_5</item>
+        <item>@string/pref_clipboard_history_duration_30</item>
+        <item>@string/pref_clipboard_history_duration_stop</item>
+    </string-array>
+    <string-array name="pref_clipboard_duration_values">
+        <item>1</item>
+        <item>5</item>
+        <item>30</item>
+        <item>2147483647</item>
+    </string-array>
+    <string-array name="pref_gesture_trail_style_entries">
+        <item>Line</item>
+        <item>Neon</item>
+        <item>Rainbow</item>
+        <item>Dots</item>
+        <item>Comet</item>
+    </string-array>
+    <string-array name="pref_gesture_trail_style_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="pref_app_theme_entries">
+        <item>System</item>
+        <item>Ocean</item>
+        <item>Forest</item>
+        <item>Sunset</item>
+        <item>Midnight</item>
+    </string-array>
+    <string-array name="pref_app_theme_values">
+        <item>system</item>
+        <item>ocean</item>
+        <item>forest</item>
+        <item>sunset</item>
+        <item>midnight</item>
+    </string-array>
+    <string-array name="tutorials">
+        <item>Press \'l\' to lowercase text or swipe North to train suggestions.</item>
+        <item>Select text and press \'d\' to instantly train the prediction model.</item>
+        <item>Prediction model learns your patterns automatically as you type.</item>
+        <item>Grant file access to auto-sync dictionary and history to Drive.</item>
+        <item>Backspace after auto-correction to instantly revert to original word.</item>
+        <item>Swipe LEFT on clipboard item to Archive; swipe RIGHT to Delete.</item>
+        <item>Long-press clipboard items to Pin them permanently at the bottom.</item>
+        <item>Swipe South-West on \'b\' to access clipboard history.</item>
+        <item>Draw circles from corners to add vowels, capitalize, or apply Ctrl/Shift.</item>
+        <item>Clockwise circle from SW corner adds \'a\' (k -> ka).</item>
+        <item>Anti-clockwise circle from NE corner capitalizes (k -> K).</item>
+        <item>Main Shift key has corner gestures for Ctrl, Alt, and Meta hub.</item>
+        <item>Slide finger on spacebar to move cursor like a trackpad.</item>
+        <item>Swipe LEFT/RIGHT on spacebar to switch languages and layouts.</item>
+        <item>Swipe North-West on \'m\' to launch floating Mouse Pad trackpad.</item>
+        <item>Tap to Click, Double Tap for Right Click, Drag title to move Mouse Pad.</item>
+        <item>Swipe North-West on \'s\' for Search &amp; Replace with Regex support.</item>
+        <item>Swipe North-West on \'h\' for Typing History and snippet recovery.</item>
+        <item>Swipe South-East on Emoji key for mathematical Glyphs pane.</item>
+        <item>Swipe from screen edges to access Side Panel app shortcuts.</item>
+        <item>Press \'b\', \'i\', or \'u\' on selected text for Bold, Italic, or Uppercase.</item>
+        <item>Press \'(\', \'[\', or \'{\' on selected text to wrap in brackets.</item>
+        <item>Type a 2-digit number on selected text to change its font size.</item>
+        <item>Send text to Translate (\'t\'), Keep (\'k\'), Obsidian (\'o\'), or Chrome (\'c\').</item>
+        <item>Swipe UP to promote or DOWN to demote suggestion priority.</item>
+        <item>Swipe corners on Urdu letters for Zer, Zabar, or Pesh diacritics.</item>
+        <item>Swipe South-West on \'x\', \'c\', or \'v\' for quick Cut, Copy, Paste.</item>
+        <item>Swipe South-West on \'z\' or \'y\' for quick Undo or Redo.</item>
+        <item>Tap the t-shirt icon (👕) to cycle through 25+ procedural themes.</item>
+        <item>Swipe SE on \'p\' for Password Manager; SW for Generator.</item>
+        <item>Enable Incognito Mode to pause data learning and history recording.</item>
+        <item>Back up everything (settings, dictionary, history) in Backup &amp; Restore.</item>
+    </string-array>
+</resources>

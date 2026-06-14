@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <style name="emojiTypeButton">
+    <item name="android:padding">1px</item>
+    <item name="android:gravity">center</item>
+    <item name="android:minHeight">18dp</item>
+    <item name="android:background">?attr/emoji_button_bg</item>
+    <item name="android:textColor">?attr/emoji_key_text</item>
+    <item name="android:textSize">18dp</item>
+  </style>
+  <style name="emojiGridButton">
+    <item name="android:layout_width">fill_parent</item>
+    <item name="android:layout_height">fill_parent</item>
+    <item name="android:gravity">center</item>
+    <item name="android:textSize">@dimen/emoji_text_size</item>
+    <item name="android:textColor">?attr/emoji_color</item>
+  </style>
+
+  <style name="clipboardEntry">
+    <item name="android:layout_weight">1</item>
+    <item name="android:layout_width">fill_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_marginHorizontal">14dp</item>
+    <item name="android:layout_marginVertical">14dp</item>
+    <item name="android:textSize">16dp</item>
+    <item name="android:textColor">?attr/colorLabel</item>
+  </style>
+  <style name="clipboardHeading">
+    <item name="android:layout_marginHorizontal">6dp</item>
+    <item name="android:layout_marginTop">14dp</item>
+    <item name="android:layout_marginBottom">0dp</item>
+    <item name="android:textSize">14dp</item>
+    <item name="android:fontWeight">700</item>
+    <item name="android:textColor">?attr/colorSubLabel</item>
+  </style>
+  <style name="clipboardEntryButtons">
+    <item name="android:orientation">horizontal</item>
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_gravity">center_vertical</item>
+    <item name="android:layout_marginRight">12dp</item>
+  </style>
+  <style name="clipboardEntryButton">
+    <item name="android:layout_width">24dp</item>
+    <item name="android:layout_height">24dp</item>
+    <item name="android:layout_marginHorizontal">2dp</item>
+    <item name="android:backgroundTint">?attr/colorLabel</item>
+    <item name="android:backgroundTintMode">src_in</item>
+  </style>
+
+  <style name="paragraph">
+    <item name="android:layout_width">fill_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_marginVertical">8dp</item>
+    <item name="android:layout_marginHorizontal">16dp</item>
+    <item name="android:layout_gravity">center</item>
+  </style>
+  <style name="anim">
+    <item name="android:adjustViewBounds">true</item>
+    <item name="android:layout_height">120dp</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:layout_width">wrap_content</item>
+  </style>
+  <style name="anim_text">
+    <item name="android:layout_gravity">center</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_marginHorizontal">20dp</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:textAlignment">center</item>
+    <item name="android:textSize">18dp</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+  <style name="anim_box">
+    <item name="android:layout_gravity">center</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_marginVertical">16dp</item>
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:orientation">horizontal</item>
+  </style>
+  <style name="appTheme" parent="Theme.AppCompat.DayNight"/>
+  <style name="darkDialogTheme" parent="Theme.AppCompat.Dialog">
+    <item name="android:background">@color/menu_background_dark</item>
+  </style>
+
+  <style name="settingsTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+
+    <item name="android:fitsSystemWindows">true</item>
+    <item name="android:windowBackground">@color/menu_background_dark</item>
+    <item name="android:textColor">@color/menu_text_aqua</item>
+    <item name="android:textColorPrimary">@color/menu_text_aqua</item>
+    <item name="android:textColorSecondary">@color/menu_text_aqua</item>
+    <item name="android:colorAccent">@color/menu_text_aqua</item>
+    <item name="android:dialogTheme">@style/darkDialogTheme</item>
+    <item name="colorControlNormal">@color/menu_text_aqua</item>
+  </style>
+
+  <style name="AppTheme.Ocean" parent="Dark">
+    <item name="android:windowBackground">@color/theme_ocean_bg</item>
+    <item name="colorKeyboard">@color/theme_ocean_bg</item>
+    <item name="colorKey">@color/theme_ocean_bg</item>
+    <item name="colorLabel">@color/theme_ocean_accent</item>
+    <item name="colorLabelActivated">@color/theme_ocean_accent</item>
+    <item name="android:colorAccent">@color/theme_ocean_accent</item>
+  </style>
+  <style name="AppTheme.Forest" parent="Dark">
+    <item name="android:windowBackground">@color/theme_forest_bg</item>
+    <item name="colorKeyboard">@color/theme_forest_bg</item>
+    <item name="colorKey">@color/theme_forest_bg</item>
+    <item name="colorLabel">@color/theme_forest_accent</item>
+    <item name="colorLabelActivated">@color/theme_forest_accent</item>
+    <item name="android:colorAccent">@color/theme_forest_accent</item>
+  </style>
+  <style name="AppTheme.Sunset" parent="Dark">
+    <item name="android:windowBackground">@color/theme_sunset_bg</item>
+    <item name="colorKeyboard">@color/theme_sunset_bg</item>
+    <item name="colorKey">@color/theme_sunset_bg</item>
+    <item name="colorLabel">@color/theme_sunset_accent</item>
+    <item name="colorLabelActivated">@color/theme_sunset_accent</item>
+    <item name="android:colorAccent">@color/theme_sunset_accent</item>
+  </style>
+  <style name="AppTheme.Midnight" parent="Dark">
+    <item name="android:windowBackground">@color/theme_midnight_bg</item>
+    <item name="colorKeyboard">@color/theme_midnight_bg</item>
+    <item name="colorKey">@color/theme_midnight_bg</item>
+    <item name="colorLabel">@color/theme_midnight_accent</item>
+    <item name="colorLabelActivated">@color/theme_midnight_accent</item>
+    <item name="android:colorAccent">@color/theme_midnight_accent</item>
+  </style>
+
+  <style name="SuggestionTextStyle">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_margin">3dp</item>
+    <item name="android:paddingLeft">4dp</item>
+    <item name="android:paddingRight">4dp</item>
+    <item name="android:paddingTop">12dp</item>
+    <item name="android:paddingBottom">12dp</item>
+    <item name="android:textSize">18sp</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">?attr/colorLabel</item>
+    <item name="android:background">@drawable/suggestion_background</item>
+    <item name="android:includeFontPadding">false</item>
+  </style>
+</resources>

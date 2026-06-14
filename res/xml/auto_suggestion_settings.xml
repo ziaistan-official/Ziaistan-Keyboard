@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Priorities">
+        <EditTextPreference
+            android:key="suggestion_source_priority"
+            android:title="Source Priority Order"
+            android:summary="Comma-separated: typed,filters,next_word,custom,common,wordlist"
+            android:defaultValue="typed,filters,next_word,custom,common,wordlist" />
+        <EditTextPreference
+            android:key="suggestion_search_priority"
+            android:title="Search Type Priority Order"
+            android:summary="Comma-separated: prefix,keyboard_aware,deletion,insertion,substitution,transposition,doubling,singling"
+            android:defaultValue="prefix,keyboard_aware,deletion,insertion,substitution,transposition,doubling,singling" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Colors (ARGB Hex)">
+        <EditTextPreference android:key="suggestion_color_typed" android:title="Typed Color" android:defaultValue="FF00FF00" />
+        <EditTextPreference android:key="suggestion_color_filters" android:title="Filters Color" android:defaultValue="FFFFFFFF" />
+        <EditTextPreference android:key="suggestion_color_next_word" android:title="Next Word Color" android:defaultValue="FFFFFFFF" />
+        <EditTextPreference android:key="suggestion_color_custom" android:title="Custom Color" android:defaultValue="FFFFFFFF" />
+        <EditTextPreference android:key="suggestion_color_common" android:title="Common Color" android:defaultValue="FFFFFFFF" />
+        <EditTextPreference android:key="suggestion_color_wordlist" android:title="Wordlist Color" android:defaultValue="FFFFFFFF" />
+        <EditTextPreference android:key="suggestion_color_autocorrect" android:title="Auto-correct Color" android:defaultValue="FFFFFFFF" />
+        <EditTextPreference android:key="suggestion_color_keyboard_aware" android:title="Keyboard Aware Color" android:defaultValue="FFFFFFFF" />
+    </PreferenceCategory>
+</PreferenceScreen>

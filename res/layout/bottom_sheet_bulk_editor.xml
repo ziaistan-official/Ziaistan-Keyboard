@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="?attr/colorKeyboard">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bulk Edit Selected"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="?attr/colorLabel"
+        android:layout_marginBottom="16dp" />
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Width Multiplier" android:textColor="?attr/colorLabel" />
+    <SeekBar android:id="@+id/bulk_width_slider" android:layout_width="match_parent" android:layout_height="wrap_content" android:max="200" android:progress="100" />
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Height Multiplier" android:textColor="?attr/colorLabel" />
+    <SeekBar android:id="@+id/bulk_height_slider" android:layout_width="match_parent" android:layout_height="wrap_content" android:max="200" android:progress="100" />
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Light Color Hue" android:textColor="?attr/colorLabel" />
+    <SeekBar android:id="@+id/bulk_hue_light_slider" android:layout_width="match_parent" android:layout_height="wrap_content" android:max="361" android:progress="361" />
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Dark Color Hue" android:textColor="?attr/colorLabel" />
+    <SeekBar android:id="@+id/bulk_hue_dark_slider" android:layout_width="match_parent" android:layout_height="wrap_content" android:max="361" android:progress="361" />
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Border Radius" android:textColor="?attr/colorLabel" />
+    <SeekBar android:id="@+id/bulk_radius_slider" android:layout_width="match_parent" android:layout_height="wrap_content" android:max="20" android:progress="5" />
+
+    <Button
+        android:id="@+id/btn_apply_bulk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apply to All"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<keyboard bottom_row="false">
+    <row height="1.10" shift="0.0">
+      <key width="1.0" shift="0.0" c="⇠:switch_back_clipboard" />
+      <key width="3.4285712" shift="0.0" border_radius="0.5" c="⎯:space" c_scale="2.0" w="←:left" e="→:right" n="⟞:switch_forward" n_scale="0.12" s="⟝:switch_backward" s_scale="0.11" />
+      <key width="0.8571428" shift="0.0" border_radius="1.0" c="enter" nw="⊙:voice_typing" ne="action" />
+      <key width="1.0" shift="0.0" c="⌫:backspace" ne="⌦:delete" />
+    </row>
+</keyboard>

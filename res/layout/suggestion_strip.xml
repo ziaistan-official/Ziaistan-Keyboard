@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/suggestions_strip"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="?attr/colorKeyboard"
+    android:visibility="gone"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/ziaistan_official_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\@ziaistan_official"
+        android:textColor="?attr/colorLabel"
+        android:paddingStart="12dp"
+        android:paddingEnd="8dp"/>
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/suggestions_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+
+        <ViewFlipper
+            android:id="@+id/tutorial_flipper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/suggestion_strip_handle"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_drag_handle"
+        android:contentDescription="@string/drag_handle_content_description"
+        android:padding="8dp"/>
+</LinearLayout>

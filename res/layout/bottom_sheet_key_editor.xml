@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="?attr/colorKeyboard">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit Key"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="?attr/colorLabel"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Live Key Preview -->
+    <FrameLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:background="?attr/colorKey"
+        android:layout_marginBottom="16dp">
+        <TextView
+            android:id="@+id/preview_key_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="24sp"
+            android:textColor="?attr/colorLabel" />
+    </FrameLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/gesture_type_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp">
+        <com.google.android.material.tabs.TabItem android:text="Side Swipe" />
+        <com.google.android.material.tabs.TabItem android:text="Circle" />
+        <com.google.android.material.tabs.TabItem android:text="Anti-Circle" />
+        <com.google.android.material.tabs.TabItem android:text="Fn Map" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/position_selector_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+        <RadioGroup
+            android:id="@+id/position_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/pos_c" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="C" android:checked="true" />
+            <RadioButton android:id="@+id/pos_nw" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NW" />
+            <RadioButton android:id="@+id/pos_ne" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NE" />
+            <RadioButton android:id="@+id/pos_sw" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SW" />
+            <RadioButton android:id="@+id/pos_se" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SE" />
+            <RadioButton android:id="@+id/pos_w" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="W" />
+            <RadioButton android:id="@+id/pos_e" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="E" />
+            <RadioButton android:id="@+id/pos_n" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="N" />
+            <RadioButton android:id="@+id/pos_s" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="S" />
+        </RadioGroup>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="8dp">
+        <TextView
+            android:id="@+id/current_assignment_text"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Current: (None)"
+            android:textSize="12sp"
+            android:textColor="?attr/colorSubLabel" />
+        <CheckBox
+            android:id="@+id/check_append_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Append"
+            android:textSize="10sp"
+            android:textColor="?attr/colorSubLabel" />
+        <Button
+            android:id="@+id/btn_clear_assignment"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Clear"
+            android:textSize="10sp"
+            style="?android:attr/borderlessButtonStyle" />
+    </LinearLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/editor_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+        <com.google.android.material.tabs.TabItem android:text="Chars" />
+        <com.google.android.material.tabs.TabItem android:text="Actions" />
+        <com.google.android.material.tabs.TabItem android:text="Visuals" />
+        <com.google.android.material.tabs.TabItem android:text="Glyphs" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <FrameLayout
+        android:id="@+id/tab_container"
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <LinearLayout
+            android:id="@+id/tab_characters"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/char_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Search Characters..." />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/char_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tab_actions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <Spinner
+                android:id="@+id/action_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tab_visuals"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/color_mode_tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.tabs.TabItem android:text="Light Theme" />
+                <com.google.android.material.tabs.TabItem android:text="Dark Theme" />
+            </com.google.android.material.tabs.TabLayout>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Hue" android:textColor="?attr/colorLabel" android:layout_marginTop="8dp" />
+            <SeekBar android:id="@+id/hue_slider" android:layout_width="match_parent" android:layout_height="wrap_content" android:max="360" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Saturation" android:textColor="?attr/colorLabel" />
+            <SeekBar android:id="@+id/sat_slider" android:layout_width="match_parent" android:layout_height="wrap_content" android:max="100" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Value" android:textColor="?attr/colorLabel" />
+            <SeekBar android:id="@+id/val_slider" android:layout_width="match_parent" android:layout_height="wrap_content" android:max="100" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Alpha" android:textColor="?attr/colorLabel" />
+            <SeekBar android:id="@+id/alpha_slider" android:layout_width="match_parent" android:layout_height="wrap_content" android:max="255" android:progress="255" />
+            <View android:id="@+id/color_preview" android:layout_width="match_parent" android:layout_height="40dp" android:layout_marginTop="8dp" android:background="#FFFFFF" />
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Glyph Size Scale" android:textColor="?attr/colorLabel" android:layout_marginTop="8dp" />
+            <SeekBar android:id="@+id/glyph_size_slider" android:layout_width="match_parent" android:layout_height="wrap_content" android:max="200" android:progress="100" />
+
+            <Button
+                android:id="@+id/btn_clear_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Reset to Default"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tab_glyphs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <EditText
+                android:id="@+id/glyph_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Search Glyphs (by index 1, 2, ...)" />
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/glyph_group_tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabMode="scrollable" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/glyph_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tab_fn_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Map this key when Fn is active:"
+                android:textColor="?attr/colorLabel"
+                android:padding="8dp" />
+            <Spinner
+                android:id="@+id/fn_map_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btn_clear_fn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Clear Fn Mapping"
+                style="?android:attr/borderlessButtonStyle" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_pick_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change Color"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:id="@+id/btn_apply_key"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apply Changes"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

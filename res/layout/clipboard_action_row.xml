@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/clipboard_action_row"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="?attr/colorKeyboard"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp">
+
+    <Button
+        android:id="@+id/clipboard_back_button"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/clipboard_back_to_keyboard"
+        android:textColor="?attr/colorLabel" />
+
+    <Button
+        android:id="@+id/clipboard_import_button"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/clipboard_import"
+        android:textColor="?attr/colorLabel" />
+
+    <Button
+        android:id="@+id/clipboard_export_button"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/clipboard_export"
+        android:textColor="?attr/colorLabel" />
+
+    <ImageButton
+        android:id="@+id/clipboard_clear_button"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="85px"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_delete"
+        android:tint="?attr/colorLabel"
+        android:contentDescription="@string/clipboard_clear" />
+
+</LinearLayout>

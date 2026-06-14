@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>3×3 Colored Grid — Dual Orbits with Tails</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card-radius:20px;
+      --cell-size:140px;
+      --gap:22px;
+      --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      --orbit-size:28px;
+      --tail-length:6; /* number of tail layers */
+    }
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#071020,#0b1220);display:flex;align-items:center;justify-content:center;font-family:var(--font);}
+    .card{background:var(--bg);padding:28px;border-radius:22px;box-shadow:0 20px 60px rgba(2,6,23,0.6);}
+    .grid{display:grid;grid-template-columns:repeat(3,var(--cell-size));grid-auto-rows:var(--cell-size);gap:var(--gap);align-items:center;justify-items:center;position:relative}
+    .cell{width:var(--cell-size);height:var(--cell-size);border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:34px;color:#fff;position:relative;overflow:visible;box-shadow:0 8px 24px rgba(2,6,23,0.45)}
+    .c-n { background:#FFD93D;color:#0f1724 }
+    .c-nw{ background:#FF6B6B }
+    .c-ne{ background:#6BCB77 }
+    .c-w { background:#4D96FF }
+    .c-e { background:#00C2CB;color:#0f1724 }
+    .c-sw{ background:#FF9F1C;color:#0f1724 }
+    .c-s { background:#A0AEC0;color:#0f1724 }
+    .c-se{ background:#D685FF;color:#0f1724 }
+    .c-center{ background: linear-gradient(135deg,#7C4DFF,#FF61C3); box-shadow: 0 12px 30px rgba(124,77,255,0.28); font-size:40px }
+
+    /* Orbit wrapper: contains animated elements; placed absolute inside cell */
+    .orbit { position:absolute; width:calc(var(--cell-size) + 48px); height:calc(var(--cell-size) + 48px); left:50%; top:50%; transform:translate(-50%,-50%); pointer-events:none; }
+
+    .orbiter { position:absolute; left:50%; top:50%; transform-origin:center center; will-change:transform; }
+
+    /* the moving head dot and tail container */
+    .head {
+      position:absolute;
+      width:var(--orbit-size);
+      height:var(--orbit-size);
+      border-radius:50%;
+      display:block;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      box-shadow:0 8px 22px rgba(0,0,0,0.45);
+      will-change:transform, opacity;
+    }
+    .tail { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:var(--orbit-size); height:var(--orbit-size); pointer-events:none; }
+
+    /* create multiple tail layers via CSS variables (JS will duplicate nodes) */
+    .tail .seg { position:absolute; width:100%; height:100%; border-radius:50%; left:50%; top:50%; transform:translate(-50%,-50%); filter:blur(6px); opacity:0.6; }
+
+    /* keyframes: rotate wrapper to orbit; inner head counter-rotates to stay upright */
+    @keyframes spin-cw { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes spin-ccw { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+
+    /* Responsive tuning */
+    @media (max-width:640px){
+      :root{ --cell-size:100px; --orbit-size:22px; --gap:14px; }
+      .cell{ font-size:22px }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="main" aria-label="3 by 3 colored grid with animated dual orbits and tails">
+    <div class="grid" aria-hidden="false">
+
+      <div class="cell c-nw" id="cell-nw">nw</div>
+      <div class="cell c-n" id="cell-n">n</div>
+      <div class="cell c-ne" id="cell-ne">ne</div>
+
+
+      <div class="cell c-w" id="cell-w">w</div>
+      <div class="cell c-center" id="cell-c">c</div>
+      <div class="cell c-e" id="cell-e">e</div>
+
+
+      <div class="cell c-sw" id="cell-sw">sw</div>
+      <div class="cell c-s" id="cell-s">s</div>
+      <div class="cell c-se" id="cell-se">se</div>
+    </div>
+
+    <p style="margin-top:14px;color:#9aa4b2;font-size:13px">Each outer cell has two orbiters (CW & CCW) with smooth trailing effects.</p>
+  </div>
+
+  <script>
+    (function(){
+      const config = {
+        tailSegments: 6,
+        offsets: 12, // distance outside cell edge
+        durations: { cw: 2400, ccw: 3200 },
+        easing: 'linear'
+      };
+
+      // color mapping for heads and tail layers
+      const colors = {
+        'c-nw': ['#FF6B6B','#FFB6B6'],
+        'c-n' : ['#FFD93D','#FFF0B3'],
+        'c-ne': ['#6BCB77','#CFF7D5'],
+        'c-w' : ['#4D96FF','#BFD9FF'],
+        'c-e' : ['#00C2CB','#BFF7F8'],
+        'c-sw': ['#FF9F1C','#FFE7C7'],
+        'c-s' : ['#A0AEC0','#E6E9EE'],
+        'c-se': ['#D685FF','#F3D9FF']
+      };
+
+      const outerIds = ['cell-nw','cell-n','cell-ne','cell-w','cell-e','cell-sw','cell-s','cell-se'];
+
+      function createOrbitersForCell(cell){
+        const cls = Array.from(cell.classList).find(c=>c.startsWith('c-'));
+        if(!cls || cls==='c-center') return;
+
+        const orbit = document.createElement('div');
+        orbit.className = 'orbit';
+        cell.appendChild(orbit);
+
+        // compute radius for orbit path (half orbit.width)
+        const rect = cell.getBoundingClientRect();
+        const orbitSize = rect.width + config.offsets*2;
+        orbit.style.width = orbit.style.height = orbitSize + 'px';
+
+        ['cw','ccw'].forEach((dir, i)=>{
+          const wrapper = document.createElement('div');
+          wrapper.className = 'orbiter ' + dir;
+          // position wrapper center
+          wrapper.style.left = '50%';
+          wrapper.style.top = '50%';
+          wrapper.style.transformOrigin = '50% 50%';
+          // animation
+          const duration = config.durations[dir];
+          wrapper.style.animation = `${dir==='cw'?'spin-cw':'spin-ccw'} ${duration}ms linear infinite`;
+
+          // head
+          const head = document.createElement('div');
+          head.className = 'head';
+          const headColor = (colors[cls] && colors[cls][0]) || '#fff';
+          head.style.background = headColor;
+          // place head at radius on x-axis (will orbit with wrapper)
+          const radius = Math.round(orbitSize/2 - (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--orbit-size'))||28)/2);
+          head.style.transform = `translate(${radius}px, -50%) translate(-50%,-50%)`;
+          // tail container
+          const tail = document.createElement('div');
+          tail.className = 'tail';
+
+          // create layered tail segments (closest -> faintest)
+          const baseColor = (colors[cls] && colors[cls][1]) || headColor;
+          for(let s=0;s<config.tailSegments;s++){
+            const seg = document.createElement('div');
+            seg.className = 'seg';
+            const opacity = 0.8 * (1 - s/(config.tailSegments+1));
+            const blur = 4 + s*2;
+            seg.style.background = baseColor;
+            seg.style.opacity = opacity;
+            seg.style.filter = `blur(${blur}px)`;
+            // staggered scale to create tapering tail
+            const scale = 1 - s*0.08;
+            seg.style.transform = `translate(${radius}px, -50%) translate(-50%,-50%) scale(${scale})`;
+            seg.style.transition = 'opacity 200ms linear';
+            tail.appendChild(seg);
+          }
+
+          // Append tail and head to wrapper
+          wrapper.appendChild(tail);
+          wrapper.appendChild(head);
+          orbit.appendChild(wrapper);
+
+          // Web Animations API to animate head and tail positions in sync, with head leading and tail lagging
+          // We'll animate rotation of wrapper (already via CSS). For a consistent tail trail, animate opacity/transform of segments using WAAPI.
+          function startAnim(){
+            // wrapper rotation is CSS-driven; we need head/tail relative transforms to stay at radius while wrapper rotates.
+            // The segments already placed at radius; to produce trailing fade we'll animate per-segment opacity offset using WAAPI.
+            const segs = Array.from(tail.children);
+            segs.forEach((seg, idx)=>{
+              const delay = (idx+1) * (duration / (config.tailSegments*8));
+              seg.animate([
+                { opacity: seg.style.opacity },
+                { opacity: 0 }
+              ], { duration: duration*1.2, iterations: Infinity, easing: 'linear', delay: dir==='cw' ? -delay : -delay });
+            });
+          }
+          // small timeout to ensure CSS animation started
+          setTimeout(startAnim,20);
+        });
+      }
+
+      function setup(){
+        outerIds.forEach(id=>{
+          const el = document.getElementById(id);
+          if(el) createOrbitersForCell(el);
+        });
+      }
+
+      // Recreate orbiters on resize to recalc radii
+      let resizeTimer;
+      window.addEventListener('resize', ()=>{ clearTimeout(resizeTimer); resizeTimer = setTimeout(()=>{
+        // remove existing orbiters
+        outerIds.forEach(id=>{
+          const el = document.getElementById(id);
+          if(!el) return;
+          const existing = el.querySelectorAll('.orbit');
+          existing.forEach(n=>n.remove());
+        });
+        setup();
+      },120) });
+
+      // init
+      setup();
+    })();
+  </script>
+</body>
+</html>

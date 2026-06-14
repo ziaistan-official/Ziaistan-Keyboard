@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<keyboard name="QWERTY (US)" script="latin" wordlist="wordlist_en">
+
+  <modmap>
+    
+    <fn a="home" b="۔"/>
+    <fn a="up" b="،"/>
+    <fn a="end" b="؟"/>
+    <fn a="page_up" b="!"/>
+    <fn a="cut" b="("/>
+    <fn a="paste" b=")"/>
+    <fn a="delete" b="&quot;"/>
+    <fn a="esc" b="'"/>
+    <fn a="left" b="&lt;"/>
+    <fn a="down" b="&gt;"/>
+    <fn a="right" b="|"/>
+    <fn a="page_down" b="\\"/>
+    <fn a="copy" b="_"/>
+    <fn a="capslock" b="+"/>
+    <fn a="shift" b="-"/>
+    <fn a="backspace" b="="/>
+
+    
+    <fn a="q" b="~"/>
+    <fn a="w" b="`"/>
+    <fn a="e" b="|"/>
+    <fn a="r" b="√"/>
+    <fn a="t" b="•"/>
+    <fn a="y" b="π"/>
+    <fn a="u" b="€"/>
+    <fn a="i" b="£"/>
+    <fn a="o" b="¥"/>
+    <fn a="p" b="¢"/>
+    <fn a="a" b="“"/>
+    <fn a="s" b="°"/>
+    <fn a="d" b="{"/>
+    <fn a="f" b="}"/>
+    <fn a="g" b="©"/>
+    <fn a="h" b="®"/>
+    <fn a="j" b="™"/>
+    <fn a="k" b="["/>
+    <fn a="l" b="]"/>
+    <fn a="z" b="\n"/>
+    <fn a="x" b="\t"/>
+    <fn a="c" b="&lt;"/>
+    <fn a="v" b="&gt;"/>
+    <fn a="b" b=","/>
+    <fn a="n" b="."/>
+    <fn a="m" b="/"/>
+  </modmap>
+
+
+      
+    <row height="0.7" shift="0.0">
+      <key width="2.3450296" shift="0.0" border_radius="0.5" c="⎘:paste" c_scale="0.6" nw_color_light="139,0,0" nw_color_dark="255,0,0" sw_color_light="0,100,0" sw_color_dark="0,255,0" e_color_light="255,140,0" e_color_dark="255,255,0" n="⌨:switch_clipboard" n_scale="0.63" />
+      <key width="2.3450296" shift="0.0" border_radius="0.5" c="⎙:copy" c_color_light="255,255,255" c_scale="0.61" n="✃:cut" n_color_light="255,255,255" n_scale="0.63" indication="scale:0.49" />
+      <key width="1.5537201" shift="0.0" border_radius="0.5" c="Home:home" c_scale="0.64" n="⚙:config" n_color_light="99,9,74" n_color_dark="238,58,190" n_scale="0.51" />
+      <key width="1.5537201" shift="0.0" border_radius="0.5" c="↑:up" c_scale="0.57" n="⇔:select_all" n_color_light="255,140,0" n_color_dark="255,255,0" n_scale="0.45" />
+      <key width="1.5537201" shift="0.0" border_radius="0.5" c="End:end" c_scale="0.65" e_color_light="99,9,74" e_color_dark="238,58,190" n="esc" n_scale="0.57" />
+      <key width="2.4093924" shift="0.0" border_radius="0.5" c="⌦:delete" c_scale="0.64" ne_color_light="139,0,0" ne_color_dark="255,0,0" n="⌦:forward_delete_word" n_color_light="255,255,255" n_scale="0.59" />
+      <key width="2.4093924" shift="0.0" border_radius="0.5" c="⌫:backspace" c_scale="0.7" nw_color_light="139,0,0" nw_color_dark="255,0,0" n="⌫:delete_word" n_color_light="255,255,255" n_scale="0.61" />
+    </row>
+    <row height="0.7" shift="0.0">
+      <key width="2.3450296" shift="0.0" border_radius="0.5" c="shift" c_color_light="255,255,255" w_color_light="184,134,11" w_color_dark="255,215,0" e_color_light="255,140,0" e_color_dark="255,255,0" />
+      <key width="2.3450296" shift="0.0" border_radius="0.5" c="PUp:page_up" c_scale="0.61" n="↶:undo" n_color_light="255,255,255" />
+      <key width="1.5537201" shift="0.0" border_radius="0.5" c="←:left" c_scale="0.54" w_color_light="255,140,0" w_color_dark="255,255,0" n="⇍:shift,move_word_backward_1" n_scale="0.45" />
+      <key width="1.5537201" shift="0.0" border_radius="0.5" c="↓:down" c_scale="0.52" n="⇎:move_word_backward_1,shift,move_word_forward_1" n_scale="0.45" s_color_light="255,140,0" s_color_dark="255,255,0" />
+      <key width="1.5537201" shift="0.0" border_radius="0.5" c="→:right" c_scale="0.56" e_color_light="255,140,0" e_color_dark="255,255,0" n="⇏:shift,move_word_forward_1" n_scale="0.39" />
+      <key width="2.4093924" shift="0.0" border_radius="0.5" c="PDown:page_down" c_color_light="255,255,255" c_scale="0.6" w_color_light="0,163,159" w_color_dark="10,255,251" e_color_light="0,163,159" e_color_dark="10,255,251" n="↷:redo" s_color_light="0,163,159" s_color_dark="10,255,251" />
+      <key width="2.4093924" shift="0.0" border_radius="0.5" c="⇪:capslock" />
+    </row>
+    <row height="1.0" shift="0.0">
+      <key width="1.1390679" shift="0.0" c="∅:select_all,delete" c_color_light="255,255,255" />
+      <key width="1.3896627" shift="0.0" border_radius="0.5" c="q" ne="­:Q" ne_color_light="4,26,190" ne_color_dark="211,14,110" sw_color_light="40,6,130" sw_color_dark="211,140,11" />
+      <key width="1.1390679" shift="0.0" c="w" ne="­:W" ne_color_light="8,125,68" ne_color_dark="255,239,92" />
+      <key width="1.1390679" shift="0.0" c="e" ne="­:E" ne_color_light="95,2,2" ne_color_dark="240,5,5" />
+      <key width="1.1390679" shift="0.0" c="r" ne="­:R" ne_color_light="4,26,190" ne_color_dark="211,14,110" />
+      <key width="1.1390679" shift="0.0" c="t" ne="­:T" ne_color_light="8,125,68" ne_color_dark="255,239,92" n="⧳:insert_timestamp" n_color_light="255,255,255" n_scale="1.0" />
+      <key width="1.1390679" shift="0.0" c="y" ne="­:Y" ne_color_light="4,26,190" ne_color_dark="211,14,110" />
+      <key width="1.1390679" shift="0.0" c="u" ne="­:U" ne_color_light="95,2,2" ne_color_dark="240,5,5" sw_color_light="255,0,0" />
+      <key width="1.1390679" shift="0.0" c="i" ne="­:I" ne_color_light="95,2,2" ne_color_dark="240,5,5" />
+      <key width="1.1390679" shift="0.0" c="o" ne="­:O" ne_color_light="95,2,2" ne_color_dark="240,5,5" />
+      <key width="1.3896627" shift="0.0" border_radius="0.5" c="p" nw="✎:autofill_password" ne="­:P" ne_color_light="8,125,68" ne_color_dark="255,239,92" sw="⚄:generate_password" sw_color_light="255,69,0" sw_color_dark="255,140,0" se="⚙:password_manager" se_color_light="0,163,159" se_color_dark="10,255,251" />
+      <key width="1.1390679" shift="0.0" c="☻:switch_emoji" c_color_light="255,255,255" />
+    </row>
+    <row height="1.0" shift="0.0">
+      <key width="1.0543159" shift="0.0" c="tab" c_color_light="255,255,255" n_color_light="28,71,3" n_color_dark="92,255,0" />
+      <key width="1.0543159" shift="0.0" c="-" n="+" n_color_light="28,71,3" n_color_dark="92,255,0" />
+      <key width="1.2862654" shift="0.0" border_radius="0.5" c="a" nw="alt" nw_color_light="255,255,255" nw_scale="1.0" ne="­:A" ne_color_light="95,2,2" ne_color_dark="240,5,5" sw="⇔:select_all" />
+      <key width="1.0543159" shift="0.0" c="s" nw="⌕:search_replace" nw_color_light="0,163,159" nw_color_dark="10,255,251" ne="­:S" ne_color_light="4,26,190" ne_color_dark="211,14,110" />
+      <key width="1.0543159" shift="0.0" c="d" ne="­:D" ne_color_light="8,125,68" ne_color_dark="255,239,92" />
+      <key width="1.0543159" shift="0.0" c="f" ne="­:F" ne_color_light="4,26,190" ne_color_dark="211,14,110" />
+      <key width="1.0543159" shift="0.0" c="g" ne="­:G" ne_color_light="8,125,68" ne_color_dark="255,239,92" />
+      <key width="1.0543159" shift="0.0" c="h" c_color_light="255,255,255" nw="typing_history" nw_color_light="255,69,0" nw_color_dark="255,140,0" ne="­:H" ne_color_light="4,26,190" ne_color_dark="211,14,110" />
+      <key width="1.0543159" shift="0.0" c="j" ne="­:J" ne_color_light="8,125,68" ne_color_dark="255,239,92" />
+      <key width="1.0543159" shift="0.0" c="k" ne="­:K" ne_color_light="4,26,190" ne_color_dark="211,14,110" />
+      <key width="1.2862654" shift="0.0" border_radius="0.5" c="l" ne="­:L" ne_color_light="8,125,68" ne_color_dark="255,239,92" n="ᕀ:learn_from_text" n_color_light="8,125,68" n_color_dark="255,239,92" />
+      <key width="1.0543159" shift="0.0" c=":" n=";" n_color_light="28,71,3" n_color_dark="92,255,0" />
+      <key width="1.0543159" shift="0.0" c="&quot;" n="&apos;" n_color_light="28,71,3" n_color_dark="92,255,0" />
+    </row>
+    <row height="1.0" shift="0.0">
+      <key width="1.0543159" shift="0.0" c="⌘:switch_glyphs" />
+      <key width="1.0543159" shift="0.0" c="`" c_scale="1.23" n="~" n_color_light="28,71,3" n_color_dark="92,255,0" />
+      <key width="1.0543159" shift="0.0" c="_" n="=" />
+      <key width="1.2862654" shift="0.0" border_radius="0.5" c="z" c_color_light="255,255,255" nw="↶:undo" ne="Z" ne_color_light="8,125,68" ne_color_dark="211,14,110" ne_scale="0.1" se="↷:redo" se_color_light="255,255,255" />
+      <key width="1.0543159" shift="0.0" c="x" ne="­:X" ne_color_light="4,26,190" ne_color_dark="255,239,92" n="✁:cut" n_scale="0.63" />
+      <key width="1.0543159" shift="0.0" c="c" c_scale="1.03" ne="­:C" ne_color_light="8,125,68" ne_color_dark="211,14,110" w_color_light="255,255,255" w_scale="1.0" e="⏘:termux_commands" e_color_light="255,255,255" e_scale="0.68" n="⎙:copy" n_scale="0.67" />
+      <key width="1.0543159" shift="0.0" c="v" nw="⊙:voice_typing" ne="­:V" ne_color_light="4,26,190" ne_color_dark="255,239,92" n="⎘:paste" n_scale="0.66" />
+      <key width="1.0543159" shift="0.0" c="b" ne="­:B" ne_color_light="8,125,68" ne_color_dark="211,14,110" sw_color_light="255,255,0" n="⌨:switch_clipboard" n_scale="0.62" />
+      <key width="1.0543159" shift="0.0" c="n" ne="­:N" ne_color_light="4,26,190" ne_color_dark="255,239,92" e="quick_note" e_color_light="255,255,255" e_scale="0.59" />
+      <key width="1.2862654" shift="0.0" border_radius="0.5" c="m" ne="­:M" ne_color_light="8,125,68" ne_color_dark="211,14,110" n="⍞:mouse_pad" />
+      <key width="1.0543159" shift="0.0" c="." c_scale="2.0" n_color_light="28,71,3" n_color_dark="92,255,0" />
+      <key width="1.0543159" shift="0.0" c="," c_scale="2.0" nw="&lt;" ne="&gt;" n_color_light="28,71,3" n_color_dark="92,255,0" />
+      <key width="1.0543159" shift="0.0" c="\?" c_scale="1.32" nw="/" ne="\\" n_color_light="28,71,3" n_color_dark="92,255,0" />
+    </row>
+</keyboard>

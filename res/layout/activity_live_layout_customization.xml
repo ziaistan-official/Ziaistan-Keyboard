@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorKeyboard">
+
+    <!-- Center Keyboard Area -->
+    <FrameLayout
+        android:id="@+id/keyboard_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/toolbar_stack">
+
+        <juloo.keyboard2.Keyboard2View
+            android:id="@+id/live_keyboard_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="?attr/colorKeyboard" />
+    </FrameLayout>
+
+    <!-- Toolbar Stack at Bottom -->
+    <LinearLayout
+        android:id="@+id/toolbar_stack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:background="?attr/colorKey">
+
+        <!-- Main Toolbar -->
+        <LinearLayout
+            android:id="@+id/top_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/layout_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Custom Layout"
+                android:textColor="?attr/colorLabel"
+                android:paddingStart="8dp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btn_undo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@android:drawable/ic_menu_revert"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="?attr/colorLabel" />
+
+            <ImageButton
+                android:id="@+id/btn_redo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@android:drawable/ic_media_next"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="?attr/colorLabel" />
+
+            <Button
+                android:id="@+id/btn_save_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                style="?android:attr/borderlessButtonStyle"
+                android:textColor="?attr/colorLabel" />
+
+            <Button
+                android:id="@+id/btn_export_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Export"
+                style="?android:attr/borderlessButtonStyle"
+                android:textColor="?attr/colorLabel" />
+
+            <Button
+                android:id="@+id/btn_theme_creator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Theme"
+                style="?android:attr/borderlessButtonStyle"
+                android:textColor="?attr/colorLabel" />
+        </LinearLayout>
+
+        <!-- Bottom Toolbar -->
+        <HorizontalScrollView
+            android:id="@+id/bottom_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorKey"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4dp">
+
+                <Button android:id="@+id/btn_add_row" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+Row" style="?android:attr/borderlessButtonStyle" android:textColor="?attr/colorLabel" />
+                <Button android:id="@+id/btn_remove_row" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="-Row" style="?android:attr/borderlessButtonStyle" android:textColor="?attr/colorLabel" />
+                <Button android:id="@+id/btn_add_key" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+Key" style="?android:attr/borderlessButtonStyle" android:textColor="?attr/colorLabel" />
+                <Button android:id="@+id/btn_remove_key" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="-Key" style="?android:attr/borderlessButtonStyle" android:textColor="?attr/colorLabel" />
+                <Button android:id="@+id/btn_select_mode" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Select" style="?android:attr/borderlessButtonStyle" android:textColor="?attr/colorLabel" />
+                <Button android:id="@+id/btn_bulk_edit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bulk" style="?android:attr/borderlessButtonStyle" android:textColor="?attr/colorLabel" android:visibility="gone" />
+                <Button android:id="@+id/btn_edit_surroundings" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Surroundings" style="?android:attr/borderlessButtonStyle" android:textColor="?attr/colorLabel" />
+                <Button android:id="@+id/btn_auto_surroundings" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Auto Surr" style="?android:attr/borderlessButtonStyle" android:textColor="?attr/colorLabel" />
+                <Button android:id="@+id/btn_auto_glyphs" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Auto Glyphs" style="?android:attr/borderlessButtonStyle" android:textColor="?attr/colorLabel" />
+                <Button android:id="@+id/btn_resize_mode" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Resize" style="?android:attr/borderlessButtonStyle" android:textColor="?attr/colorLabel" />
+                <Button android:id="@+id/btn_edit_bottom_row" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bottom Row" style="?android:attr/borderlessButtonStyle" android:textColor="?attr/colorLabel" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

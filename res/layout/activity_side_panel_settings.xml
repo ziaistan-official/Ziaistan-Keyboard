@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?android:attr/windowBackground">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <Switch
+                android:id="@+id/switch_enable_side_panel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enable Side Panel"
+                android:textColor="?android:attr/textColor"
+                android:textSize="18sp"
+                android:paddingBottom="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Animation Style"
+                android:textColor="?android:attr/textColor"
+                android:textStyle="bold"
+                android:paddingTop="8dp" />
+
+            <Spinner
+                android:id="@+id/spinner_animation_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Left Panel (5 Tabs)"
+                android:textColor="?android:attr/textColor"
+                android:textStyle="bold"
+                android:paddingTop="16dp" />
+
+            <LinearLayout
+                android:id="@+id/container_left_tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Right Panel (5 Tabs)"
+                android:textColor="?android:attr/textColor"
+                android:textStyle="bold"
+                android:paddingTop="16dp" />
+
+            <LinearLayout
+                android:id="@+id/container_right_tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bottom Panel (3 Tabs)"
+                android:textColor="?android:attr/textColor"
+                android:textStyle="bold"
+                android:paddingTop="16dp" />
+
+            <LinearLayout
+                android:id="@+id/container_bottom_tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<keyboard name="Urdu (Ziaistani)" script="urdu" bottom_row="true" wordlist="wordlist_ur">
+  <modmap>
+
+    <fn a="home" b="۔"/>
+    <fn a="up" b="،"/>
+    <fn a="end" b="؟"/>
+    <fn a="page_up" b="!"/>
+    <fn a="cut" b="("/>
+    <fn a="paste" b=")"/>
+    <fn a="delete" b="&quot;"/>
+    <fn a="esc" b="'"/>
+    <fn a="left" b="&lt;"/>
+    <fn a="down" b="&gt;"/>
+    <fn a="right" b="|"/>
+    <fn a="page_down" b="\\"/>
+    <fn a="copy" b="_"/>
+    <fn a="capslock" b="+"/>
+    <fn a="shift" b="-"/>
+    <fn a="backspace" b="="/>
+
+
+    <fn a="ذ" b="۱"/>
+    <fn a="ڈ" b="۲"/>
+    <fn a="د" b="۳"/>
+    <fn a="خ" b="۴"/>
+    <fn a="ح" b="۵"/>
+    <fn a="چ" b="۶"/>
+    <fn a="ج" b="۷"/>
+    <fn a="ث" b="۸"/>
+    <fn a="ٹ" b="۹"/>
+    <fn a="ت" b="۰"/>
+    <fn a="پ" b="-"/>
+    <fn a="ب" b="="/>
+    <fn a="ا" b="آ"/>
+
+
+    <fn a="ف" b="("/>
+    <fn a="غ" b=")"/>
+    <fn a="ع" b="["/>
+    <fn a="ظ" b="]"/>
+    <fn a="ط" b="{"/>
+    <fn a="ض" b="}"/>
+    <fn a="ص" b="_"/>
+    <fn a="ش" b="-"/>
+    <fn a="س" b="+"/>
+    <fn a="ژ" b="="/>
+    <fn a="ز" b="|"/>
+    <fn a="ڑ" b="\\"/>
+    <fn a="р" b="~"/>
+
+
+    <fn a="ے" b="!"/>
+    <fn a="ی" b="\@"/>
+    <fn a="ء" b="\#"/>
+    <fn a="ھ" b="$"/>
+    <fn a="ہ" b="%"/>
+    <fn a="و" b="^"/>
+    <fn a="ں" b="&amp;"/>
+    <fn a="ن" b="*"/>
+    <fn a="م" b="?"/>
+    <fn a="ل" b="."/>
+    <fn a="گ" b=","/>
+    <fn a="ک" b="'"/>
+    <fn a="ق" b="&quot;"/>
+  </modmap>
+
+
+    <row height="0.7" shift="0.0">
+      <key width="2.3450296" shift="0.0" border_radius="0.5" c="⎘:paste" c_scale="0.6" nw_color_light="139,0,0" nw_color_dark="255,0,0" sw_color_light="0,100,0" sw_color_dark="0,255,0" e_color_light="255,140,0" e_color_dark="255,255,0" n="⌨:switch_clipboard" n_scale="0.63" />
+      <key width="2.3450296" shift="0.0" border_radius="0.5" c="⎙:copy" c_color_light="255,255,255" c_scale="0.61" n="✃:cut" n_color_light="255,255,255" n_scale="0.63" indication="scale:0.49" />
+      <key width="1.5537201" shift="0.0" border_radius="0.5" c="Home:home" c_scale="0.64" n="⚙:config" n_color_light="99,9,74" n_color_dark="238,58,190" n_scale="0.51" />
+      <key width="1.5537201" shift="0.0" border_radius="0.5" c="↑:up" c_scale="0.57" n="⇔:select_all" n_color_light="255,140,0" n_color_dark="255,255,0" n_scale="0.45" />
+      <key width="1.5537201" shift="0.0" border_radius="0.5" c="End:end" c_scale="0.65" e_color_light="99,9,74" e_color_dark="238,58,190" n="esc" n_scale="0.57" />
+      <key width="2.4093924" shift="0.0" border_radius="0.5" c="⌦:delete" c_scale="0.64" ne_color_light="139,0,0" ne_color_dark="255,0,0" n="⌦:forward_delete_word" n_color_light="255,255,255" n_scale="0.59" />
+      <key width="2.4093924" shift="0.0" border_radius="0.5" c="⌫:backspace" c_scale="0.7" nw_color_light="139,0,0" nw_color_dark="255,0,0" n="⌫:delete_word" n_color_light="255,255,255" n_scale="0.61" />
+    </row>
+    <row height="0.7" shift="0.0">
+      <key width="2.3450296" shift="0.0" border_radius="0.5" c="shift" c_color_light="255,255,255" w_color_light="184,134,11" w_color_dark="255,215,0" e_color_light="255,140,0" e_color_dark="255,255,0" />
+      <key width="2.3450296" shift="0.0" border_radius="0.5" c="PUp:page_up" c_scale="0.61" n="↶:undo" n_color_light="255,255,255" />
+      <key width="1.5537201" shift="0.0" border_radius="0.5" c="←:left" c_scale="0.54" w_color_light="255,140,0" w_color_dark="255,255,0" n="⇍:shift,move_word_backward_1" n_scale="0.45" />
+      <key width="1.5537201" shift="0.0" border_radius="0.5" c="↓:down" c_scale="0.52" n="⇎:move_word_backward_1,shift,move_word_forward_1" n_scale="0.45" s_color_light="255,140,0" s_color_dark="255,255,0" />
+      <key width="1.5537201" shift="0.0" border_radius="0.5" c="→:right" c_scale="0.56" e_color_light="255,140,0" e_color_dark="255,255,0" n="⇏:shift,move_word_forward_1" n_scale="0.39" />
+      <key width="2.4093924" shift="0.0" border_radius="0.5" c="PDown:page_down" c_color_light="255,255,255" c_scale="0.6" w_color_light="0,163,159" w_color_dark="10,255,251" e_color_light="0,163,159" e_color_dark="10,255,251" n="↷:redo" s_color_light="0,163,159" s_color_dark="10,255,251" />
+      <key width="2.4093924" shift="0.0" border_radius="0.5" c="⇪:capslock" />
+    </row>
+    <row height="1.0" shift="0.0">
+      <key width="0.9340804" shift="0.0" c="∅:select_all,backspace" c_color_light="255,255,255" c_scale="1.0" n="):(" s="(:)" />
+      <key width="1.2335523" shift="0.0" c="ض" nw="­:ضِ" ne="­:ضَ" sw="­:ضّ" se="­:ضٌ" />
+      <key width="1.2335523" shift="0.0" c="ص" nw="­:صِ" ne="­:صَ" sw="­:صّ" se="­:صٌ" />
+      <key width="1.2335523" shift="0.0" c="غ" nw="­:غِ" ne="­:غَ" sw="­:غّ" se="­:غٌ" />
+      <key width="1.2335523" shift="0.0" c="ڑ" nw="­:ڑِ" ne="­:ڑَ" sw="­:ڑّ" se="­:ڑٌ" />
+      <key width="1.2335523" shift="0.0" c="ٹ" nw="­:ٹِ" ne="­:ٹَ" sw="­:ٹّ" se="­:ٹٌ" />
+      <key width="1.2335523" shift="0.0" c="ث" nw="­:ثِ" ne="­:ثَ" sw="­:ثّ" se="­:ثٌ" />
+      <key width="1.2335523" shift="0.0" c="ح" nw="­:حِ" ne="­:حَ" sw="­:حّ" se="­:حٌ" />
+      <key width="1.2335523" shift="0.0" c="ئ" nw="­:ئِ" ne="­:ئَ" sw="­:ئّ" se="­:ئٌ" />
+      <key width="1.2335523" shift="0.0" c="ظ" nw="­:ظِ" ne="­:ظَ" sw="­:ظّ" se="­:ظٌ" />
+      <key width="1.2335523" shift="0.0" c="ط" nw="­:طِ" ne="­:طَ" sw="­:طّ" se="­:طٌ" />
+      <key width="0.9004032" shift="0.0" c="،" />
+    </row>
+    <row height="1.0" shift="0.0">
+      <key width="0.9340804" shift="0.0" c="tab" c_color_light="255,255,255" c_scale="1.0" n="\\" s="/" />
+      <key width="1.2335523" shift="0.0" c="ق" nw="­:قِ" ne="­:قَ" sw="­:قّ" se="­:قٌ" />
+      <key width="1.2335523" shift="0.0" c="و" n="⊙:voice_typing" nw="­:وِ" ne="­:وَ" sw="­:وّ" se="­:وٌ" />
+      <key width="1.2335523" shift="0.0" c="ع" nw="­:عِ" ne="­:عَ" sw="­:عّ" se="­:عٌ" />
+      <key width="1.2335523" shift="0.0" c="ر" nw="­:رِ" ne="­:رَ" sw="­:رّ" se="­:رٌ" />
+      <key width="1.2335523" shift="0.0" c="ت" nw="­:تِ" ne="­:تَ" sw="­:تّ" se="­:تٌ" />
+      <key width="1.2335523" shift="0.0" c="ے" nw="­:ےِ" ne="­:ےَ" sw="­:ےّ" se="­:ےٌ" />
+      <key width="1.2335523" shift="0.0" c="ء" nw="­:ءِ" ne="­:ءَ" sw="­:ءّ" se="­:ءٌ" />
+      <key width="1.2335523" shift="0.0" c="ی" nw="­:یِ" ne="­:یَ" sw="­:یّ" se="­:یٌ" />
+      <key width="1.2335523" shift="0.0" c="ہ" nw="­:ہِ" ne="­:ہَ" sw="­:ہّ" se="­:ہٌ" />
+      <key width="1.2335523" shift="0.0" c="پ" nw="­:پِ" ne="­:پَ" sw="­:پّ" se="­:پٌ" e="⚙:password_manager" n="✎:autofill_password" s="⚄:generate_password" />
+      <key width="0.9004032" shift="0.0" c="?:؟" />
+    </row>
+    <row height="1.0" shift="0.0">
+      <key width="0.9340805" shift="0.0" c="⌘:switch_glyphs" n=":" s=";" />
+      <key width="1.2335523" shift="0.0" c="ا" nw="­:اِ" ne="­:اَ" sw="­:اّ" se="­:اٌ" n="آ" />
+      <key width="1.2335523" shift="0.0" c="س" nw="­:سِ" ne="­:سَ" sw="­:سّ" se="­:سٌ" n="⌕:search_replace" />
+      <key width="1.2335523" shift="0.0" c="ڈ" nw="­:ڈِ" ne="­:ڈَ" sw="­:ڈّ" se="­:ڈٌ" />
+      <key width="1.2335523" shift="0.0" c="د" nw="­:دِ" ne="­:دَ" sw="­:دّ" se="­:دٌ" />
+      <key width="1.2335523" shift="0.0" c="ف" nw="­:فِ" ne="­:فَ" sw="­:فّ" se="­:فٌ" />
+      <key width="1.2335523" shift="0.0" c="گ" nw="­:گِ" ne="­:گَ" sw="­:گّ" se="­:گٌ" />
+      <key width="1.2335523" shift="0.0" c="ھ" nw="­:ھِ" ne="­:ھَ" sw="­:ھّ" se="­:ھٌ" />
+      <key width="1.2335523" shift="0.0" c="ج" nw="­:جِ" ne="­:جَ" sw="­:جّ" se="­:جٌ" />
+      <key width="1.2335523" shift="0.0" c="ک" nw="­:کِ" ne="­:کَ" sw="­:کّ" se="­:کٌ" />
+      <key width="1.2335523" shift="0.0" c="ل" nw="­:لِ" ne="­:لَ" sw="­:لّ" se="­:لٌ" n="ᕀ:learn_from_text" s="typing_history" />
+      <key width="0.90040314" shift="0.0" c="ـ" />
+    </row>
+    <row height="1.0" shift="0.0">
+      <key width="0.9340804" shift="0.0" c="☻:switch_emoji" n="&lt;" s="&gt;" />
+      <key width="1.2335521" shift="0.0" c="ذ" nw="­:ذِ" ne="­:ذَ" sw="­:ذّ" se="­:ذٌ" />
+      <key width="1.2335521" shift="0.0" c="ژ" nw="­:ژِ" ne="­:ژَ" sw="­:ژّ" se="­:ژٌ" />
+      <key width="1.2335521" shift="0.0" c="ز" nw="­:زِ" ne="­:زَ" sw="­:زّ" se="­:زٌ" />
+      <key width="1.2335521" shift="0.0" c="ش" nw="­:شِ" ne="­:شَ" sw="­:شّ" se="­:شٌ" />
+      <key width="1.2335521" shift="0.0" c="خ" nw="­:خِ" ne="­:خَ" sw="­:خّ" se="­:خٌ" />
+      <key width="1.2335521" shift="0.0" c="چ" nw="­:چِ" ne="­:چَ" sw="­:چّ" se="­:چٌ" />
+      <key width="1.2335521" shift="0.0" c="ب" nw="­:بِ" ne="­:بَ" sw="­:بّ" se="­:بٌ" />
+      <key width="1.2335521" shift="0.0" c="ں" nw="­:ِ" ne="­:َ" sw="­:ً" se="­:ُ" w="­:ٌ" e="­:ّ" n="­:ٍ" s="­:ٗ" />
+      <key width="1.2335521" shift="0.0" c="ن" nw="­:نِ" ne="­:نَ" sw="­:نّ" se="­:نٌ" />
+      <key width="1.2335521" shift="0.0" c="م" nw="­:مِ" ne="­:مَ" sw="­:مّ" se="­:مٌ" n="⍞:mouse_pad" />
+      <key width="0.90040296" shift="0.0" c="&quot;" />
+    </row>
+</keyboard>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/search_replace_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/colorKeyboard">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/mode_editor"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="Find / Replace"
+            android:textColor="?attr/colorLabel"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/mode_clipboard"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="Clipboard"
+            android:textColor="?attr/colorLabel"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <EditText
+            android:id="@+id/search_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Find / Search"
+            android:inputType="text"
+            android:textColor="?attr/colorLabel"
+            android:textColorHint="?attr/colorSubLabel"
+            android:background="@null"
+            android:padding="8dp" />
+
+
+        <LinearLayout
+            android:id="@+id/editor_mode_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/replace_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Replace"
+                android:inputType="text"
+                android:textColor="?attr/colorLabel"
+                android:textColorHint="?attr/colorSubLabel"
+                android:background="@null"
+                android:padding="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/check_regex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Regex"
+                    android:textColor="?attr/colorLabel" />
+
+                <CheckBox
+                    android:id="@+id/check_case"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Match Case"
+                    android:textColor="?attr/colorLabel" />
+
+                <CheckBox
+                    android:id="@+id/check_whole_word"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Whole Word"
+                    android:textColor="?attr/colorLabel" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingTop="8dp">
+
+                <Button
+                    android:id="@+id/btn_find_prev"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&lt;"
+                    android:layout_weight="1"
+                    android:textColor="?attr/colorLabel" />
+
+                <Button
+                    android:id="@+id/btn_find_next"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&gt;"
+                    android:layout_weight="1"
+                    android:textColor="?attr/colorLabel" />
+
+                <Button
+                    android:id="@+id/btn_replace"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rep"
+                    android:layout_weight="1"
+                    android:textColor="?attr/colorLabel" />
+
+                <Button
+                    android:id="@+id/btn_replace_all"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="All"
+                    android:layout_weight="1"
+                    android:textColor="?attr/colorLabel" />
+
+                <ImageButton
+                    android:id="@+id/btn_close"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_close"
+                    android:tint="?attr/colorLabel"
+                    android:layout_weight="0.5" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/clipboard_mode_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <CheckBox
+                android:id="@+id/check_typing_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Search Typing History"
+                android:textColor="?attr/colorLabel"
+                android:padding="8dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/search_results_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

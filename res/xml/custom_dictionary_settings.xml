@@ -1,0 +1,19 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference
+        android:key="import_custom_dictionary"
+        android:title="Import custom dictionary"
+        android:summary="Import words from a custom.txt file." />
+    <Preference
+        android:key="export_custom_dictionary"
+        android:title="Export custom dictionary"
+        android:summary="Export custom words to a custom.txt file." />
+    <Preference
+        android:key="manual_file_editing"
+        android:title="Manual File Editing"
+        android:summary="Select and edit configuration files manually." />
+    <PreferenceScreen
+        android:title="Auto Suggestions Customizations"
+        android:summary="Change priority order and colors">
+        <intent android:action="juloo.keyboard2.AUTO_SUGGESTION_SETTINGS"/>
+    </PreferenceScreen>
+</PreferenceScreen>

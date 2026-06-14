@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/btn_maximize"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="@drawable/bg_mouse_pad_minimized"
+        android:src="@android:drawable/ic_input_get"
+        android:padding="16dp"
+        android:contentDescription="Maximize Mouse Pad"
+        android:scaleType="centerInside"
+        android:clickable="true"
+        android:focusable="true"
+        android:tint="#00FFFF" />
+
+
+</FrameLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<keyboard bottom_row="true">
+    <row height="1.0" shift="0.0">
+      <key width="0.75" shift="0.0" c="⎋:esc" ne="~" se="!" />
+      <key width="0.75" shift="0.0" c="(" ne="[" se="{" />
+      <key width="1.0" shift="0.0" c="7" nw="&lt;" ne="&gt;" />
+      <key width="1.0" shift="0.0" c="8" ne="∞" />
+      <key width="1.0" shift="0.0" c="9" ne="π" />
+      <key width="0.75" shift="0.0" c="*" nw="√" ne="×" sw="\#" />
+      <key width="0.75" shift="0.0" c="/" nw="%" sw="÷" />
+    </row>
+    <row height="1.0" shift="0.0">
+      <key width="0.75" shift="0.0" c="⇥:tab" ne="|" se="\\" />
+      <key width="0.75" shift="0.0" c=")" ne="]" se="}" />
+      <key width="1.0" shift="0.0" c="4" nw="⍂:box" sw="↢:arrows" />
+      <key width="1.0" shift="0.0" c="5" w="←:left" e="→:right" n="↑:up" s="↓:down" />
+      <key width="1.0" shift="0.0" c="6" />
+      <key width="0.75" shift="0.0" c="+" nw="Σ" ne="$" />
+      <key width="0.75" shift="0.0" c="-" nw="^" />
+    </row>
+    <row height="1.0" shift="0.0">
+      <key width="0.75" shift="0.0" c="π:switch_greekmath" />
+      <key width="0.75" shift="0.0" c="⇧:shift" ne="fn" se="alt" />
+      <key width="1.0" shift="0.0" c="1" nw="𝞁:superscript" ne="𝚹:ordinal" sw="𝛅:subscript" />
+      <key width="1.0" shift="0.0" c="2" />
+      <key width="1.0" shift="0.0" c="3" />
+      <key width="1.5" shift="0.0" c="⌫:backspace" ne="⌦:delete" />
+    </row>
+    <row height="0.95" shift="0.0">
+      <key width="1.5" shift="0.0" c="Ⓐ:switch_text" ne="ctrl" />
+      <key width="1.5" shift="0.0" c="0" />
+      <key width="0.75" shift="0.0" c="." nw=":" ne="," sw=";" />
+      <key width="0.75" shift="0.0" c="space" nw="&quot;" ne="&apos;" se="_" />
+      <key width="1.5" shift="0.0" c="↲:enter" nw="±" ne="action" sw="=" />
+    </row>
+</keyboard>

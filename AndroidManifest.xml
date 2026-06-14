@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:hardwareAccelerated="false">
+  <uses-permission android:name="android.permission.VIBRATE"/>
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+  <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+  <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+  <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+
+
+  <uses-permission android:name="android.permission.BLUETOOTH"/>
+  <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+  <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+
+  <application android:label="@string/app_name" android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:hardwareAccelerated="false" android:requestLegacyExternalStorage="true">
+    <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+
+    <service android:name="juloo.keyboard2.GlobalActionAccessibilityService"
+             android:label="@string/app_name"
+             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+             android:exported="true">
+        <intent-filter>
+            <action android:name="android.accessibilityservice.AccessibilityService" />
+        </intent-filter>
+        <meta-data
+            android:name="android.accessibilityservice"
+            android:resource="@xml/accessibility_service_config" />
+    </service>
+
+    <service android:name="juloo.keyboard2.Keyboard2" android:label="@string/app_name" android:permission="android.permission.BIND_INPUT_METHOD" android:exported="true" android:directBootAware="true">
+      <intent-filter>
+        <action android:name="android.view.InputMethod"/>
+      </intent-filter>
+      <meta-data android:name="android.view.im" android:resource="@xml/method"/>
+    </service>
+
+    <activity android:name="juloo.keyboard2.SettingsActivity" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:theme="@style/settingsTheme" android:exported="true" android:directBootAware="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <action android:name="juloo.keyboard2.CLEAR_EMOJI_HISTORY"/>
+        <action android:name="juloo.keyboard2.CLEAR_EMOJI_FAVORITES"/>
+      </intent-filter>
+    </activity>
+
+    <activity android:name="juloo.keyboard2.LauncherActivity" android:icon="@mipmap/ic_launcher" android:theme="@style/settingsTheme" android:exported="true" android:directBootAware="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+
+    <activity android:name="juloo.keyboard2.CustomDictionarySettingsActivity" android:icon="@mipmap/ic_launcher" android:label="Custom Dictionary" android:theme="@style/settingsTheme" android:exported="true" android:directBootAware="true">
+      <intent-filter>
+        <action android:name="juloo.keyboard2.CUSTOM_DICTIONARY_SETTINGS"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+      </intent-filter>
+    </activity>
+
+    <activity android:name="juloo.keyboard2.AutoSuggestionSettingsActivity" android:icon="@mipmap/ic_launcher" android:label="Auto Suggestions Customizations" android:theme="@style/settingsTheme" android:exported="true" android:directBootAware="true">
+      <intent-filter>
+        <action android:name="juloo.keyboard2.AUTO_SUGGESTION_SETTINGS"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+      </intent-filter>
+    </activity>
+
+    <activity
+        android:name="juloo.keyboard2.ImportClipboardActivity"
+        android:theme="@android:style/Theme.Translucent.NoTitleBar"
+        android:exported="false"
+        android:label="@string/clipboard_import"/>
+    <activity
+        android:name="juloo.keyboard2.ExportClipboardActivity"
+        android:theme="@android:style/Theme.Translucent.NoTitleBar"
+        android:exported="false"
+        android:label="@string/clipboard_export"/>
+
+    <activity
+        android:name="juloo.keyboard2.passwordmanager.ui.PasswordManagerActivity"
+        android:theme="@style/settingsTheme"
+        android:exported="false"
+        android:label="Password Manager"/>
+
+    <activity
+        android:name="juloo.keyboard2.passwordmanager.ui.SavePasswordActivity"
+        android:theme="@style/Theme.AppCompat.Dialog"
+        android:exported="false"
+        android:label="Save Password"
+        android:taskAffinity=""
+        android:excludeFromRecents="true"
+        android:launchMode="singleInstance" />
+
+    <activity
+        android:name="juloo.keyboard2.passwordmanager.ui.QuickNoteActivity"
+        android:theme="@style/Theme.AppCompat.Dialog"
+        android:exported="false"
+        android:label="Quick Note"
+        android:taskAffinity=""
+        android:excludeFromRecents="true"
+        android:launchMode="singleInstance" />
+
+    <activity
+        android:name="juloo.keyboard2.passwordmanager.ui.AutofillSelectorActivity"
+        android:theme="@style/Theme.AppCompat.Dialog"
+        android:exported="false"
+        android:label="Select Account"
+        android:taskAffinity=""
+        android:excludeFromRecents="true"
+        android:launchMode="singleInstance" />
+
+    <activity
+        android:name="juloo.keyboard2.SidePanelSettingsActivity"
+        android:theme="@style/settingsTheme"
+        android:exported="false"
+        android:label="Side Panel Settings" />
+
+    <activity
+        android:name="juloo.keyboard2.BackupRestoreActivity"
+        android:theme="@style/settingsTheme"
+        android:exported="false"
+        android:label="Backup &amp; Restore" />
+
+    <activity
+        android:name="juloo.keyboard2.FileEditorActivity"
+        android:theme="@style/settingsTheme"
+        android:exported="false"
+        android:label="Manual File Editing" />
+
+    <activity
+        android:name="juloo.keyboard2.ReadmeActivity"
+        android:theme="@style/settingsTheme"
+        android:exported="false"
+        android:label="Read Me" />
+
+    <activity
+        android:name="juloo.keyboard2.LiveLayoutCustomizationActivity"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:exported="true"
+        android:label="Live Layout Customization"
+        android:screenOrientation="portrait">
+      <intent-filter>
+        <action android:name="juloo.keyboard2.LIVE_LAYOUT_CUSTOMIZATION"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+      </intent-filter>
+    </activity>
+
+  </application>
+
+
+  <queries>
+    <intent>
+      <action android:name="android.view.InputMethod" />
+    </intent>
+    <intent>
+        <action android:name="android.intent.action.MAIN" />
+    </intent>
+    <intent>
+        <action android:name="juloo.keyboard2.LIVE_LAYOUT_CUSTOMIZATION" />
+    </intent>
+    <intent>
+      <action android:name="android.speech.RecognitionService" />
+    </intent>
+  </queries>
+</manifest>

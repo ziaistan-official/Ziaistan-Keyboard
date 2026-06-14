@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Local Storage">
+        <Preference
+            android:key="backup_local"
+            android:title="Backup to Local Storage"
+            android:summary="Save settings and data to Downloads folder" />
+        <Preference
+            android:key="restore_local"
+            android:title="Restore from Local Storage"
+            android:summary="Restore settings and data from Downloads folder" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Google Drive">
+        <Preference
+            android:key="google_sign_in"
+            android:title="Sign In with Google"
+            android:summary="Sign in to enable Drive backup" />
+        <Preference
+            android:key="backup_drive"
+            android:title="Backup to Google Drive"
+            android:summary="Save settings and data to Google Drive"
+            android:enabled="false" />
+        <Preference
+            android:key="restore_drive"
+            android:title="Restore from Google Drive"
+            android:summary="Restore settings and data from Google Drive"
+            android:enabled="false" />
+    </PreferenceCategory>
+</PreferenceScreen>

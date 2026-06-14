@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<keyboard width="6.0" bottom_row="true">
+    <row height="1.0" shift="0.0">
+      <key width="1.0668379" shift="1.0" border_radius="0.5" c="1" />
+      <key width="1.352234" shift="0.0" border_radius="0.5" c="2" indication="ABC" />
+      <key width="1.352234" shift="0.0" border_radius="0.5" c="3" indication="DEF" />
+      <key width="1.3590292" shift="0.0" border_radius="0.5" c="⌫:backspace" ne="⌦:delete" />
+    </row>
+    <row height="1.0" shift="0.0">
+      <key width="1.0668379" shift="1.0" border_radius="0.5" c="4" indication="GHI" />
+      <key width="1.352234" shift="0.0" border_radius="0.5" c="5" indication="JKL" />
+      <key width="1.352234" shift="0.0" border_radius="0.5" c="6" indication="MNO" />
+      <key width="1.3590292" shift="0.0" border_radius="0.5" c="(" nw="⎘:paste" ne="=" sw=":" se="-" />
+    </row>
+    <row height="1.0" shift="0.0">
+      <key width="1.0668379" shift="1.0" border_radius="0.5" c="7" indication="PQRS" />
+      <key width="1.352234" shift="0.0" border_radius="0.5" c="8" indication="TUV" />
+      <key width="1.352234" shift="0.0" border_radius="0.5" c="9" indication="WXYZ" />
+      <key width="1.3590292" shift="0.0" border_radius="0.5" c=")" ne="," sw="/" se="." />
+    </row>
+    <row height="1.0" shift="0.0">
+      <key width="1.0668379" shift="1.0" border_radius="0.5" c="*" nw="Ⓐ:switch_text" sw="➊:switch_numeric" />
+      <key width="1.352234" shift="0.0" border_radius="0.5" c="0" sw="+" se="space: " />
+      <key width="1.352234" shift="0.0" border_radius="0.5" c="\#" w="←:left" e="→:right" n="↑:up" s="↓:down" />
+      <key width="1.3590292" shift="0.0" border_radius="0.5" c="action" ne="↲:enter" />
+    </row>
+</keyboard>

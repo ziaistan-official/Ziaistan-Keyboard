@@ -1,0 +1,1547 @@
+<?xml version="1.0" encoding="utf-8"?>
+<keyboard name="Special Glyphs &amp; Symbols" script="latin" bottom_row="true">
+  <modmap>
+    <fn a="#" b="♼" />
+    <fn a="$" b="♽" />
+    <fn a="%" b="♾" />
+    <fn a="&amp;" b="♿" />
+    <fn a="*" b="⚀" />
+    <fn a="0" b="⚁" />
+    <fn a="1" b="⚂" />
+    <fn a="2" b="⚃" />
+    <fn a="3" b="⚄" />
+    <fn a="4" b="⚅" />
+    <fn a="5" b="⚆" />
+    <fn a="6" b="⚇" />
+    <fn a="7" b="⚈" />
+    <fn a="8" b="⚉" />
+    <fn a="9" b="⚊" />
+    <fn a="@" b="⚋" />
+    <fn a="A" b="⚌" />
+    <fn a="B" b="⚍" />
+    <fn a="C" b="⚎" />
+    <fn a="D" b="⚏" />
+    <fn a="E" b="⚐" />
+    <fn a="F" b="⚑" />
+    <fn a="G" b="⚒" />
+    <fn a="H" b="⚓" />
+    <fn a="I" b="⚔" />
+    <fn a="J" b="⚕" />
+    <fn a="K" b="⚖" />
+    <fn a="L" b="⚗" />
+    <fn a="M" b="⚘" />
+    <fn a="N" b="⚙" />
+    <fn a="O" b="⚚" />
+    <fn a="P" b="⚛" />
+    <fn a="Q" b="⚜" />
+    <fn a="R" b="⚝" />
+    <fn a="S" b="⚞" />
+    <fn a="T" b="⚟" />
+    <fn a="U" b="⚠" />
+    <fn a="V" b="⚡" />
+    <fn a="W" b="⚢" />
+    <fn a="X" b="⚣" />
+    <fn a="Y" b="⚤" />
+    <fn a="Z" b="⚥" />
+    <fn a="[" b="⚦" />
+    <fn a="\" b="⚧" />
+    <fn a="]" b="⚨" />
+    <fn a="^" b="⚩" />
+    <fn a="`" b="⚪" />
+    <fn a="a" b="⚫" />
+    <fn a="b" b="⚬" />
+    <fn a="c" b="⚭" />
+    <fn a="d" b="⚮" />
+    <fn a="e" b="⚯" />
+    <fn a="f" b="⚰" />
+    <fn a="g" b="⚱" />
+    <fn a="h" b="⚲" />
+    <fn a="i" b="⚳" />
+    <fn a="j" b="⚴" />
+    <fn a="k" b="⚵" />
+    <fn a="l" b="⚶" />
+    <fn a="m" b="⚷" />
+    <fn a="n" b="⚸" />
+    <fn a="o" b="⚹" />
+    <fn a="p" b="⚺" />
+    <fn a="q" b="⚻" />
+    <fn a="r" b="⚼" />
+    <fn a="s" b="⚽" />
+    <fn a="t" b="⚾" />
+    <fn a="u" b="⚿" />
+    <fn a="v" b="⛀" />
+    <fn a="w" b="⛁" />
+    <fn a="x" b="⛂" />
+    <fn a="y" b="⛃" />
+    <fn a="z" b="⛄" />
+    <fn a="{" b="⛅" />
+    <fn a="}" b="⛆" />
+    <fn a="¡" b="⛇" />
+    <fn a="¢" b="⛈" />
+    <fn a="£" b="⛉" />
+    <fn a="¤" b="⛊" />
+    <fn a="¥" b="⛋" />
+    <fn a="¦" b="⛌" />
+    <fn a="§" b="⛍" />
+    <fn a="¨" b="⛎" />
+    <fn a="©" b="⛏" />
+    <fn a="ª" b="⛐" />
+    <fn a="«" b="⛑" />
+    <fn a="¬" b="⛒" />
+    <fn a="®" b="⛓" />
+    <fn a="¯" b="⛔" />
+    <fn a="±" b="⛕" />
+    <fn a="²" b="⛖" />
+    <fn a="³" b="⛗" />
+    <fn a="´" b="⛘" />
+    <fn a="µ" b="⛙" />
+    <fn a="¶" b="⛚" />
+    <fn a="·" b="⛛" />
+    <fn a="¸" b="⛜" />
+    <fn a="¹" b="⛝" />
+    <fn a="º" b="⛞" />
+    <fn a="»" b="⛟" />
+    <fn a="¼" b="⛠" />
+    <fn a="½" b="⛡" />
+    <fn a="¾" b="⛢" />
+    <fn a="¿" b="⛣" />
+    <fn a="À" b="⛤" />
+    <fn a="Á" b="⛥" />
+    <fn a="Â" b="⛦" />
+    <fn a="Ã" b="⛧" />
+    <fn a="Ä" b="⛨" />
+    <fn a="Å" b="⛩" />
+    <fn a="Æ" b="⛪" />
+    <fn a="Ç" b="⛫" />
+    <fn a="È" b="⛬" />
+    <fn a="É" b="⛭" />
+    <fn a="Ê" b="⛮" />
+    <fn a="Ë" b="⛯" />
+    <fn a="Ì" b="⛰" />
+    <fn a="Í" b="⛱" />
+    <fn a="Î" b="⛲" />
+    <fn a="Ï" b="⛳" />
+    <fn a="Ð" b="⛴" />
+    <fn a="Ñ" b="⛵" />
+    <fn a="Ò" b="⛶" />
+    <fn a="Ó" b="⛷" />
+    <fn a="Ô" b="⛸" />
+    <fn a="Õ" b="⛹" />
+    <fn a="Ö" b="⛺" />
+    <fn a="×" b="⛻" />
+    <fn a="Ø" b="⛼" />
+    <fn a="Ù" b="⛽" />
+    <fn a="Ú" b="⛾" />
+    <fn a="Û" b="⛿" />
+    <fn a="Ü" b="✀" />
+    <fn a="Ý" b="✁" />
+    <fn a="Þ" b="✂" />
+    <fn a="ß" b="✃" />
+    <fn a="à" b="✄" />
+    <fn a="á" b="✅" />
+    <fn a="â" b="✆" />
+    <fn a="ã" b="✇" />
+    <fn a="ä" b="✈" />
+    <fn a="å" b="✉" />
+    <fn a="æ" b="✊" />
+    <fn a="ç" b="✋" />
+    <fn a="è" b="✌" />
+    <fn a="é" b="✍" />
+    <fn a="ê" b="✎" />
+    <fn a="ë" b="✏" />
+    <fn a="ì" b="✐" />
+    <fn a="í" b="✑" />
+    <fn a="î" b="✒" />
+    <fn a="ï" b="✓" />
+    <fn a="ð" b="✔" />
+    <fn a="ñ" b="✕" />
+    <fn a="ò" b="✖" />
+    <fn a="ó" b="✗" />
+    <fn a="ô" b="✘" />
+    <fn a="õ" b="✙" />
+    <fn a="ö" b="✚" />
+    <fn a="÷" b="✛" />
+    <fn a="ø" b="✜" />
+    <fn a="ù" b="✝" />
+    <fn a="ú" b="✞" />
+    <fn a="û" b="✟" />
+    <fn a="ü" b="✠" />
+    <fn a="ý" b="✡" />
+    <fn a="þ" b="✢" />
+    <fn a="ÿ" b="✣" />
+    <fn a="Ā" b="✤" />
+    <fn a="ā" b="✥" />
+    <fn a="Ă" b="✦" />
+    <fn a="ă" b="✧" />
+    <fn a="Ą" b="✨" />
+    <fn a="ą" b="✩" />
+    <fn a="Ć" b="✪" />
+    <fn a="ć" b="✫" />
+    <fn a="Ĉ" b="✬" />
+    <fn a="ĉ" b="✭" />
+    <fn a="Ċ" b="✮" />
+    <fn a="ċ" b="✯" />
+    <fn a="Č" b="✰" />
+    <fn a="č" b="✱" />
+    <fn a="Ď" b="✲" />
+    <fn a="ď" b="✳" />
+    <fn a="Đ" b="✴" />
+    <fn a="đ" b="✵" />
+    <fn a="Ē" b="✶" />
+    <fn a="ē" b="✷" />
+    <fn a="Ĕ" b="✸" />
+    <fn a="ĕ" b="✹" />
+    <fn a="Ė" b="✺" />
+    <fn a="ė" b="✻" />
+    <fn a="Ę" b="✼" />
+    <fn a="ę" b="✽" />
+    <fn a="Ě" b="✾" />
+    <fn a="ě" b="✿" />
+    <fn a="Ĝ" b="❀" />
+    <fn a="ĝ" b="❁" />
+    <fn a="Ğ" b="❂" />
+    <fn a="ğ" b="❃" />
+    <fn a="Ġ" b="❄" />
+    <fn a="ġ" b="❅" />
+    <fn a="Ģ" b="❆" />
+    <fn a="ģ" b="❇" />
+    <fn a="Ĥ" b="❈" />
+    <fn a="ĥ" b="❉" />
+    <fn a="Ħ" b="❊" />
+    <fn a="ħ" b="❋" />
+    <fn a="Ĩ" b="❌" />
+    <fn a="ĩ" b="❍" />
+    <fn a="Ī" b="❎" />
+    <fn a="ī" b="❏" />
+    <fn a="Ĭ" b="❐" />
+    <fn a="ĭ" b="❑" />
+    <fn a="Į" b="❒" />
+    <fn a="į" b="❓" />
+    <fn a="İ" b="❔" />
+    <fn a="ı" b="❕" />
+    <fn a="Ĳ" b="❖" />
+    <fn a="ĳ" b="❗" />
+    <fn a="Ĵ" b="❘" />
+    <fn a="ĵ" b="❙" />
+    <fn a="Ķ" b="❚" />
+    <fn a="ķ" b="❛" />
+    <fn a="ĸ" b="❜" />
+    <fn a="Ĺ" b="❝" />
+    <fn a="ĺ" b="❞" />
+    <fn a="Ļ" b="❟" />
+    <fn a="ļ" b="❠" />
+    <fn a="Ľ" b="❡" />
+    <fn a="ľ" b="❢" />
+    <fn a="Ŀ" b="❣" />
+    <fn a="ŀ" b="❤" />
+    <fn a="Ł" b="❥" />
+    <fn a="ł" b="❦" />
+    <fn a="Ń" b="❧" />
+    <fn a="ń" b="❨" />
+    <fn a="Ņ" b="❩" />
+    <fn a="ņ" b="❪" />
+    <fn a="Ň" b="❫" />
+    <fn a="ň" b="❬" />
+    <fn a="ŉ" b="❭" />
+    <fn a="Ŋ" b="❮" />
+    <fn a="ŋ" b="❯" />
+    <fn a="Ō" b="❰" />
+    <fn a="ō" b="❱" />
+    <fn a="Ŏ" b="❲" />
+    <fn a="ŏ" b="❳" />
+    <fn a="Ő" b="❴" />
+    <fn a="ő" b="❵" />
+    <fn a="Œ" b="❶" />
+    <fn a="œ" b="❷" />
+    <fn a="Ŕ" b="❸" />
+    <fn a="ŕ" b="❹" />
+    <fn a="Ŗ" b="❺" />
+    <fn a="ŗ" b="❻" />
+    <fn a="Ř" b="❼" />
+    <fn a="ř" b="❽" />
+    <fn a="Ś" b="❾" />
+    <fn a="ś" b="❿" />
+    <fn a="Ŝ" b="➀" />
+    <fn a="ŝ" b="➁" />
+    <fn a="Ş" b="➂" />
+    <fn a="ş" b="➃" />
+    <fn a="Š" b="➄" />
+    <fn a="š" b="➅" />
+    <fn a="Ţ" b="➆" />
+    <fn a="ţ" b="➇" />
+    <fn a="Ť" b="➈" />
+    <fn a="ť" b="➉" />
+    <fn a="Ŧ" b="➊" />
+    <fn a="ŧ" b="➋" />
+    <fn a="Ũ" b="➌" />
+    <fn a="ũ" b="➍" />
+    <fn a="Ū" b="➎" />
+    <fn a="ū" b="➏" />
+    <fn a="Ŭ" b="➐" />
+    <fn a="ŭ" b="➑" />
+    <fn a="Ů" b="➒" />
+    <fn a="ů" b="➓" />
+    <fn a="Ű" b="➔" />
+    <fn a="ű" b="➕" />
+    <fn a="Ų" b="➖" />
+    <fn a="ų" b="➗" />
+    <fn a="Ŵ" b="➘" />
+    <fn a="ŵ" b="➙" />
+    <fn a="Ŷ" b="➚" />
+    <fn a="ŷ" b="➛" />
+    <fn a="Ÿ" b="➜" />
+    <fn a="Ź" b="➝" />
+    <fn a="ź" b="➞" />
+    <fn a="Ż" b="➟" />
+    <fn a="ż" b="➠" />
+    <fn a="Ž" b="➡" />
+    <fn a="ž" b="➢" />
+    <fn a="ſ" b="➣" />
+    <fn a="‐" b="➤" />
+    <fn a="‑" b="➥" />
+    <fn a="‒" b="➦" />
+    <fn a="–" b="➧" />
+    <fn a="—" b="➨" />
+    <fn a="―" b="➩" />
+    <fn a="‖" b="➪" />
+    <fn a="‗" b="➫" />
+    <fn a="‘" b="➬" />
+    <fn a="’" b="➭" />
+    <fn a="‚" b="➮" />
+    <fn a="‛" b="➯" />
+    <fn a="“" b="➰" />
+    <fn a="”" b="➱" />
+    <fn a="„" b="➲" />
+    <fn a="‟" b="➳" />
+    <fn a="†" b="➴" />
+    <fn a="‡" b="➵" />
+    <fn a="•" b="➶" />
+    <fn a="‣" b="➷" />
+    <fn a="․" b="➸" />
+    <fn a="‥" b="➹" />
+    <fn a="…" b="➺" />
+    <fn a="‧" b="➻" />
+    <fn a="‰" b="➼" />
+    <fn a="‱" b="➽" />
+    <fn a="′" b="➾" />
+    <fn a="″" b="➿" />
+    <fn a="‴" b="⁰" />
+    <fn a="‵" b="ⁱ" />
+    <fn a="‶" b="⁴" />
+    <fn a="‷" b="⁵" />
+    <fn a="‸" b="⁶" />
+    <fn a="‹" b="⁷" />
+    <fn a="›" b="⁸" />
+    <fn a="※" b="⁹" />
+    <fn a="‼" b="⁺" />
+    <fn a="‽" b="⁻" />
+    <fn a="‾" b="⁼" />
+    <fn a="‿" b="⁽" />
+    <fn a="⁀" b="⁾" />
+    <fn a="⁁" b="ⁿ" />
+    <fn a="⁂" b="₀" />
+    <fn a="⁃" b="₁" />
+    <fn a="⁄" b="₂" />
+    <fn a="⁅" b="₃" />
+    <fn a="⁆" b="₄" />
+    <fn a="⁇" b="₅" />
+    <fn a="⁈" b="₆" />
+    <fn a="⁉" b="₇" />
+    <fn a="⁊" b="₈" />
+    <fn a="⁋" b="₉" />
+    <fn a="⁌" b="₊" />
+    <fn a="⁍" b="₋" />
+    <fn a="⁎" b="₌" />
+    <fn a="⁏" b="₍" />
+    <fn a="⁐" b="₎" />
+    <fn a="⁑" b="ₐ" />
+    <fn a="⁒" b="ₑ" />
+    <fn a="⁓" b="ₒ" />
+    <fn a="⁔" b="ₓ" />
+    <fn a="⁕" b="ₔ" />
+    <fn a="⁖" b="ₕ" />
+    <fn a="⁗" b="ₖ" />
+    <fn a="⁘" b="ₗ" />
+    <fn a="⁙" b="ₘ" />
+    <fn a="⁚" b="ₙ" />
+    <fn a="⁛" b="ₚ" />
+    <fn a="⁜" b="ₛ" />
+    <fn a="⁝" b="ₜ" />
+    <fn a="⁞" b="←" />
+    <fn a="₠" b="↑" />
+    <fn a="₡" b="→" />
+    <fn a="₢" b="↓" />
+    <fn a="₣" b="↔" />
+    <fn a="₤" b="↕" />
+    <fn a="₥" b="↖" />
+    <fn a="₦" b="↗" />
+    <fn a="₧" b="↘" />
+    <fn a="₨" b="↙" />
+    <fn a="₩" b="↚" />
+    <fn a="₪" b="↛" />
+    <fn a="₫" b="↜" />
+    <fn a="€" b="↝" />
+    <fn a="₭" b="↞" />
+    <fn a="₮" b="↟" />
+    <fn a="₯" b="↠" />
+    <fn a="₰" b="↡" />
+    <fn a="₱" b="↢" />
+    <fn a="₲" b="↣" />
+    <fn a="₳" b="↤" />
+    <fn a="₴" b="↥" />
+    <fn a="₵" b="↦" />
+    <fn a="₶" b="↧" />
+    <fn a="₷" b="↨" />
+    <fn a="₸" b="↩" />
+    <fn a="₹" b="↪" />
+    <fn a="₺" b="↫" />
+    <fn a="₻" b="↬" />
+    <fn a="₼" b="↭" />
+    <fn a="₽" b="↮" />
+    <fn a="₾" b="↯" />
+    <fn a="₿" b="↰" />
+    <fn a="⃀" b="↱" />
+    <fn a="℀" b="↲" />
+    <fn a="℁" b="↳" />
+    <fn a="ℂ" b="↴" />
+    <fn a="℃" b="↵" />
+    <fn a="℄" b="↶" />
+    <fn a="℅" b="↷" />
+    <fn a="℆" b="↸" />
+    <fn a="ℇ" b="↹" />
+    <fn a="℈" b="↺" />
+    <fn a="℉" b="↻" />
+    <fn a="ℊ" b="↼" />
+    <fn a="ℋ" b="↽" />
+    <fn a="ℌ" b="↾" />
+    <fn a="ℍ" b="↿" />
+    <fn a="ℎ" b="⇀" />
+    <fn a="ℏ" b="⇁" />
+    <fn a="ℐ" b="⇂" />
+    <fn a="ℑ" b="⇃" />
+    <fn a="ℒ" b="⇄" />
+    <fn a="ℓ" b="⇅" />
+    <fn a="℔" b="⇆" />
+    <fn a="ℕ" b="⇇" />
+    <fn a="№" b="⇈" />
+    <fn a="℗" b="⇉" />
+    <fn a="℘" b="⇊" />
+    <fn a="ℙ" b="⇋" />
+    <fn a="ℚ" b="⇌" />
+    <fn a="ℛ" b="⇍" />
+    <fn a="ℜ" b="⇎" />
+    <fn a="ℝ" b="⇏" />
+    <fn a="℞" b="⇐" />
+    <fn a="℟" b="⇑" />
+    <fn a="℠" b="⇒" />
+    <fn a="℡" b="⇓" />
+    <fn a="™" b="⇔" />
+    <fn a="℣" b="⇕" />
+    <fn a="ℤ" b="⇖" />
+    <fn a="℥" b="⇗" />
+    <fn a="Ω" b="⇘" />
+    <fn a="℧" b="⇙" />
+    <fn a="ℨ" b="⇚" />
+    <fn a="℩" b="⇛" />
+    <fn a="K" b="⇜" />
+    <fn a="Å" b="⇝" />
+    <fn a="ℬ" b="⇞" />
+    <fn a="ℭ" b="⇟" />
+    <fn a="℮" b="⇠" />
+    <fn a="ℯ" b="⇡" />
+    <fn a="ℰ" b="⇢" />
+    <fn a="ℱ" b="⇣" />
+    <fn a="Ⅎ" b="⇤" />
+    <fn a="ℳ" b="⇥" />
+    <fn a="ℴ" b="⇦" />
+    <fn a="ℵ" b="⇧" />
+    <fn a="ℶ" b="⇨" />
+    <fn a="ℷ" b="⇩" />
+    <fn a="ℸ" b="⇪" />
+    <fn a="ℹ" b="⇫" />
+    <fn a="℺" b="⇬" />
+    <fn a="℻" b="⇭" />
+    <fn a="ℼ" b="⇮" />
+    <fn a="ℽ" b="⇯" />
+    <fn a="ℾ" b="⇰" />
+    <fn a="ℿ" b="⇱" />
+    <fn a="⅀" b="⇲" />
+    <fn a="⅁" b="⇳" />
+    <fn a="⅂" b="⇴" />
+    <fn a="⅃" b="⇵" />
+    <fn a="⅄" b="⇶" />
+    <fn a="ⅅ" b="⇷" />
+    <fn a="ⅆ" b="⇸" />
+    <fn a="ⅇ" b="⇹" />
+    <fn a="ⅈ" b="⇺" />
+    <fn a="ⅉ" b="⇻" />
+    <fn a="⅊" b="⇼" />
+    <fn a="⅋" b="⇽" />
+    <fn a="⅌" b="⇾" />
+    <fn a="⅍" b="⇿" />
+    <fn a="ⅎ" b="∀" />
+    <fn a="⅏" b="∁" />
+    <fn a="⅐" b="∂" />
+    <fn a="⅑" b="∃" />
+    <fn a="⅒" b="∄" />
+    <fn a="⅓" b="∅" />
+    <fn a="⅔" b="∆" />
+    <fn a="⅕" b="∇" />
+    <fn a="⅖" b="∈" />
+    <fn a="⅗" b="∉" />
+    <fn a="⅘" b="∊" />
+    <fn a="⅙" b="∋" />
+    <fn a="⅚" b="∌" />
+    <fn a="⅛" b="∍" />
+    <fn a="⅜" b="∎" />
+    <fn a="⅝" b="∏" />
+    <fn a="⅞" b="∐" />
+    <fn a="⅟" b="∑" />
+    <fn a="Ⅰ" b="−" />
+    <fn a="Ⅱ" b="∓" />
+    <fn a="Ⅲ" b="∔" />
+    <fn a="Ⅳ" b="∕" />
+    <fn a="Ⅴ" b="∖" />
+    <fn a="Ⅵ" b="∗" />
+    <fn a="Ⅶ" b="∘" />
+    <fn a="Ⅷ" b="∙" />
+    <fn a="Ⅸ" b="√" />
+    <fn a="Ⅹ" b="∛" />
+    <fn a="Ⅺ" b="∜" />
+    <fn a="Ⅻ" b="∝" />
+    <fn a="Ⅼ" b="∞" />
+    <fn a="Ⅽ" b="∟" />
+    <fn a="Ⅾ" b="∠" />
+    <fn a="Ⅿ" b="∡" />
+    <fn a="ⅰ" b="∢" />
+    <fn a="ⅱ" b="∣" />
+    <fn a="ⅲ" b="∤" />
+    <fn a="ⅳ" b="∥" />
+    <fn a="ⅴ" b="∦" />
+    <fn a="ⅵ" b="∧" />
+    <fn a="ⅶ" b="∨" />
+    <fn a="ⅷ" b="∩" />
+    <fn a="ⅸ" b="∪" />
+    <fn a="ⅹ" b="∫" />
+    <fn a="ⅺ" b="∬" />
+    <fn a="ⅻ" b="∭" />
+    <fn a="ⅼ" b="∮" />
+    <fn a="ⅽ" b="∯" />
+    <fn a="ⅾ" b="∰" />
+    <fn a="ⅿ" b="∱" />
+    <fn a="ↀ" b="∲" />
+    <fn a="ↁ" b="∳" />
+    <fn a="ↂ" b="∴" />
+    <fn a="Ↄ" b="∵" />
+    <fn a="ↄ" b="∶" />
+    <fn a="ↅ" b="∷" />
+    <fn a="ↆ" b="∸" />
+    <fn a="ↇ" b="∹" />
+    <fn a="ↈ" b="∺" />
+    <fn a="↉" b="∻" />
+    <fn a="↊" b="∼" />
+    <fn a="↋" b="∽" />
+    <fn a="①" b="∾" />
+    <fn a="②" b="∿" />
+    <fn a="③" b="≀" />
+    <fn a="④" b="≁" />
+    <fn a="⑤" b="≂" />
+    <fn a="⑥" b="≃" />
+    <fn a="⑦" b="≄" />
+    <fn a="⑧" b="≅" />
+    <fn a="⑨" b="≆" />
+    <fn a="⑩" b="≇" />
+    <fn a="⑪" b="≈" />
+    <fn a="⑫" b="≉" />
+    <fn a="⑬" b="≊" />
+    <fn a="⑭" b="≋" />
+    <fn a="⑮" b="≌" />
+    <fn a="⑯" b="≍" />
+    <fn a="⑰" b="≎" />
+    <fn a="⑱" b="≏" />
+    <fn a="⑲" b="≐" />
+    <fn a="⑳" b="≑" />
+    <fn a="⑴" b="≒" />
+    <fn a="⑵" b="≓" />
+    <fn a="⑶" b="≔" />
+    <fn a="⑷" b="≕" />
+    <fn a="⑸" b="≖" />
+    <fn a="⑹" b="≗" />
+    <fn a="⑺" b="≘" />
+    <fn a="⑻" b="≙" />
+    <fn a="⑼" b="≚" />
+    <fn a="⑽" b="≛" />
+    <fn a="⑾" b="≜" />
+    <fn a="⑿" b="≝" />
+    <fn a="⒀" b="≞" />
+    <fn a="⒁" b="≟" />
+    <fn a="⒂" b="≠" />
+    <fn a="⒃" b="≡" />
+    <fn a="⒄" b="≢" />
+    <fn a="⒅" b="≣" />
+    <fn a="⒆" b="≤" />
+    <fn a="⒇" b="≥" />
+    <fn a="⒈" b="≦" />
+    <fn a="⒉" b="≧" />
+    <fn a="⒊" b="≨" />
+    <fn a="⒋" b="≩" />
+    <fn a="⒌" b="≪" />
+    <fn a="⒍" b="≫" />
+    <fn a="⒎" b="≬" />
+    <fn a="⒏" b="≭" />
+    <fn a="⒐" b="≮" />
+    <fn a="⒑" b="≯" />
+    <fn a="⒒" b="≰" />
+    <fn a="⒓" b="≱" />
+    <fn a="⒔" b="≲" />
+    <fn a="⒕" b="≳" />
+    <fn a="⒖" b="≴" />
+    <fn a="⒗" b="≵" />
+    <fn a="⒘" b="≶" />
+    <fn a="⒙" b="≷" />
+    <fn a="⒚" b="≸" />
+    <fn a="⒛" b="≹" />
+    <fn a="⒜" b="≺" />
+    <fn a="⒝" b="≻" />
+    <fn a="⒞" b="≼" />
+    <fn a="⒟" b="≽" />
+    <fn a="⒠" b="≾" />
+    <fn a="⒡" b="≿" />
+    <fn a="⒢" b="⊀" />
+    <fn a="⒣" b="⊁" />
+    <fn a="⒤" b="⊂" />
+    <fn a="⒥" b="⊃" />
+    <fn a="⒦" b="⊄" />
+    <fn a="⒧" b="⊅" />
+    <fn a="⒨" b="⊆" />
+    <fn a="⒩" b="⊇" />
+    <fn a="⒪" b="⊈" />
+    <fn a="⒫" b="⊉" />
+    <fn a="⒬" b="⊊" />
+    <fn a="⒭" b="⊋" />
+    <fn a="⒮" b="⊌" />
+    <fn a="⒯" b="⊍" />
+    <fn a="⒰" b="⊎" />
+    <fn a="⒱" b="⊏" />
+    <fn a="⒲" b="⊐" />
+    <fn a="⒳" b="⊑" />
+    <fn a="⒴" b="⊒" />
+    <fn a="⒵" b="⊓" />
+    <fn a="Ⓐ" b="⊔" />
+    <fn a="Ⓑ" b="⊕" />
+    <fn a="Ⓒ" b="⊖" />
+    <fn a="Ⓓ" b="⊗" />
+    <fn a="Ⓔ" b="⊘" />
+    <fn a="Ⓕ" b="⊙" />
+    <fn a="Ⓖ" b="⊚" />
+    <fn a="Ⓗ" b="⊛" />
+    <fn a="Ⓘ" b="⊜" />
+    <fn a="Ⓙ" b="⊝" />
+    <fn a="Ⓚ" b="⊞" />
+    <fn a="Ⓛ" b="⊟" />
+    <fn a="Ⓜ" b="⊠" />
+    <fn a="Ⓝ" b="⊡" />
+    <fn a="Ⓞ" b="⊢" />
+    <fn a="Ⓟ" b="⊣" />
+    <fn a="Ⓠ" b="⊤" />
+    <fn a="Ⓡ" b="⊥" />
+    <fn a="Ⓢ" b="⊦" />
+    <fn a="Ⓣ" b="⊧" />
+    <fn a="Ⓤ" b="⊨" />
+    <fn a="Ⓥ" b="⊩" />
+    <fn a="Ⓦ" b="⊪" />
+    <fn a="Ⓧ" b="⊫" />
+    <fn a="Ⓨ" b="⊬" />
+    <fn a="Ⓩ" b="⊭" />
+    <fn a="ⓐ" b="⊮" />
+    <fn a="ⓑ" b="⊯" />
+    <fn a="ⓒ" b="⊰" />
+    <fn a="ⓓ" b="⊱" />
+    <fn a="ⓔ" b="⊲" />
+    <fn a="ⓕ" b="⊳" />
+    <fn a="ⓖ" b="⊴" />
+    <fn a="ⓗ" b="⊵" />
+    <fn a="ⓘ" b="⊶" />
+    <fn a="ⓙ" b="⊷" />
+    <fn a="ⓚ" b="⊸" />
+    <fn a="ⓛ" b="⊹" />
+    <fn a="ⓜ" b="⊺" />
+    <fn a="ⓝ" b="⊻" />
+    <fn a="ⓞ" b="⊼" />
+    <fn a="ⓟ" b="⊽" />
+    <fn a="ⓠ" b="⊾" />
+    <fn a="ⓡ" b="⊿" />
+    <fn a="ⓢ" b="⋀" />
+    <fn a="ⓣ" b="⋁" />
+    <fn a="ⓤ" b="⋂" />
+    <fn a="ⓥ" b="⋃" />
+    <fn a="ⓦ" b="⋄" />
+    <fn a="ⓧ" b="⋅" />
+    <fn a="ⓨ" b="⋆" />
+    <fn a="ⓩ" b="⋇" />
+    <fn a="⓪" b="⋈" />
+    <fn a="⓫" b="⋉" />
+    <fn a="⓬" b="⋊" />
+    <fn a="⓭" b="⋋" />
+    <fn a="⓮" b="⋌" />
+    <fn a="⓯" b="⋍" />
+    <fn a="⓰" b="⋎" />
+    <fn a="⓱" b="⋏" />
+    <fn a="⓲" b="⋐" />
+    <fn a="⓳" b="⋑" />
+    <fn a="⓴" b="⋒" />
+    <fn a="⓵" b="⋓" />
+    <fn a="⓶" b="⋔" />
+    <fn a="⓷" b="⋕" />
+    <fn a="⓸" b="⋖" />
+    <fn a="⓹" b="⋗" />
+    <fn a="⓺" b="⋘" />
+    <fn a="⓻" b="⋙" />
+    <fn a="⓼" b="⋚" />
+    <fn a="⓽" b="⋛" />
+    <fn a="⓾" b="⋜" />
+    <fn a="⓿" b="⋝" />
+    <fn a="─" b="⋞" />
+    <fn a="━" b="⋟" />
+    <fn a="│" b="⋠" />
+    <fn a="┃" b="⋡" />
+    <fn a="┄" b="⋢" />
+    <fn a="┅" b="⋣" />
+    <fn a="┆" b="⋤" />
+    <fn a="┇" b="⋥" />
+    <fn a="┈" b="⋦" />
+    <fn a="┉" b="⋧" />
+    <fn a="┊" b="⋨" />
+    <fn a="┋" b="⋩" />
+    <fn a="┌" b="⋪" />
+    <fn a="┍" b="⋫" />
+    <fn a="┎" b="⋬" />
+    <fn a="┏" b="⋭" />
+    <fn a="┐" b="⋮" />
+    <fn a="┑" b="⋯" />
+    <fn a="┒" b="⋰" />
+    <fn a="┓" b="⋱" />
+    <fn a="└" b="⋲" />
+    <fn a="┕" b="⋳" />
+    <fn a="┖" b="⋴" />
+    <fn a="┗" b="⋵" />
+    <fn a="┘" b="⋶" />
+    <fn a="┙" b="⋷" />
+    <fn a="┚" b="⋸" />
+    <fn a="┛" b="⋹" />
+    <fn a="├" b="⋺" />
+    <fn a="┝" b="⋻" />
+    <fn a="┞" b="⋼" />
+    <fn a="┟" b="⋽" />
+    <fn a="┠" b="⋾" />
+    <fn a="┡" b="⋿" />
+    <fn a="┢" b="⌀" />
+    <fn a="┣" b="⌁" />
+    <fn a="┤" b="⌂" />
+    <fn a="┥" b="⌃" />
+    <fn a="┦" b="⌄" />
+    <fn a="┧" b="⌅" />
+    <fn a="┨" b="⌆" />
+    <fn a="┩" b="⌇" />
+    <fn a="┪" b="⌈" />
+    <fn a="┫" b="⌉" />
+    <fn a="┬" b="⌊" />
+    <fn a="┭" b="⌋" />
+    <fn a="┮" b="⌌" />
+    <fn a="┯" b="⌍" />
+    <fn a="┰" b="⌎" />
+    <fn a="┱" b="⌏" />
+    <fn a="┲" b="⌐" />
+    <fn a="┳" b="⌑" />
+    <fn a="┴" b="⌒" />
+    <fn a="┵" b="⌓" />
+    <fn a="┶" b="⌔" />
+    <fn a="┷" b="⌕" />
+    <fn a="┸" b="⌖" />
+    <fn a="┹" b="⌗" />
+    <fn a="┺" b="⌘" />
+    <fn a="┻" b="⌙" />
+    <fn a="┼" b="⌚" />
+    <fn a="┽" b="⌛" />
+    <fn a="┾" b="⌜" />
+    <fn a="┿" b="⌝" />
+    <fn a="╀" b="⌞" />
+    <fn a="╁" b="⌟" />
+    <fn a="╂" b="⌠" />
+    <fn a="╃" b="⌡" />
+    <fn a="╄" b="⌢" />
+    <fn a="╅" b="⌣" />
+    <fn a="╆" b="⌤" />
+    <fn a="╇" b="⌥" />
+    <fn a="╈" b="⌦" />
+    <fn a="╉" b="⌧" />
+    <fn a="╊" b="⌨" />
+    <fn a="╋" b="〈" />
+    <fn a="╌" b="〉" />
+    <fn a="╍" b="⌫" />
+    <fn a="╎" b="⌬" />
+    <fn a="╏" b="⌭" />
+    <fn a="═" b="⌮" />
+    <fn a="║" b="⌯" />
+    <fn a="╒" b="⌰" />
+    <fn a="╓" b="⌱" />
+    <fn a="╔" b="⌲" />
+    <fn a="╕" b="⌳" />
+    <fn a="╖" b="⌴" />
+    <fn a="╗" b="⌵" />
+    <fn a="╘" b="⌶" />
+    <fn a="╙" b="⌷" />
+    <fn a="╚" b="⌸" />
+    <fn a="╛" b="⌹" />
+    <fn a="╜" b="⌺" />
+    <fn a="╝" b="⌻" />
+    <fn a="╞" b="⌼" />
+    <fn a="╟" b="⌽" />
+    <fn a="╠" b="⌾" />
+    <fn a="╡" b="⌿" />
+    <fn a="╢" b="⍀" />
+    <fn a="╣" b="⍁" />
+    <fn a="╤" b="⍂" />
+    <fn a="╥" b="⍃" />
+    <fn a="╦" b="⍄" />
+    <fn a="╧" b="⍅" />
+    <fn a="╨" b="⍆" />
+    <fn a="╩" b="⍇" />
+    <fn a="╪" b="⍈" />
+    <fn a="╫" b="⍉" />
+    <fn a="╬" b="⍊" />
+    <fn a="╭" b="⍋" />
+    <fn a="╮" b="⍌" />
+    <fn a="╯" b="⍍" />
+    <fn a="╰" b="⍎" />
+    <fn a="╱" b="⍏" />
+    <fn a="╲" b="⍐" />
+    <fn a="╳" b="⍑" />
+    <fn a="╴" b="⍒" />
+    <fn a="╵" b="⍓" />
+    <fn a="╶" b="⍔" />
+    <fn a="╷" b="⍕" />
+    <fn a="╸" b="⍖" />
+    <fn a="╹" b="⍗" />
+    <fn a="╺" b="⍘" />
+    <fn a="╻" b="⍙" />
+    <fn a="╼" b="⍚" />
+    <fn a="╽" b="⍛" />
+    <fn a="╾" b="⍜" />
+    <fn a="╿" b="⍝" />
+    <fn a="▀" b="⍞" />
+    <fn a="▁" b="⍟" />
+    <fn a="▂" b="⍠" />
+    <fn a="▃" b="⍡" />
+    <fn a="▄" b="⍢" />
+    <fn a="▅" b="⍣" />
+    <fn a="▆" b="⍤" />
+    <fn a="▇" b="⍥" />
+    <fn a="█" b="⍦" />
+    <fn a="▉" b="⍧" />
+    <fn a="▊" b="⍨" />
+    <fn a="▋" b="⍩" />
+    <fn a="▌" b="⍪" />
+    <fn a="▍" b="⍫" />
+    <fn a="▎" b="⍬" />
+    <fn a="▏" b="⍭" />
+    <fn a="▐" b="⍮" />
+    <fn a="░" b="⍯" />
+    <fn a="▒" b="⍰" />
+    <fn a="▓" b="⍱" />
+    <fn a="▔" b="⍲" />
+    <fn a="▕" b="⍳" />
+    <fn a="▖" b="⍴" />
+    <fn a="▗" b="⍵" />
+    <fn a="▘" b="⍶" />
+    <fn a="▙" b="⍷" />
+    <fn a="▚" b="⍸" />
+    <fn a="▛" b="⍹" />
+    <fn a="▜" b="⍺" />
+    <fn a="▝" b="⍻" />
+    <fn a="▞" b="⍼" />
+    <fn a="▟" b="⍽" />
+    <fn a="■" b="⍾" />
+    <fn a="□" b="⍿" />
+    <fn a="▢" b="⎀" />
+    <fn a="▣" b="⎁" />
+    <fn a="▤" b="⎂" />
+    <fn a="▥" b="⎃" />
+    <fn a="▦" b="⎄" />
+    <fn a="▧" b="⎅" />
+    <fn a="▨" b="⎆" />
+    <fn a="▩" b="⎇" />
+    <fn a="▪" b="⎈" />
+    <fn a="▫" b="⎉" />
+    <fn a="▬" b="⎊" />
+    <fn a="▭" b="⎋" />
+    <fn a="▮" b="⎌" />
+    <fn a="▯" b="⎍" />
+    <fn a="▰" b="⎎" />
+    <fn a="▱" b="⎏" />
+    <fn a="▲" b="⎐" />
+    <fn a="△" b="⎑" />
+    <fn a="▴" b="⎒" />
+    <fn a="▵" b="⎓" />
+    <fn a="▶" b="⎔" />
+    <fn a="▷" b="⎕" />
+    <fn a="▸" b="⎖" />
+    <fn a="▹" b="⎗" />
+    <fn a="►" b="⎘" />
+    <fn a="▻" b="⎙" />
+    <fn a="▼" b="⎚" />
+    <fn a="▽" b="⎛" />
+    <fn a="▾" b="⎜" />
+    <fn a="▿" b="⎝" />
+    <fn a="◀" b="⎞" />
+    <fn a="◁" b="⎟" />
+    <fn a="◂" b="⎠" />
+    <fn a="◃" b="⎡" />
+    <fn a="◄" b="⎢" />
+    <fn a="◅" b="⎣" />
+    <fn a="◆" b="⎤" />
+    <fn a="◇" b="⎥" />
+    <fn a="◈" b="⎦" />
+    <fn a="◉" b="⎧" />
+    <fn a="◊" b="⎨" />
+    <fn a="○" b="⎩" />
+    <fn a="◌" b="⎪" />
+    <fn a="◍" b="⎫" />
+    <fn a="◎" b="⎬" />
+    <fn a="●" b="⎭" />
+    <fn a="◐" b="⎮" />
+    <fn a="◑" b="⎯" />
+    <fn a="◒" b="⎰" />
+    <fn a="◓" b="⎱" />
+    <fn a="◔" b="⎲" />
+    <fn a="◕" b="⎳" />
+    <fn a="◖" b="⎴" />
+    <fn a="◗" b="⎵" />
+    <fn a="◘" b="⎶" />
+    <fn a="◙" b="⎷" />
+    <fn a="◚" b="⎸" />
+    <fn a="◛" b="⎹" />
+    <fn a="◜" b="⎺" />
+    <fn a="◝" b="⎻" />
+    <fn a="◞" b="⎼" />
+    <fn a="◟" b="⎽" />
+    <fn a="◠" b="⎾" />
+    <fn a="◡" b="⎿" />
+    <fn a="◢" b="⏀" />
+    <fn a="◣" b="⏁" />
+    <fn a="◤" b="⏂" />
+    <fn a="◥" b="⏃" />
+    <fn a="◦" b="⏄" />
+    <fn a="◧" b="⏅" />
+    <fn a="◨" b="⏆" />
+    <fn a="◩" b="⏇" />
+    <fn a="◪" b="⏈" />
+    <fn a="◫" b="⏉" />
+    <fn a="◬" b="⏊" />
+    <fn a="◭" b="⏋" />
+    <fn a="◮" b="⏌" />
+    <fn a="◯" b="⏍" />
+    <fn a="◰" b="⏎" />
+    <fn a="◱" b="⏏" />
+    <fn a="◲" b="⏐" />
+    <fn a="◳" b="⏑" />
+    <fn a="◴" b="⏒" />
+    <fn a="◵" b="⏓" />
+    <fn a="◶" b="⏔" />
+    <fn a="◷" b="⏕" />
+    <fn a="◸" b="⏖" />
+    <fn a="◹" b="⏗" />
+    <fn a="◺" b="⏘" />
+    <fn a="◻" b="⏙" />
+    <fn a="◼" b="⏚" />
+    <fn a="◽" b="⏛" />
+    <fn a="◾" b="⏜" />
+    <fn a="◿" b="⏝" />
+    <fn a="☀" b="⏞" />
+    <fn a="☁" b="⏟" />
+    <fn a="☂" b="⏠" />
+    <fn a="☃" b="⏡" />
+    <fn a="☄" b="⏢" />
+    <fn a="★" b="⏣" />
+    <fn a="☆" b="⏤" />
+    <fn a="☇" b="⏥" />
+    <fn a="☈" b="⏦" />
+    <fn a="☉" b="⏧" />
+    <fn a="☊" b="⏨" />
+    <fn a="☋" b="⏩" />
+    <fn a="☌" b="⏪" />
+    <fn a="☍" b="⏫" />
+    <fn a="☎" b="⏬" />
+    <fn a="☏" b="⏭" />
+    <fn a="☐" b="⏮" />
+    <fn a="☑" b="⏯" />
+    <fn a="☒" b="⏰" />
+    <fn a="☓" b="⏱" />
+    <fn a="☔" b="⏲" />
+    <fn a="☕" b="⏳" />
+    <fn a="☖" b="⏴" />
+    <fn a="☗" b="⏵" />
+    <fn a="☘" b="⏶" />
+    <fn a="☙" b="⏷" />
+    <fn a="☚" b="⏸" />
+    <fn a="☛" b="⏹" />
+    <fn a="☜" b="⏺" />
+    <fn a="☝" b="⏻" />
+    <fn a="☞" b="⏼" />
+    <fn a="☟" b="⏽" />
+    <fn a="☠" b="⏾" />
+    <fn a="☡" b="⏿" />
+    <fn a="☢" b="ࣦ" />
+    <fn a="☣" b="ࣧ" />
+    <fn a="☤" b="ࣨ" />
+    <fn a="☥" b="ࣩ" />
+    <fn a="☦" b="࣪" />
+    <fn a="☧" b="࣫" />
+    <fn a="☨" b="࣬" />
+    <fn a="☩" b="࣭" />
+    <fn a="☪" b="࣮" />
+    <fn a="☫" b="࣯" />
+    <fn a="☬" b="ࣰ" />
+    <fn a="☭" b="ࣱ" />
+    <fn a="☮" b="ࣲ" />
+    <fn a="☯" b="ࣳ" />
+    <fn a="☰" b="ࣴ" />
+    <fn a="☱" b="ࣵ" />
+    <fn a="☲" b="ࣶ" />
+    <fn a="☳" b="ࣷ" />
+    <fn a="☴" b="ࣸ" />
+    <fn a="☵" b="ࣹ" />
+    <fn a="☶" b="ࣺ" />
+    <fn a="☷" b="ࣻ" />
+    <fn a="☸" b="ࣼ" />
+    <fn a="☹" b="ࣽ" />
+    <fn a="☺" b="ࣾ" />
+    <fn a="☻" b="ࣿ" />
+    <fn a="☼" b="ﭐ" />
+    <fn a="☽" b="ﭑ" />
+    <fn a="☾" b="ﭒ" />
+    <fn a="☿" b="ﭓ" />
+    <fn a="♀" b="ﭔ" />
+    <fn a="♁" b="ﭕ" />
+    <fn a="♂" b="ﭖ" />
+    <fn a="♃" b="ﭗ" />
+    <fn a="♄" b="ﭘ" />
+    <fn a="♅" b="ﭙ" />
+    <fn a="♆" b="ﭚ" />
+    <fn a="♇" b="ﭛ" />
+    <fn a="♈" b="ﭜ" />
+    <fn a="♉" b="ﭝ" />
+    <fn a="♊" b="ﭞ" />
+    <fn a="♋" b="ﭟ" />
+    <fn a="♌" b="ﭠ" />
+    <fn a="♍" b="ﭡ" />
+    <fn a="♎" b="ﭢ" />
+    <fn a="♏" b="ﭣ" />
+    <fn a="♐" b="ﭤ" />
+    <fn a="♑" b="ﭥ" />
+    <fn a="♒" b="ﭦ" />
+    <fn a="♓" b="ﭧ" />
+    <fn a="♔" b="ﭨ" />
+    <fn a="♕" b="ﭩ" />
+    <fn a="♖" b="ﭪ" />
+    <fn a="♗" b="ﭫ" />
+    <fn a="♘" b="ﭬ" />
+    <fn a="♙" b="ﭭ" />
+    <fn a="♚" b="ﭮ" />
+    <fn a="♛" b="ﭯ" />
+    <fn a="♜" b="ﭰ" />
+    <fn a="♝" b="ﭱ" />
+    <fn a="♞" b="ﭲ" />
+    <fn a="♟" b="ﭳ" />
+    <fn a="♠" b="ﭴ" />
+    <fn a="♡" b="ﭵ" />
+    <fn a="♢" b="ﭶ" />
+    <fn a="♣" b="ﭷ" />
+    <fn a="♤" b="ﭸ" />
+    <fn a="♥" b="ﭹ" />
+    <fn a="♦" b="ﭺ" />
+    <fn a="♧" b="ﭻ" />
+    <fn a="♨" b="ﭼ" />
+    <fn a="♩" b="ﭽ" />
+    <fn a="♪" b="ﭾ" />
+    <fn a="♫" b="ﭿ" />
+    <fn a="♬" b="ﮀ" />
+    <fn a="♭" b="ﮁ" />
+    <fn a="♮" b="ﮂ" />
+    <fn a="♯" b="ﮃ" />
+    <fn a="♰" b="ﮄ" />
+    <fn a="♱" b="ﮅ" />
+    <fn a="♲" b="ﮆ" />
+    <fn a="♳" b="ﮇ" />
+    <fn a="♴" b="ﮈ" />
+    <fn a="♵" b="ﮉ" />
+    <fn a="♶" b="ﮊ" />
+    <fn a="♷" b="ﮋ" />
+    <fn a="♸" b="ﮌ" />
+    <fn a="♹" b="ﮍ" />
+    <fn a="♺" b="ﮎ" />
+    <fn a="♻" b="ﮏ" />
+    <fn a="؆" b="ﮐ" />
+    <fn a="؇" b="ﮑ" />
+    <fn a="؈" b="ﮒ" />
+    <fn a="؉" b="ﮓ" />
+    <fn a="؊" b="ﮔ" />
+    <fn a="؋" b="ﮕ" />
+    <fn a="؍" b="ﮖ" />
+    <fn a="؎" b="ﮗ" />
+    <fn a="؏" b="ﮘ" />
+    <fn a="ؐ" b="ﮙ" />
+    <fn a="ؑ" b="ﮚ" />
+    <fn a="ؒ" b="ﮛ" />
+    <fn a="ؓ" b="ﮜ" />
+    <fn a="ؔ" b="ﮝ" />
+    <fn a="ؕ" b="ﮞ" />
+    <fn a="ؖ" b="ﮟ" />
+    <fn a="ؗ" b="ﮠ" />
+    <fn a="ؘ" b="ﮡ" />
+    <fn a="ؙ" b="ﮢ" />
+    <fn a="ؚ" b="ﮣ" />
+    <fn a="؝" b="ﮤ" />
+    <fn a="؞" b="ﮥ" />
+    <fn a="ؠ" b="ﮦ" />
+    <fn a="ء" b="ﮧ" />
+    <fn a="آ" b="ﮨ" />
+    <fn a="أ" b="ﮩ" />
+    <fn a="ؤ" b="ﮪ" />
+    <fn a="إ" b="ﮫ" />
+    <fn a="ئ" b="ﮬ" />
+    <fn a="ا" b="ﮭ" />
+    <fn a="ب" b="ﮮ" />
+    <fn a="ة" b="ﮯ" />
+    <fn a="ت" b="ﮰ" />
+    <fn a="ث" b="ﮱ" />
+    <fn a="ج" b="﮲" />
+    <fn a="ح" b="﮳" />
+    <fn a="خ" b="﮴" />
+    <fn a="د" b="﮵" />
+    <fn a="ذ" b="﮶" />
+    <fn a="ر" b="﮷" />
+    <fn a="ز" b="﮸" />
+    <fn a="س" b="﮹" />
+    <fn a="ش" b="﮺" />
+    <fn a="ص" b="﮻" />
+    <fn a="ض" b="﮼" />
+    <fn a="ط" b="﮽" />
+    <fn a="ظ" b="﮾" />
+    <fn a="ع" b="﮿" />
+    <fn a="غ" b="﯀" />
+    <fn a="ػ" b="﯁" />
+    <fn a="ؼ" b="﯂" />
+    <fn a="ؽ" b="ﯓ" />
+    <fn a="ؾ" b="ﯔ" />
+    <fn a="ؿ" b="ﯕ" />
+    <fn a="ـ" b="ﯖ" />
+    <fn a="ف" b="ﯗ" />
+    <fn a="ق" b="ﯘ" />
+    <fn a="ك" b="ﯙ" />
+    <fn a="ل" b="ﯚ" />
+    <fn a="م" b="ﯛ" />
+    <fn a="ن" b="ﯜ" />
+    <fn a="ه" b="ﯝ" />
+    <fn a="و" b="ﯞ" />
+    <fn a="ى" b="ﯟ" />
+    <fn a="ي" b="ﯠ" />
+    <fn a="ً" b="ﯡ" />
+    <fn a="ٌ" b="ﯢ" />
+    <fn a="ٍ" b="ﯣ" />
+    <fn a="َ" b="ﯤ" />
+    <fn a="ُ" b="ﯥ" />
+    <fn a="ِ" b="ﯦ" />
+    <fn a="ّ" b="ﯧ" />
+    <fn a="ْ" b="ﯨ" />
+    <fn a="ٓ" b="ﯩ" />
+    <fn a="ٔ" b="ﯪ" />
+    <fn a="ٕ" b="ﯫ" />
+    <fn a="ٖ" b="ﯬ" />
+    <fn a="ٗ" b="ﯭ" />
+    <fn a="٘" b="ﯮ" />
+    <fn a="ٙ" b="ﯯ" />
+    <fn a="ٚ" b="ﯰ" />
+    <fn a="ٛ" b="ﯱ" />
+    <fn a="ٜ" b="ﯲ" />
+    <fn a="ٝ" b="ﯳ" />
+    <fn a="ٞ" b="ﯴ" />
+    <fn a="ٟ" b="ﯵ" />
+    <fn a="٠" b="ﯶ" />
+    <fn a="١" b="ﯷ" />
+    <fn a="٢" b="ﯸ" />
+    <fn a="٣" b="ﯹ" />
+    <fn a="٤" b="ﯺ" />
+    <fn a="٥" b="ﯻ" />
+    <fn a="٦" b="ﯼ" />
+    <fn a="٧" b="ﯽ" />
+    <fn a="٨" b="ﯾ" />
+    <fn a="٩" b="ﯿ" />
+    <fn a="٫" b="ﰀ" />
+    <fn a="٬" b="ﰁ" />
+    <fn a="٭" b="ﰂ" />
+    <fn a="ٮ" b="ﰃ" />
+    <fn a="ٯ" b="ﰄ" />
+    <fn a="ٰ" b="ﰅ" />
+    <fn a="ٱ" b="ﰆ" />
+    <fn a="ٲ" b="ﰇ" />
+    <fn a="ٳ" b="ﰈ" />
+    <fn a="ٴ" b="ﰉ" />
+    <fn a="ٵ" b="ﰊ" />
+    <fn a="ٶ" b="ﰋ" />
+    <fn a="ٷ" b="ﰌ" />
+    <fn a="ٸ" b="ﰍ" />
+    <fn a="ٹ" b="ﰎ" />
+    <fn a="ٺ" b="ﰏ" />
+    <fn a="ٻ" b="ﰐ" />
+    <fn a="ټ" b="ﰑ" />
+    <fn a="ٽ" b="ﰒ" />
+    <fn a="پ" b="ﰓ" />
+    <fn a="ٿ" b="ﰔ" />
+    <fn a="ڀ" b="ﰕ" />
+    <fn a="ځ" b="ﰖ" />
+    <fn a="ڂ" b="ﰗ" />
+    <fn a="ڃ" b="ﰘ" />
+    <fn a="ڄ" b="ﰙ" />
+    <fn a="څ" b="ﰚ" />
+    <fn a="چ" b="ﰛ" />
+    <fn a="ڇ" b="ﰜ" />
+    <fn a="ڈ" b="ﰝ" />
+    <fn a="ډ" b="ﰞ" />
+    <fn a="ڊ" b="ﰟ" />
+    <fn a="ڋ" b="ﰠ" />
+    <fn a="ڌ" b="ﰡ" />
+    <fn a="ڍ" b="ﰢ" />
+    <fn a="ڎ" b="ﰣ" />
+    <fn a="ڏ" b="ﰤ" />
+    <fn a="ڐ" b="ﰥ" />
+    <fn a="ڑ" b="ﰦ" />
+    <fn a="ڒ" b="ﰧ" />
+    <fn a="ړ" b="ﰨ" />
+    <fn a="ڔ" b="ﰩ" />
+    <fn a="ڕ" b="ﰪ" />
+    <fn a="ږ" b="ﰫ" />
+    <fn a="ڗ" b="ﰬ" />
+    <fn a="ژ" b="ﰭ" />
+    <fn a="ڙ" b="ﰮ" />
+    <fn a="ښ" b="ﰯ" />
+    <fn a="ڛ" b="ﰰ" />
+    <fn a="ڜ" b="ﰱ" />
+    <fn a="ڝ" b="ﰲ" />
+    <fn a="ڞ" b="ﰳ" />
+    <fn a="ڟ" b="ﰴ" />
+    <fn a="ڠ" b="ﰵ" />
+    <fn a="ڡ" b="ﰶ" />
+    <fn a="ڢ" b="ﰷ" />
+    <fn a="ڣ" b="ﰸ" />
+    <fn a="ڤ" b="ﰹ" />
+    <fn a="ڥ" b="ﰺ" />
+    <fn a="ڦ" b="ﰻ" />
+    <fn a="ڧ" b="ﰼ" />
+    <fn a="ڨ" b="ﰽ" />
+    <fn a="ک" b="ﰾ" />
+    <fn a="ڪ" b="ﰿ" />
+    <fn a="ګ" b="ﱀ" />
+    <fn a="ڬ" b="ﱁ" />
+    <fn a="ڭ" b="ﱂ" />
+    <fn a="ڮ" b="ﱃ" />
+    <fn a="گ" b="ﱄ" />
+    <fn a="ڰ" b="ﱅ" />
+    <fn a="ڱ" b="ﱆ" />
+    <fn a="ڲ" b="ﱇ" />
+    <fn a="ڳ" b="ﱈ" />
+    <fn a="ڴ" b="ﱉ" />
+    <fn a="ڵ" b="ﱊ" />
+    <fn a="ڶ" b="ﱋ" />
+    <fn a="ڷ" b="ﱌ" />
+    <fn a="ڸ" b="ﱍ" />
+    <fn a="ڹ" b="ﱎ" />
+    <fn a="ں" b="ﱏ" />
+    <fn a="ڻ" b="ﱐ" />
+    <fn a="ڼ" b="ﱑ" />
+    <fn a="ڽ" b="ﱒ" />
+    <fn a="ھ" b="ﱓ" />
+    <fn a="ڿ" b="ﱔ" />
+    <fn a="ۀ" b="ﱕ" />
+    <fn a="ہ" b="ﱖ" />
+    <fn a="ۂ" b="ﱗ" />
+    <fn a="ۃ" b="ﱘ" />
+    <fn a="ۄ" b="ﱙ" />
+    <fn a="ۅ" b="ﱚ" />
+    <fn a="ۆ" b="ﱛ" />
+    <fn a="ۇ" b="ﱜ" />
+    <fn a="ۈ" b="ﱝ" />
+    <fn a="ۉ" b="ﱞ" />
+    <fn a="ۊ" b="ﱟ" />
+    <fn a="ۋ" b="ﱠ" />
+    <fn a="ی" b="ﱡ" />
+    <fn a="ۍ" b="ﱢ" />
+    <fn a="ێ" b="ﱣ" />
+    <fn a="ۏ" b="ﱤ" />
+    <fn a="ې" b="ﱥ" />
+    <fn a="ۑ" b="ﱦ" />
+    <fn a="ے" b="ﱧ" />
+    <fn a="ۓ" b="ﱨ" />
+    <fn a="ە" b="ﱩ" />
+    <fn a="ۖ" b="ﱪ" />
+    <fn a="ۗ" b="ﱫ" />
+    <fn a="ۘ" b="ﱬ" />
+    <fn a="ۙ" b="ﱭ" />
+    <fn a="ۚ" b="ﱮ" />
+    <fn a="ۛ" b="ﱯ" />
+    <fn a="ۜ" b="ﱰ" />
+    <fn a="۞" b="ﱱ" />
+    <fn a="۟" b="ﱲ" />
+    <fn a="۠" b="ﱳ" />
+    <fn a="ۡ" b="ﱴ" />
+    <fn a="ۢ" b="ﱵ" />
+    <fn a="ۣ" b="ﱶ" />
+    <fn a="ۤ" b="ﱷ" />
+    <fn a="ۥ" b="ﱸ" />
+    <fn a="ۦ" b="ﱹ" />
+    <fn a="ۧ" b="ﱺ" />
+    <fn a="ۨ" b="ﱻ" />
+    <fn a="۩" b="ﱼ" />
+    <fn a="۪" b="ﱽ" />
+    <fn a="۫" b="ﱾ" />
+    <fn a="۬" b="ﱿ" />
+    <fn a="ۭ" b="ﲀ" />
+    <fn a="ۮ" b="ﲁ" />
+    <fn a="ۯ" b="ﲂ" />
+    <fn a="۰" b="ﲃ" />
+    <fn a="۱" b="ﲄ" />
+    <fn a="۲" b="ﲅ" />
+    <fn a="۳" b="ﲆ" />
+    <fn a="۴" b="ﲇ" />
+    <fn a="۵" b="ﲈ" />
+    <fn a="۶" b="ﲉ" />
+    <fn a="۷" b="ﲊ" />
+    <fn a="۸" b="ﲋ" />
+    <fn a="۹" b="ﲌ" />
+    <fn a="ۺ" b="ﲍ" />
+    <fn a="ۻ" b="ﲎ" />
+    <fn a="ۼ" b="ﲏ" />
+    <fn a="۽" b="ﲐ" />
+    <fn a="۾" b="ﲑ" />
+    <fn a="ۿ" b="ﲒ" />
+    <fn a="ݐ" b="ﲓ" />
+    <fn a="ݑ" b="ﲔ" />
+    <fn a="ݒ" b="ﲕ" />
+    <fn a="ݓ" b="ﲖ" />
+    <fn a="ݔ" b="ﲗ" />
+    <fn a="ݕ" b="ﲘ" />
+    <fn a="ݖ" b="ﲙ" />
+    <fn a="ݗ" b="ﲚ" />
+    <fn a="ݘ" b="ﲛ" />
+    <fn a="ݙ" b="ﲜ" />
+    <fn a="ݚ" b="ﲝ" />
+    <fn a="ݛ" b="ﲞ" />
+    <fn a="ݜ" b="ﲟ" />
+    <fn a="ݝ" b="ﲠ" />
+    <fn a="ݞ" b="ﲡ" />
+    <fn a="ݟ" b="ﲢ" />
+    <fn a="ݠ" b="ﲣ" />
+    <fn a="ݡ" b="ﲤ" />
+    <fn a="ݢ" b="ﲥ" />
+    <fn a="ݣ" b="ﲦ" />
+    <fn a="ݤ" b="ﲧ" />
+    <fn a="ݥ" b="ﲨ" />
+    <fn a="ݦ" b="ﲩ" />
+    <fn a="ݧ" b="ﲪ" />
+    <fn a="ݨ" b="ﲫ" />
+    <fn a="ݩ" b="ﲬ" />
+    <fn a="ݪ" b="ﲭ" />
+  </modmap>
+  <row>
+    <key width="1.0" c=":tiny #" nw=":tiny $" ne=":tiny %" sw=":tiny &amp;" se=":tiny *" w=":tiny 0" e=":tiny 1" n=":tiny 2" s=":tiny 3" />
+    <key width="1.0" c=":tiny 4" nw=":tiny 5" ne=":tiny 6" sw=":tiny 7" se=":tiny 8" w=":tiny 9" e=":tiny @" n=":tiny A" s=":tiny B" />
+    <key width="1.0" c=":tiny C" nw=":tiny D" ne=":tiny E" sw=":tiny F" se=":tiny G" w=":tiny H" e=":tiny I" n=":tiny J" s=":tiny K" />
+    <key width="1.0" c=":tiny L" nw=":tiny M" ne=":tiny N" sw=":tiny O" se=":tiny P" w=":tiny Q" e=":tiny R" n=":tiny S" s=":tiny T" />
+    <key width="1.0" c=":tiny U" nw=":tiny V" ne=":tiny W" sw=":tiny X" se=":tiny Y" w=":tiny Z" e=":tiny [" n=":tiny \" s=":tiny ]" />
+    <key width="1.0" c=":tiny ^" nw=":tiny `" ne=":tiny a" sw=":tiny b" se=":tiny c" w=":tiny d" e=":tiny e" n=":tiny f" s=":tiny g" />
+    <key width="1.0" c=":tiny h" nw=":tiny i" ne=":tiny j" sw=":tiny k" se=":tiny l" w=":tiny m" e=":tiny n" n=":tiny o" s=":tiny p" />
+    <key width="1.0" c=":tiny q" nw=":tiny r" ne=":tiny s" sw=":tiny t" se=":tiny u" w=":tiny v" e=":tiny w" n=":tiny x" s=":tiny y" />
+    <key width="1.0" c=":tiny z" nw=":tiny {" ne=":tiny }" sw=":tiny ¡" se=":tiny ¢" w=":tiny £" e=":tiny ¤" n=":tiny ¥" s=":tiny ¦" />
+    <key width="1.0" c=":tiny §" nw=":tiny ¨" ne=":tiny ©" sw=":tiny ª" se=":tiny «" w=":tiny ¬" e=":tiny ®" n=":tiny ¯" s=":tiny ±" />
+  </row>
+  <row>
+    <key width="1.0" c=":tiny ²" nw=":tiny ³" ne=":tiny ´" sw=":tiny µ" se=":tiny ¶" w=":tiny ·" e=":tiny ¸" n=":tiny ¹" s=":tiny º" />
+    <key width="1.0" c=":tiny »" nw=":tiny ¼" ne=":tiny ½" sw=":tiny ¾" se=":tiny ¿" w=":tiny À" e=":tiny Á" n=":tiny Â" s=":tiny Ã" />
+    <key width="1.0" c=":tiny Ä" nw=":tiny Å" ne=":tiny Æ" sw=":tiny Ç" se=":tiny È" w=":tiny É" e=":tiny Ê" n=":tiny Ë" s=":tiny Ì" />
+    <key width="1.0" c=":tiny Í" nw=":tiny Î" ne=":tiny Ï" sw=":tiny Ð" se=":tiny Ñ" w=":tiny Ò" e=":tiny Ó" n=":tiny Ô" s=":tiny Õ" />
+    <key width="1.0" c=":tiny Ö" nw=":tiny ×" ne=":tiny Ø" sw=":tiny Ù" se=":tiny Ú" w=":tiny Û" e=":tiny Ü" n=":tiny Ý" s=":tiny Þ" />
+    <key width="1.0" c=":tiny ß" nw=":tiny à" ne=":tiny á" sw=":tiny â" se=":tiny ã" w=":tiny ä" e=":tiny å" n=":tiny æ" s=":tiny ç" />
+    <key width="1.0" c=":tiny è" nw=":tiny é" ne=":tiny ê" sw=":tiny ë" se=":tiny ì" w=":tiny í" e=":tiny î" n=":tiny ï" s=":tiny ð" />
+    <key width="1.0" c=":tiny ñ" nw=":tiny ò" ne=":tiny ó" sw=":tiny ô" se=":tiny õ" w=":tiny ö" e=":tiny ÷" n=":tiny ø" s=":tiny ù" />
+    <key width="1.0" c=":tiny ú" nw=":tiny û" ne=":tiny ü" sw=":tiny ý" se=":tiny þ" w=":tiny ÿ" e=":tiny Ā" n=":tiny ā" s=":tiny Ă" />
+    <key width="1.0" c=":tiny ă" nw=":tiny Ą" ne=":tiny ą" sw=":tiny Ć" se=":tiny ć" w=":tiny Ĉ" e=":tiny ĉ" n=":tiny Ċ" s=":tiny ċ" />
+  </row>
+  <row>
+    <key width="1.0" c=":tiny Č" nw=":tiny č" ne=":tiny Ď" sw=":tiny ď" se=":tiny Đ" w=":tiny đ" e=":tiny Ē" n=":tiny ē" s=":tiny Ĕ" />
+    <key width="1.0" c=":tiny ĕ" nw=":tiny Ė" ne=":tiny ė" sw=":tiny Ę" se=":tiny ę" w=":tiny Ě" e=":tiny ě" n=":tiny Ĝ" s=":tiny ĝ" />
+    <key width="1.0" c=":tiny Ğ" nw=":tiny ğ" ne=":tiny Ġ" sw=":tiny ġ" se=":tiny Ģ" w=":tiny ģ" e=":tiny Ĥ" n=":tiny ĥ" s=":tiny Ħ" />
+    <key width="1.0" c=":tiny ħ" nw=":tiny Ĩ" ne=":tiny ĩ" sw=":tiny Ī" se=":tiny ī" w=":tiny Ĭ" e=":tiny ĭ" n=":tiny Į" s=":tiny į" />
+    <key width="1.0" c=":tiny İ" nw=":tiny ı" ne=":tiny Ĳ" sw=":tiny ĳ" se=":tiny Ĵ" w=":tiny ĵ" e=":tiny Ķ" n=":tiny ķ" s=":tiny ĸ" />
+    <key width="1.0" c=":tiny Ĺ" nw=":tiny ĺ" ne=":tiny Ļ" sw=":tiny ļ" se=":tiny Ľ" w=":tiny ľ" e=":tiny Ŀ" n=":tiny ŀ" s=":tiny Ł" />
+    <key width="1.0" c=":tiny ł" nw=":tiny Ń" ne=":tiny ń" sw=":tiny Ņ" se=":tiny ņ" w=":tiny Ň" e=":tiny ň" n=":tiny ŉ" s=":tiny Ŋ" />
+    <key width="1.0" c=":tiny ŋ" nw=":tiny Ō" ne=":tiny ō" sw=":tiny Ŏ" se=":tiny ŏ" w=":tiny Ő" e=":tiny ő" n=":tiny Œ" s=":tiny œ" />
+    <key width="1.0" c=":tiny Ŕ" nw=":tiny ŕ" ne=":tiny Ŗ" sw=":tiny ŗ" se=":tiny Ř" w=":tiny ř" e=":tiny Ś" n=":tiny ś" s=":tiny Ŝ" />
+    <key width="1.0" c=":tiny ŝ" nw=":tiny Ş" ne=":tiny ş" sw=":tiny Š" se=":tiny š" w=":tiny Ţ" e=":tiny ţ" n=":tiny Ť" s=":tiny ť" />
+  </row>
+  <row>
+    <key width="1.0" c=":tiny Ŧ" nw=":tiny ŧ" ne=":tiny Ũ" sw=":tiny ũ" se=":tiny Ū" w=":tiny ū" e=":tiny Ŭ" n=":tiny ŭ" s=":tiny Ů" />
+    <key width="1.0" c=":tiny ů" nw=":tiny Ű" ne=":tiny ű" sw=":tiny Ų" se=":tiny ų" w=":tiny Ŵ" e=":tiny ŵ" n=":tiny Ŷ" s=":tiny ŷ" />
+    <key width="1.0" c=":tiny Ÿ" nw=":tiny Ź" ne=":tiny ź" sw=":tiny Ż" se=":tiny ż" w=":tiny Ž" e=":tiny ž" n=":tiny ſ" s=":tiny ‐" />
+    <key width="1.0" c=":tiny ‑" nw=":tiny ‒" ne=":tiny –" sw=":tiny —" se=":tiny ―" w=":tiny ‖" e=":tiny ‗" n=":tiny ‘" s=":tiny ’" />
+    <key width="1.0" c=":tiny ‚" nw=":tiny ‛" ne=":tiny “" sw=":tiny ”" se=":tiny „" w=":tiny ‟" e=":tiny †" n=":tiny ‡" s=":tiny •" />
+    <key width="1.0" c=":tiny ‣" nw=":tiny ․" ne=":tiny ‥" sw=":tiny …" se=":tiny ‧" w=":tiny ‰" e=":tiny ‱" n=":tiny ′" s=":tiny ″" />
+    <key width="1.0" c=":tiny ‴" nw=":tiny ‵" ne=":tiny ‶" sw=":tiny ‷" se=":tiny ‸" w=":tiny ‹" e=":tiny ›" n=":tiny ※" s=":tiny ‼" />
+    <key width="1.0" c=":tiny ‽" nw=":tiny ‾" ne=":tiny ‿" sw=":tiny ⁀" se=":tiny ⁁" w=":tiny ⁂" e=":tiny ⁃" n=":tiny ⁄" s=":tiny ⁅" />
+    <key width="1.0" c=":tiny ⁆" nw=":tiny ⁇" ne=":tiny ⁈" sw=":tiny ⁉" se=":tiny ⁊" w=":tiny ⁋" e=":tiny ⁌" n=":tiny ⁍" s=":tiny ⁎" />
+    <key width="1.0" c=":tiny ⁏" nw=":tiny ⁐" ne=":tiny ⁑" sw=":tiny ⁒" se=":tiny ⁓" w=":tiny ⁔" e=":tiny ⁕" n=":tiny ⁖" s=":tiny ⁗" />
+  </row>
+  <row>
+    <key width="1.0" c=":tiny ⁘" nw=":tiny ⁙" ne=":tiny ⁚" sw=":tiny ⁛" se=":tiny ⁜" w=":tiny ⁝" e=":tiny ⁞" n=":tiny ₠" s=":tiny ₡" />
+    <key width="1.0" c=":tiny ₢" nw=":tiny ₣" ne=":tiny ₤" sw=":tiny ₥" se=":tiny ₦" w=":tiny ₧" e=":tiny ₨" n=":tiny ₩" s=":tiny ₪" />
+    <key width="1.0" c=":tiny ₫" nw=":tiny €" ne=":tiny ₭" sw=":tiny ₮" se=":tiny ₯" w=":tiny ₰" e=":tiny ₱" n=":tiny ₲" s=":tiny ₳" />
+    <key width="1.0" c=":tiny ₴" nw=":tiny ₵" ne=":tiny ₶" sw=":tiny ₷" se=":tiny ₸" w=":tiny ₹" e=":tiny ₺" n=":tiny ₻" s=":tiny ₼" />
+    <key width="1.0" c=":tiny ₽" nw=":tiny ₾" ne=":tiny ₿" sw=":tiny ⃀" se=":tiny ℀" w=":tiny ℁" e=":tiny ℂ" n=":tiny ℃" s=":tiny ℄" />
+    <key width="1.0" c=":tiny ℅" nw=":tiny ℆" ne=":tiny ℇ" sw=":tiny ℈" se=":tiny ℉" w=":tiny ℊ" e=":tiny ℋ" n=":tiny ℌ" s=":tiny ℍ" />
+    <key width="1.0" c=":tiny ℎ" nw=":tiny ℏ" ne=":tiny ℐ" sw=":tiny ℑ" se=":tiny ℒ" w=":tiny ℓ" e=":tiny ℔" n=":tiny ℕ" s=":tiny №" />
+    <key width="1.0" c=":tiny ℗" nw=":tiny ℘" ne=":tiny ℙ" sw=":tiny ℚ" se=":tiny ℛ" w=":tiny ℜ" e=":tiny ℝ" n=":tiny ℞" s=":tiny ℟" />
+    <key width="1.0" c=":tiny ℠" nw=":tiny ℡" ne=":tiny ™" sw=":tiny ℣" se=":tiny ℤ" w=":tiny ℥" e=":tiny Ω" n=":tiny ℧" s=":tiny ℨ" />
+    <key width="1.0" c=":tiny ℩" nw=":tiny K" ne=":tiny Å" sw=":tiny ℬ" se=":tiny ℭ" w=":tiny ℮" e=":tiny ℯ" n=":tiny ℰ" s=":tiny ℱ" />
+  </row>
+  <row>
+    <key width="1.0" c=":tiny Ⅎ" nw=":tiny ℳ" ne=":tiny ℴ" sw=":tiny ℵ" se=":tiny ℶ" w=":tiny ℷ" e=":tiny ℸ" n=":tiny ℹ" s=":tiny ℺" />
+    <key width="1.0" c=":tiny ℻" nw=":tiny ℼ" ne=":tiny ℽ" sw=":tiny ℾ" se=":tiny ℿ" w=":tiny ⅀" e=":tiny ⅁" n=":tiny ⅂" s=":tiny ⅃" />
+    <key width="1.0" c=":tiny ⅄" nw=":tiny ⅅ" ne=":tiny ⅆ" sw=":tiny ⅇ" se=":tiny ⅈ" w=":tiny ⅉ" e=":tiny ⅊" n=":tiny ⅋" s=":tiny ⅌" />
+    <key width="1.0" c=":tiny ⅍" nw=":tiny ⅎ" ne=":tiny ⅏" sw=":tiny ⅐" se=":tiny ⅑" w=":tiny ⅒" e=":tiny ⅓" n=":tiny ⅔" s=":tiny ⅕" />
+    <key width="1.0" c=":tiny ⅖" nw=":tiny ⅗" ne=":tiny ⅘" sw=":tiny ⅙" se=":tiny ⅚" w=":tiny ⅛" e=":tiny ⅜" n=":tiny ⅝" s=":tiny ⅞" />
+    <key width="1.0" c=":tiny ⅟" nw=":tiny Ⅰ" ne=":tiny Ⅱ" sw=":tiny Ⅲ" se=":tiny Ⅳ" w=":tiny Ⅴ" e=":tiny Ⅵ" n=":tiny Ⅶ" s=":tiny Ⅷ" />
+    <key width="1.0" c=":tiny Ⅸ" nw=":tiny Ⅹ" ne=":tiny Ⅺ" sw=":tiny Ⅻ" se=":tiny Ⅼ" w=":tiny Ⅽ" e=":tiny Ⅾ" n=":tiny Ⅿ" s=":tiny ⅰ" />
+    <key width="1.0" c=":tiny ⅱ" nw=":tiny ⅲ" ne=":tiny ⅳ" sw=":tiny ⅴ" se=":tiny ⅵ" w=":tiny ⅶ" e=":tiny ⅷ" n=":tiny ⅸ" s=":tiny ⅹ" />
+    <key width="1.0" c=":tiny ⅺ" nw=":tiny ⅻ" ne=":tiny ⅼ" sw=":tiny ⅽ" se=":tiny ⅾ" w=":tiny ⅿ" e=":tiny ↀ" n=":tiny ↁ" s=":tiny ↂ" />
+    <key width="1.0" c=":tiny Ↄ" nw=":tiny ↄ" ne=":tiny ↅ" sw=":tiny ↆ" se=":tiny ↇ" w=":tiny ↈ" e=":tiny ↉" n=":tiny ↊" s=":tiny ↋" />
+  </row>
+  <row>
+    <key width="1.0" c=":tiny ①" nw=":tiny ②" ne=":tiny ③" sw=":tiny ④" se=":tiny ⑤" w=":tiny ⑥" e=":tiny ⑦" n=":tiny ⑧" s=":tiny ⑨" />
+    <key width="1.0" c=":tiny ⑩" nw=":tiny ⑪" ne=":tiny ⑫" sw=":tiny ⑬" se=":tiny ⑭" w=":tiny ⑮" e=":tiny ⑯" n=":tiny ⑰" s=":tiny ⑱" />
+    <key width="1.0" c=":tiny ⑲" nw=":tiny ⑳" ne=":tiny ⑴" sw=":tiny ⑵" se=":tiny ⑶" w=":tiny ⑷" e=":tiny ⑸" n=":tiny ⑹" s=":tiny ⑺" />
+    <key width="1.0" c=":tiny ⑻" nw=":tiny ⑼" ne=":tiny ⑽" sw=":tiny ⑾" se=":tiny ⑿" w=":tiny ⒀" e=":tiny ⒁" n=":tiny ⒂" s=":tiny ⒃" />
+    <key width="1.0" c=":tiny ⒄" nw=":tiny ⒅" ne=":tiny ⒆" sw=":tiny ⒇" se=":tiny ⒈" w=":tiny ⒉" e=":tiny ⒊" n=":tiny ⒋" s=":tiny ⒌" />
+    <key width="1.0" c=":tiny ⒍" nw=":tiny ⒎" ne=":tiny ⒏" sw=":tiny ⒐" se=":tiny ⒑" w=":tiny ⒒" e=":tiny ⒓" n=":tiny ⒔" s=":tiny ⒕" />
+    <key width="1.0" c=":tiny ⒖" nw=":tiny ⒗" ne=":tiny ⒘" sw=":tiny ⒙" se=":tiny ⒚" w=":tiny ⒛" e=":tiny ⒜" n=":tiny ⒝" s=":tiny ⒞" />
+    <key width="1.0" c=":tiny ⒟" nw=":tiny ⒠" ne=":tiny ⒡" sw=":tiny ⒢" se=":tiny ⒣" w=":tiny ⒤" e=":tiny ⒥" n=":tiny ⒦" s=":tiny ⒧" />
+    <key width="1.0" c=":tiny ⒨" nw=":tiny ⒩" ne=":tiny ⒪" sw=":tiny ⒫" se=":tiny ⒬" w=":tiny ⒭" e=":tiny ⒮" n=":tiny ⒯" s=":tiny ⒰" />
+    <key width="1.0" c=":tiny ⒱" nw=":tiny ⒲" ne=":tiny ⒳" sw=":tiny ⒴" se=":tiny ⒵" w=":tiny Ⓐ" e=":tiny Ⓑ" n=":tiny Ⓒ" s=":tiny Ⓓ" />
+  </row>
+  <row>
+    <key width="1.0" c=":tiny Ⓔ" nw=":tiny Ⓕ" ne=":tiny Ⓖ" sw=":tiny Ⓗ" se=":tiny Ⓘ" w=":tiny Ⓙ" e=":tiny Ⓚ" n=":tiny Ⓛ" s=":tiny Ⓜ" />
+    <key width="1.0" c=":tiny Ⓝ" nw=":tiny Ⓞ" ne=":tiny Ⓟ" sw=":tiny Ⓠ" se=":tiny Ⓡ" w=":tiny Ⓢ" e=":tiny Ⓣ" n=":tiny Ⓤ" s=":tiny Ⓥ" />
+    <key width="1.0" c=":tiny Ⓦ" nw=":tiny Ⓧ" ne=":tiny Ⓨ" sw=":tiny Ⓩ" se=":tiny ⓐ" w=":tiny ⓑ" e=":tiny ⓒ" n=":tiny ⓓ" s=":tiny ⓔ" />
+    <key width="1.0" c=":tiny ⓕ" nw=":tiny ⓖ" ne=":tiny ⓗ" sw=":tiny ⓘ" se=":tiny ⓙ" w=":tiny ⓚ" e=":tiny ⓛ" n=":tiny ⓜ" s=":tiny ⓝ" />
+    <key width="1.0" c=":tiny ⓞ" nw=":tiny ⓟ" ne=":tiny ⓠ" sw=":tiny ⓡ" se=":tiny ⓢ" w=":tiny ⓣ" e=":tiny ⓤ" n=":tiny ⓥ" s=":tiny ⓦ" />
+    <key width="1.0" c=":tiny ⓧ" nw=":tiny ⓨ" ne=":tiny ⓩ" sw=":tiny ⓪" se=":tiny ⓫" w=":tiny ⓬" e=":tiny ⓭" n=":tiny ⓮" s=":tiny ⓯" />
+    <key width="1.0" c=":tiny ⓰" nw=":tiny ⓱" ne=":tiny ⓲" sw=":tiny ⓳" se=":tiny ⓴" w=":tiny ⓵" e=":tiny ⓶" n=":tiny ⓷" s=":tiny ⓸" />
+    <key width="1.0" c=":tiny ⓹" nw=":tiny ⓺" ne=":tiny ⓻" sw=":tiny ⓼" se=":tiny ⓽" w=":tiny ⓾" e=":tiny ⓿" n=":tiny ─" s=":tiny ━" />
+    <key width="1.0" c=":tiny │" nw=":tiny ┃" ne=":tiny ┄" sw=":tiny ┅" se=":tiny ┆" w=":tiny ┇" e=":tiny ┈" n=":tiny ┉" s=":tiny ┊" />
+    <key width="1.0" c=":tiny ┋" nw=":tiny ┌" ne=":tiny ┍" sw=":tiny ┎" se=":tiny ┏" w=":tiny ┐" e=":tiny ┑" n=":tiny ┒" s=":tiny ┓" />
+  </row>
+  <row>
+    <key width="1.0" c=":tiny └" nw=":tiny ┕" ne=":tiny ┖" sw=":tiny ┗" se=":tiny ┘" w=":tiny ┙" e=":tiny ┚" n=":tiny ┛" s=":tiny ├" />
+    <key width="1.0" c=":tiny ┝" nw=":tiny ┞" ne=":tiny ┟" sw=":tiny ┠" se=":tiny ┡" w=":tiny ┢" e=":tiny ┣" n=":tiny ┤" s=":tiny ┥" />
+    <key width="1.0" c=":tiny ┦" nw=":tiny ┧" ne=":tiny ┨" sw=":tiny ┩" se=":tiny ┪" w=":tiny ┫" e=":tiny ┬" n=":tiny ┭" s=":tiny ┮" />
+    <key width="1.0" c=":tiny ┯" nw=":tiny ┰" ne=":tiny ┱" sw=":tiny ┲" se=":tiny ┳" w=":tiny ┴" e=":tiny ┵" n=":tiny ┶" s=":tiny ┷" />
+    <key width="1.0" c=":tiny ┸" nw=":tiny ┹" ne=":tiny ┺" sw=":tiny ┻" se=":tiny ┼" w=":tiny ┽" e=":tiny ┾" n=":tiny ┿" s=":tiny ╀" />
+    <key width="1.0" c=":tiny ╁" nw=":tiny ╂" ne=":tiny ╃" sw=":tiny ╄" se=":tiny ╅" w=":tiny ╆" e=":tiny ╇" n=":tiny ╈" s=":tiny ╉" />
+    <key width="1.0" c=":tiny ╊" nw=":tiny ╋" ne=":tiny ╌" sw=":tiny ╍" se=":tiny ╎" w=":tiny ╏" e=":tiny ═" n=":tiny ║" s=":tiny ╒" />
+    <key width="1.0" c=":tiny ╓" nw=":tiny ╔" ne=":tiny ╕" sw=":tiny ╖" se=":tiny ╗" w=":tiny ╘" e=":tiny ╙" n=":tiny ╚" s=":tiny ╛" />
+    <key width="1.0" c=":tiny ╜" nw=":tiny ╝" ne=":tiny ╞" sw=":tiny ╟" se=":tiny ╠" w=":tiny ╡" e=":tiny ╢" n=":tiny ╣" s=":tiny ╤" />
+    <key width="1.0" c=":tiny ╥" nw=":tiny ╦" ne=":tiny ╧" sw=":tiny ╨" se=":tiny ╩" w=":tiny ╪" e=":tiny ╫" n=":tiny ╬" s=":tiny ╭" />
+  </row>
+  <row>
+    <key width="1.0" c=":tiny ╮" nw=":tiny ╯" ne=":tiny ╰" sw=":tiny ╱" se=":tiny ╲" w=":tiny ╳" e=":tiny ╴" n=":tiny ╵" s=":tiny ╶" />
+    <key width="1.0" c=":tiny ╷" nw=":tiny ╸" ne=":tiny ╹" sw=":tiny ╺" se=":tiny ╻" w=":tiny ╼" e=":tiny ╽" n=":tiny ╾" s=":tiny ╿" />
+    <key width="1.0" c=":tiny ▀" nw=":tiny ▁" ne=":tiny ▂" sw=":tiny ▃" se=":tiny ▄" w=":tiny ▅" e=":tiny ▆" n=":tiny ▇" s=":tiny █" />
+    <key width="1.0" c=":tiny ▉" nw=":tiny ▊" ne=":tiny ▋" sw=":tiny ▌" se=":tiny ▍" w=":tiny ▎" e=":tiny ▏" n=":tiny ▐" s=":tiny ░" />
+    <key width="1.0" c=":tiny ▒" nw=":tiny ▓" ne=":tiny ▔" sw=":tiny ▕" se=":tiny ▖" w=":tiny ▗" e=":tiny ▘" n=":tiny ▙" s=":tiny ▚" />
+    <key width="1.0" c=":tiny ▛" nw=":tiny ▜" ne=":tiny ▝" sw=":tiny ▞" se=":tiny ▟" w=":tiny ■" e=":tiny □" n=":tiny ▢" s=":tiny ▣" />
+    <key width="1.0" c=":tiny ▤" nw=":tiny ▥" ne=":tiny ▦" sw=":tiny ▧" se=":tiny ▨" w=":tiny ▩" e=":tiny ▪" n=":tiny ▫" s=":tiny ▬" />
+    <key width="1.0" c=":tiny ▭" nw=":tiny ▮" ne=":tiny ▯" sw=":tiny ▰" se=":tiny ▱" w=":tiny ▲" e=":tiny △" n=":tiny ▴" s=":tiny ▵" />
+    <key width="1.0" c=":tiny ▶" nw=":tiny ▷" ne=":tiny ▸" sw=":tiny ▹" se=":tiny ►" w=":tiny ▻" e=":tiny ▼" n=":tiny ▽" s=":tiny ▾" />
+    <key width="1.0" c=":tiny ▿" nw=":tiny ◀" ne=":tiny ◁" sw=":tiny ◂" se=":tiny ◃" w=":tiny ◄" e=":tiny ◅" n=":tiny ◆" s=":tiny ◇" />
+  </row>
+  <row>
+    <key width="1.0" c=":tiny ◈" nw=":tiny ◉" ne=":tiny ◊" sw=":tiny ○" se=":tiny ◌" w=":tiny ◍" e=":tiny ◎" n=":tiny ●" s=":tiny ◐" />
+    <key width="1.0" c=":tiny ◑" nw=":tiny ◒" ne=":tiny ◓" sw=":tiny ◔" se=":tiny ◕" w=":tiny ◖" e=":tiny ◗" n=":tiny ◘" s=":tiny ◙" />
+    <key width="1.0" c=":tiny ◚" nw=":tiny ◛" ne=":tiny ◜" sw=":tiny ◝" se=":tiny ◞" w=":tiny ◟" e=":tiny ◠" n=":tiny ◡" s=":tiny ◢" />
+    <key width="1.0" c=":tiny ◣" nw=":tiny ◤" ne=":tiny ◥" sw=":tiny ◦" se=":tiny ◧" w=":tiny ◨" e=":tiny ◩" n=":tiny ◪" s=":tiny ◫" />
+    <key width="1.0" c=":tiny ◬" nw=":tiny ◭" ne=":tiny ◮" sw=":tiny ◯" se=":tiny ◰" w=":tiny ◱" e=":tiny ◲" n=":tiny ◳" s=":tiny ◴" />
+    <key width="1.0" c=":tiny ◵" nw=":tiny ◶" ne=":tiny ◷" sw=":tiny ◸" se=":tiny ◹" w=":tiny ◺" e=":tiny ◻" n=":tiny ◼" s=":tiny ◽" />
+    <key width="1.0" c=":tiny ◾" nw=":tiny ◿" ne=":tiny ☀" sw=":tiny ☁" se=":tiny ☂" w=":tiny ☃" e=":tiny ☄" n=":tiny ★" s=":tiny ☆" />
+    <key width="1.0" c=":tiny ☇" nw=":tiny ☈" ne=":tiny ☉" sw=":tiny ☊" se=":tiny ☋" w=":tiny ☌" e=":tiny ☍" n=":tiny ☎" s=":tiny ☏" />
+    <key width="1.0" c=":tiny ☐" nw=":tiny ☑" ne=":tiny ☒" sw=":tiny ☓" se=":tiny ☔" w=":tiny ☕" e=":tiny ☖" n=":tiny ☗" s=":tiny ☘" />
+    <key width="1.0" c=":tiny ☙" nw=":tiny ☚" ne=":tiny ☛" sw=":tiny ☜" se=":tiny ☝" w=":tiny ☞" e=":tiny ☟" n=":tiny ☠" s=":tiny ☡" />
+  </row>
+  <row>
+    <key width="1.0" c=":tiny ☢" nw=":tiny ☣" ne=":tiny ☤" sw=":tiny ☥" se=":tiny ☦" w=":tiny ☧" e=":tiny ☨" n=":tiny ☩" s=":tiny ☪" />
+    <key width="1.0" c=":tiny ☫" nw=":tiny ☬" ne=":tiny ☭" sw=":tiny ☮" se=":tiny ☯" w=":tiny ☰" e=":tiny ☱" n=":tiny ☲" s=":tiny ☳" />
+    <key width="1.0" c=":tiny ☴" nw=":tiny ☵" ne=":tiny ☶" sw=":tiny ☷" se=":tiny ☸" w=":tiny ☹" e=":tiny ☺" n=":tiny ☻" s=":tiny ☼" />
+    <key width="1.0" c=":tiny ☽" nw=":tiny ☾" ne=":tiny ☿" sw=":tiny ♀" se=":tiny ♁" w=":tiny ♂" e=":tiny ♃" n=":tiny ♄" s=":tiny ♅" />
+    <key width="1.0" c=":tiny ♆" nw=":tiny ♇" ne=":tiny ♈" sw=":tiny ♉" se=":tiny ♊" w=":tiny ♋" e=":tiny ♌" n=":tiny ♍" s=":tiny ♎" />
+    <key width="1.0" c=":tiny ♏" nw=":tiny ♐" ne=":tiny ♑" sw=":tiny ♒" se=":tiny ♓" w=":tiny ♔" e=":tiny ♕" n=":tiny ♖" s=":tiny ♗" />
+    <key width="1.0" c=":tiny ♘" nw=":tiny ♙" ne=":tiny ♚" sw=":tiny ♛" se=":tiny ♜" w=":tiny ♝" e=":tiny ♞" n=":tiny ♟" s=":tiny ♠" />
+    <key width="1.0" c=":tiny ♡" nw=":tiny ♢" ne=":tiny ♣" sw=":tiny ♤" se=":tiny ♥" w=":tiny ♦" e=":tiny ♧" n=":tiny ♨" s=":tiny ♩" />
+    <key width="1.0" c=":tiny ♪" nw=":tiny ♫" ne=":tiny ♬" sw=":tiny ♭" se=":tiny ♮" w=":tiny ♯" e=":tiny ♰" n=":tiny ♱" s=":tiny ♲" />
+    <key width="1.0" c=":tiny ♳" nw=":tiny ♴" ne=":tiny ♵" sw=":tiny ♶" se=":tiny ♷" w=":tiny ♸" e=":tiny ♹" n=":tiny ♺" s=":tiny ♻" />
+  </row>
+  <row>
+    <key width="1.0" c=":tiny ؆" nw=":tiny ؇" ne=":tiny ؈" sw=":tiny ؉" se=":tiny ؊" w=":tiny ؋" e=":tiny ؍" n=":tiny ؎" s=":tiny ؏" />
+    <key width="1.0" c=":tiny ؐ" nw=":tiny ؑ" ne=":tiny ؒ" sw=":tiny ؓ" se=":tiny ؔ" w=":tiny ؕ" e=":tiny ؖ" n=":tiny ؗ" s=":tiny ؘ" />
+    <key width="1.0" c=":tiny ؙ" nw=":tiny ؚ" ne=":tiny ؝" sw=":tiny ؞" se=":tiny ؠ" w=":tiny ء" e=":tiny آ" n=":tiny أ" s=":tiny ؤ" />
+    <key width="1.0" c=":tiny إ" nw=":tiny ئ" ne=":tiny ا" sw=":tiny ب" se=":tiny ة" w=":tiny ت" e=":tiny ث" n=":tiny ج" s=":tiny ح" />
+    <key width="1.0" c=":tiny خ" nw=":tiny د" ne=":tiny ذ" sw=":tiny ر" se=":tiny ز" w=":tiny س" e=":tiny ش" n=":tiny ص" s=":tiny ض" />
+    <key width="1.0" c=":tiny ط" nw=":tiny ظ" ne=":tiny ع" sw=":tiny غ" se=":tiny ػ" w=":tiny ؼ" e=":tiny ؽ" n=":tiny ؾ" s=":tiny ؿ" />
+    <key width="1.0" c=":tiny ـ" nw=":tiny ف" ne=":tiny ق" sw=":tiny ك" se=":tiny ل" w=":tiny م" e=":tiny ن" n=":tiny ه" s=":tiny و" />
+    <key width="1.0" c=":tiny ى" nw=":tiny ي" ne=":tiny ً" sw=":tiny ٌ" se=":tiny ٍ" w=":tiny َ" e=":tiny ُ" n=":tiny ِ" s=":tiny ّ" />
+    <key width="1.0" c=":tiny ْ" nw=":tiny ٓ" ne=":tiny ٔ" sw=":tiny ٕ" se=":tiny ٖ" w=":tiny ٗ" e=":tiny ٘" n=":tiny ٙ" s=":tiny ٚ" />
+    <key width="1.0" c=":tiny ٛ" nw=":tiny ٜ" ne=":tiny ٝ" sw=":tiny ٞ" se=":tiny ٟ" w=":tiny ٠" e=":tiny ١" n=":tiny ٢" s=":tiny ٣" />
+  </row>
+  <row>
+    <key width="1.0" c=":tiny ٤" nw=":tiny ٥" ne=":tiny ٦" sw=":tiny ٧" se=":tiny ٨" w=":tiny ٩" e=":tiny ٫" n=":tiny ٬" s=":tiny ٭" />
+    <key width="1.0" c=":tiny ٮ" nw=":tiny ٯ" ne=":tiny ٰ" sw=":tiny ٱ" se=":tiny ٲ" w=":tiny ٳ" e=":tiny ٴ" n=":tiny ٵ" s=":tiny ٶ" />
+    <key width="1.0" c=":tiny ٷ" nw=":tiny ٸ" ne=":tiny ٹ" sw=":tiny ٺ" se=":tiny ٻ" w=":tiny ټ" e=":tiny ٽ" n=":tiny پ" s=":tiny ٿ" />
+    <key width="1.0" c=":tiny ڀ" nw=":tiny ځ" ne=":tiny ڂ" sw=":tiny ڃ" se=":tiny ڄ" w=":tiny څ" e=":tiny چ" n=":tiny ڇ" s=":tiny ڈ" />
+    <key width="1.0" c=":tiny ډ" nw=":tiny ڊ" ne=":tiny ڋ" sw=":tiny ڌ" se=":tiny ڍ" w=":tiny ڎ" e=":tiny ڏ" n=":tiny ڐ" s=":tiny ڑ" />
+    <key width="1.0" c=":tiny ڒ" nw=":tiny ړ" ne=":tiny ڔ" sw=":tiny ڕ" se=":tiny ږ" w=":tiny ڗ" e=":tiny ژ" n=":tiny ڙ" s=":tiny ښ" />
+    <key width="1.0" c=":tiny ڛ" nw=":tiny ڜ" ne=":tiny ڝ" sw=":tiny ڞ" se=":tiny ڟ" w=":tiny ڠ" e=":tiny ڡ" n=":tiny ڢ" s=":tiny ڣ" />
+    <key width="1.0" c=":tiny ڤ" nw=":tiny ڥ" ne=":tiny ڦ" sw=":tiny ڧ" se=":tiny ڨ" w=":tiny ک" e=":tiny ڪ" n=":tiny ګ" s=":tiny ڬ" />
+    <key width="1.0" c=":tiny ڭ" nw=":tiny ڮ" ne=":tiny گ" sw=":tiny ڰ" se=":tiny ڱ" w=":tiny ڲ" e=":tiny ڳ" n=":tiny ڴ" s=":tiny ڵ" />
+    <key width="1.0" c=":tiny ڶ" nw=":tiny ڷ" ne=":tiny ڸ" sw=":tiny ڹ" se=":tiny ں" w=":tiny ڻ" e=":tiny ڼ" n=":tiny ڽ" s=":tiny ھ" />
+  </row>
+  <row>
+    <key width="1.0" c=":tiny ڿ" nw=":tiny ۀ" ne=":tiny ہ" sw=":tiny ۂ" se=":tiny ۃ" w=":tiny ۄ" e=":tiny ۅ" n=":tiny ۆ" s=":tiny ۇ" />
+    <key width="1.0" c=":tiny ۈ" nw=":tiny ۉ" ne=":tiny ۊ" sw=":tiny ۋ" se=":tiny ی" w=":tiny ۍ" e=":tiny ێ" n=":tiny ۏ" s=":tiny ې" />
+    <key width="1.0" c=":tiny ۑ" nw=":tiny ے" ne=":tiny ۓ" sw=":tiny ە" se=":tiny ۖ" w=":tiny ۗ" e=":tiny ۘ" n=":tiny ۙ" s=":tiny ۚ" />
+    <key width="1.0" c=":tiny ۛ" nw=":tiny ۜ" ne=":tiny ۞" sw=":tiny ۟" se=":tiny ۠" w=":tiny ۡ" e=":tiny ۢ" n=":tiny ۣ" s=":tiny ۤ" />
+    <key width="1.0" c=":tiny ۥ" nw=":tiny ۦ" ne=":tiny ۧ" sw=":tiny ۨ" se=":tiny ۩" w=":tiny ۪" e=":tiny ۫" n=":tiny ۬" s=":tiny ۭ" />
+    <key width="1.0" c=":tiny ۮ" nw=":tiny ۯ" ne=":tiny ۰" sw=":tiny ۱" se=":tiny ۲" w=":tiny ۳" e=":tiny ۴" n=":tiny ۵" s=":tiny ۶" />
+    <key width="1.0" c=":tiny ۷" nw=":tiny ۸" ne=":tiny ۹" sw=":tiny ۺ" se=":tiny ۻ" w=":tiny ۼ" e=":tiny ۽" n=":tiny ۾" s=":tiny ۿ" />
+    <key width="1.0" c=":tiny ݐ" nw=":tiny ݑ" ne=":tiny ݒ" sw=":tiny ݓ" se=":tiny ݔ" w=":tiny ݕ" e=":tiny ݖ" n=":tiny ݗ" s=":tiny ݘ" />
+    <key width="1.0" c=":tiny ݙ" nw=":tiny ݚ" ne=":tiny ݛ" sw=":tiny ݜ" se=":tiny ݝ" w=":tiny ݞ" e=":tiny ݟ" n=":tiny ݠ" s=":tiny ݡ" />
+    <key width="1.0" c=":tiny ݢ" nw=":tiny ݣ" ne=":tiny ݤ" sw=":tiny ݥ" se=":tiny ݦ" w=":tiny ݧ" e=":tiny ݨ" n=":tiny ݩ" s=":tiny ݪ" />
+  </row>
+  <row>
+    <key width="1.0" c=":tiny ." nw=":tiny ," ne=":tiny ?" sw=":tiny !" se=":tiny &quot;" w=":tiny '" e=":tiny :" n=":tiny ;" s=":tiny -" />
+    <key width="1.0" c=":tiny /" nw=":tiny (" ne=":tiny )" sw=":tiny &lt;" se=":tiny &gt;" w=":tiny +" e=":tiny =" n=":tiny |" s=":tiny ~" />
+    <key width="1.0" c=":tiny _" nw=":tiny ۔" ne=":tiny ،" sw=":tiny ؟" se=":tiny ؛" w=":tiny ؛" e=":tiny ٪" n=":tiny °" s=":tiny ﷺ" />
+    <key width="1.0" c=":tiny ﷲ" nw=":tiny ﷽" ne=":tiny ﷻ" sw=":tiny ࢩ" se=":tiny ࢪ" w=":tiny ࢫ" e=":tiny ࢬ" n=":tiny ࢭ" s=":tiny ࢮ" />
+    <key width="1.0" c=":tiny ࢯ" nw=":tiny ࢰ" ne=":tiny ࢱ" sw=":tiny ࢲ" se=":tiny ࢳ" w=":tiny ࢴ" e=":tiny ࢵ" n=":tiny ࢶ" s=":tiny ࢷ" />
+    <key width="1.0" c=":tiny ࢸ" nw=":tiny ࢹ" ne=":tiny ࢺ" sw=":tiny ࢻ" se=":tiny ࢼ" w=":tiny ࢽ" e=":tiny ࢾ" n=":tiny ࢿ" s=":tiny ࣀ" />
+    <key width="1.0" c=":tiny ࣁ" nw=":tiny ࣂ" ne=":tiny ࣃ" sw=":tiny ࣄ" se=":tiny ࣅ" w=":tiny ࣆ" e=":tiny ࣇ" n=":tiny ࣈ" s=":tiny ࣉ" />
+    <key width="1.0" c=":tiny ࣊" nw=":tiny ࣋" ne=":tiny ࣌" sw=":tiny ࣍" se=":tiny ࣎" w=":tiny ࣏" e=":tiny ࣐" n=":tiny ࣑" s=":tiny ࣒" />
+    <key width="1.0" c=":tiny ࣓" nw=":tiny ࣔ" ne=":tiny ࣕ" sw=":tiny ࣖ" se=":tiny ࣗ" w=":tiny ࣘ" e=":tiny ࣙ" n=":tiny ࣚ" s=":tiny ࣛ" />
+    <key width="1.0" c=":tiny ࣜ" nw=":tiny ࣝ" ne=":tiny ࣞ" sw=":tiny ࣟ" se=":tiny ࣠" w=":tiny ࣡" e=":tiny ࣣ" n=":tiny ࣤ" s=":tiny ࣥ" />
+  </row>
+</keyboard>
