@@ -67,22 +67,22 @@
 
 
     <row height="0.7" shift="0.0">
+      <key width="2.4093924" shift="0.0" border_radius="0.5" c="⇪:capslock" />
+      <key width="2.3450296" shift="0.0" border_radius="0.5" c="PUp:page_up" c_scale="0.61" n="↶:undo" n_color_light="255,255,255" />
+      <key width="1.5537201" shift="0.0" border_radius="0.5" c="←:left" c_scale="0.54" w_color_light="255,140,0" w_color_dark="255,255,0" n="⇍:shift,move_word_backward_1" n_scale="0.45" />
+      <key width="1.5537201" shift="0.0" border_radius="0.5" c="↑:up" c_scale="0.57" n="⇔:select_all" n_color_light="255,140,0" n_color_dark="255,255,0" n_scale="0.45" />
+      <key width="1.5537201" shift="0.0" border_radius="0.5" c="→:right" c_scale="0.56" e_color_light="255,140,0" e_color_dark="255,255,0" n="⇏:shift,move_word_forward_1" n_scale="0.39" />
+      <key width="2.4093924" shift="0.0" border_radius="0.5" c="PDown:page_down" c_color_light="255,255,255" c_scale="0.6" w_color_light="0,163,159" w_color_dark="10,255,251" e_color_light="0,163,159" e_color_dark="10,255,251" n="↷:redo" s_color_light="0,163,159" s_color_dark="10,255,251" />
+      <key width="2.3450296" shift="0.0" border_radius="0.5" c="shift" c_color_light="255,255,255" w_color_light="184,134,11" w_color_dark="255,215,0" e_color_light="255,140,0" e_color_dark="255,255,0" />
+    </row>
+    <row height="0.7" shift="0.0">
       <key width="2.3450296" shift="0.0" border_radius="0.5" c="⎘:paste" c_scale="0.6" nw_color_light="139,0,0" nw_color_dark="255,0,0" sw_color_light="0,100,0" sw_color_dark="0,255,0" e_color_light="255,140,0" e_color_dark="255,255,0" n="⌨:switch_clipboard" n_scale="0.63" />
       <key width="2.3450296" shift="0.0" border_radius="0.5" c="⎙:copy" c_color_light="255,255,255" c_scale="0.61" n="✃:cut" n_color_light="255,255,255" n_scale="0.63" indication="scale:0.49" />
       <key width="1.5537201" shift="0.0" border_radius="0.5" c="Home:home" c_scale="0.64" n="⚙:config" n_color_light="99,9,74" n_color_dark="238,58,190" n_scale="0.51" />
-      <key width="1.5537201" shift="0.0" border_radius="0.5" c="↑:up" c_scale="0.57" n="⇔:select_all" n_color_light="255,140,0" n_color_dark="255,255,0" n_scale="0.45" />
+      <key width="1.5537201" shift="0.0" border_radius="0.5" c="↓:down" c_scale="0.52" n="⇎:move_word_backward_1,shift,move_word_forward_1" n_scale="0.45" s_color_light="255,140,0" s_color_dark="255,255,0" />
       <key width="1.5537201" shift="0.0" border_radius="0.5" c="End:end" c_scale="0.65" e_color_light="99,9,74" e_color_dark="238,58,190" n="esc" n_scale="0.57" />
       <key width="2.4093924" shift="0.0" border_radius="0.5" c="⌦:delete" c_scale="0.64" ne_color_light="139,0,0" ne_color_dark="255,0,0" n="⌦:forward_delete_word" n_color_light="255,255,255" n_scale="0.59" />
       <key width="2.4093924" shift="0.0" border_radius="0.5" c="⌫:backspace" c_scale="0.7" nw_color_light="139,0,0" nw_color_dark="255,0,0" n="⌫:delete_word" n_color_light="255,255,255" n_scale="0.61" />
-    </row>
-    <row height="0.7" shift="0.0">
-      <key width="2.3450296" shift="0.0" border_radius="0.5" c="shift" c_color_light="255,255,255" w_color_light="184,134,11" w_color_dark="255,215,0" e_color_light="255,140,0" e_color_dark="255,255,0" />
-      <key width="2.3450296" shift="0.0" border_radius="0.5" c="PUp:page_up" c_scale="0.61" n="↶:undo" n_color_light="255,255,255" />
-      <key width="1.5537201" shift="0.0" border_radius="0.5" c="←:left" c_scale="0.54" w_color_light="255,140,0" w_color_dark="255,255,0" n="⇍:shift,move_word_backward_1" n_scale="0.45" />
-      <key width="1.5537201" shift="0.0" border_radius="0.5" c="↓:down" c_scale="0.52" n="⇎:move_word_backward_1,shift,move_word_forward_1" n_scale="0.45" s_color_light="255,140,0" s_color_dark="255,255,0" />
-      <key width="1.5537201" shift="0.0" border_radius="0.5" c="→:right" c_scale="0.56" e_color_light="255,140,0" e_color_dark="255,255,0" n="⇏:shift,move_word_forward_1" n_scale="0.39" />
-      <key width="2.4093924" shift="0.0" border_radius="0.5" c="PDown:page_down" c_color_light="255,255,255" c_scale="0.6" w_color_light="0,163,159" w_color_dark="10,255,251" e_color_light="0,163,159" e_color_dark="10,255,251" n="↷:redo" s_color_light="0,163,159" s_color_dark="10,255,251" />
-      <key width="2.4093924" shift="0.0" border_radius="0.5" c="⇪:capslock" />
     </row>
     <row height="1.0" shift="0.0">
       <key width="0.9340804" shift="0.0" c="∅:select_all,backspace" c_color_light="255,255,255" c_scale="1.0" n="):(" s="(:)" />
@@ -101,7 +101,7 @@
     <row height="1.0" shift="0.0">
       <key width="0.9340804" shift="0.0" c="tab" c_color_light="255,255,255" c_scale="1.0" n="\\" s="/" />
       <key width="1.2335523" shift="0.0" c="ق" nw="­:قِ" ne="­:قَ" sw="­:قّ" se="­:قٌ" />
-      <key width="1.2335523" shift="0.0" c="و" n="⊙:voice_typing" nw="­:وِ" ne="­:وَ" sw="­:وّ" se="­:وٌ" />
+      <key width="1.2335523" shift="0.0" c="و" nw="­:وِ" ne="­:وَ" sw="­:وّ" se="­:وٌ" />
       <key width="1.2335523" shift="0.0" c="ع" nw="­:عِ" ne="­:عَ" sw="­:عّ" se="­:عٌ" />
       <key width="1.2335523" shift="0.0" c="ر" nw="­:رِ" ne="­:رَ" sw="­:رّ" se="­:رٌ" />
       <key width="1.2335523" shift="0.0" c="ت" nw="­:تِ" ne="­:تَ" sw="­:تّ" se="­:تٌ" />
@@ -114,7 +114,7 @@
     </row>
     <row height="1.0" shift="0.0">
       <key width="0.9340805" shift="0.0" c="⌘:switch_glyphs" n=":" s=";" />
-      <key width="1.2335523" shift="0.0" c="ا" nw="­:اِ" ne="­:اَ" sw="­:اّ" se="­:اٌ" n="آ" />
+      <key width="1.2335523" shift="0.0" c="ا" nw="­:اِ" ne="­:اَ" sw="­:اّ" se="­:اٌ" e="toggle_suggestions" e_color_light="255,255,255" e_scale="1.0" n="آ" />
       <key width="1.2335523" shift="0.0" c="س" nw="­:سِ" ne="­:سَ" sw="­:سّ" se="­:سٌ" n="⌕:search_replace" />
       <key width="1.2335523" shift="0.0" c="ڈ" nw="­:ڈِ" ne="­:ڈَ" sw="­:ڈّ" se="­:ڈٌ" />
       <key width="1.2335523" shift="0.0" c="د" nw="­:دِ" ne="­:دَ" sw="­:دّ" se="­:دٌ" />
@@ -133,7 +133,7 @@
       <key width="1.2335521" shift="0.0" c="ز" nw="­:زِ" ne="­:زَ" sw="­:زّ" se="­:زٌ" />
       <key width="1.2335521" shift="0.0" c="ش" nw="­:شِ" ne="­:شَ" sw="­:شّ" se="­:شٌ" />
       <key width="1.2335521" shift="0.0" c="خ" nw="­:خِ" ne="­:خَ" sw="­:خّ" se="­:خٌ" />
-      <key width="1.2335521" shift="0.0" c="چ" nw="­:چِ" ne="­:چَ" sw="­:چّ" se="­:چٌ" />
+      <key width="1.2335521" shift="0.0" c="چ" nw="­:چِ" ne="­:چَ" sw="­:چّ" se="­:چٌ" n="‿:double_space" n_color_light="255,255,255" n_scale="1.0" />
       <key width="1.2335521" shift="0.0" c="ب" nw="­:بِ" ne="­:بَ" sw="­:بّ" se="­:بٌ" />
       <key width="1.2335521" shift="0.0" c="ں" nw="­:ِ" ne="­:َ" sw="­:ً" se="­:ُ" w="­:ٌ" e="­:ّ" n="­:ٍ" s="­:ٗ" />
       <key width="1.2335521" shift="0.0" c="ن" nw="­:نِ" ne="­:نَ" sw="­:نّ" se="­:نٌ" />

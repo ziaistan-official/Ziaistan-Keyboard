@@ -29,6 +29,7 @@ import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -40,6 +41,23 @@ import java.util.Set;
 
 public final class ClipboardHistoryService {
     private static final String TAG = "ClipboardHistoryService";
+
+    public static class SentenceMatch {
+        public final String originalTyped;
+        public final String correctedPrefix;
+        public final String completion;
+
+        public SentenceMatch(String originalTyped, String correctedPrefix, String completion) {
+            this.originalTyped = originalTyped;
+            this.correctedPrefix = correctedPrefix;
+            this.completion = completion;
+        }
+
+        @Override
+        public String toString() {
+            return completion;
+        }
+    }
     private static final String PERSIST_FILE_NAME = "clipboard_history.json";
     private static final String TYPING_HISTORY_FILE_NAME = "typing_history.json";
     public static final String RELOAD_CLIPBOARD_HISTORY_ACTION = "juloo.keyboard2.RELOAD_CLIPBOARD_HISTORY";
@@ -49,15 +67,16 @@ public final class ClipboardHistoryService {
 
     private final Context context;
     private final ClipboardManager clipboardManager;
-    private final List<ClipboardItem> items;
+    private final ClipboardRepository repository;
     private final List<ClipboardItem> typingHistoryItems;
     private OnClipboardHistoryChange listener = null;
-
 
     private ClipboardItem currentTypingSessionItem = null;
     private final Handler handler = new Handler(Looper.getMainLooper());
     private final Runnable persistTypingHistoryRunnable = this::persistTypingHistory;
-    private static final long PERSIST_DELAY_MS = 100;
+    private static final long PERSIST_DELAY_MS = 2000; // Debounce persistence longer
+
+    private String _last_pasted_text = null;
 
     public static void on_startup(Context ctx, ClipboardPasteCallback cb) {
         get_service(ctx);
@@ -82,6 +101,9 @@ public final class ClipboardHistoryService {
     }
 
     public static void paste(String clip) {
+        if (_service != null) {
+            _service._last_pasted_text = clip;
+        }
         if (_paste_callback != null) {
             _paste_callback.paste_from_clipboard_pane(clip);
         }
@@ -89,18 +111,19 @@ public final class ClipboardHistoryService {
 
     private ClipboardHistoryService(Context ctx) {
         this.context = ctx;
-        this.items = new ArrayList<>();
-        this.typingHistoryItems = new ArrayList<>();
+        this.repository = new ClipboardRepository(ctx);
+        this.typingHistoryItems = Collections.synchronizedList(new ArrayList<>());
         this.clipboardManager = (ClipboardManager) ctx.getSystemService(Context.CLIPBOARD_SERVICE);
         this.clipboardManager.addPrimaryClipChangedListener(new SystemListener());
-        loadItems();
+
+        migrateLegacyData();
         loadTypingHistory();
 
         IntentFilter filter = new IntentFilter(RELOAD_CLIPBOARD_HISTORY_ACTION);
         BroadcastReceiver receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                loadItems();
+                repository.syncWithDisk();
                 notifyHistoryChange();
             }
         };
@@ -112,81 +135,225 @@ public final class ClipboardHistoryService {
         }
     }
 
+    private void moveLegacyFilesToTimestampedFolders() {
+        File baseClipDir = new File(android.os.Environment.getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_DOWNLOADS), "ziaistan_keyboard_backup/clipboards");
+        moveFiles(new File(baseClipDir, "unpinned"), false);
+        moveFiles(new File(baseClipDir, "pinned_and_archived"), false);
+        moveFiles(getTypingHistoryDir(), true);
+
+        // Also migrate from extension folders (e.g. clipboards/txt/)
+        String[] exts = {"pdf", "docx", "txt", "csv", "xlsx", "html", "py", "js"};
+        for (String ext : exts) {
+            moveFiles(new File(baseClipDir, ext), false);
+        }
+    }
+
+    private void moveFiles(File dir, boolean isTyping) {
+        if (!dir.exists() || !dir.isDirectory()) return;
+
+        List<File> allFiles = new ArrayList<>();
+        scanTypingFiles(dir, allFiles);
+
+        for (File f : allFiles) {
+            // Only migrate files that are not already in a timestamped folder
+            // Timestamped folders are at depth 1 (unpinned/YYYY-MM-DD/file.json)
+            // If the parent name matches our date pattern, skip it.
+            String parentName = f.getParentFile().getName();
+            if (parentName.matches("\\d{2}-\\d{2}-\\d{4}")) continue;
+
+            if (f.isFile() && f.getName().endsWith(".json")) {
+                try {
+                    ClipboardItem item = isTyping ? ClipboardItem.fromJSON(new JSONObject(Utils.read_all_utf8(new FileInputStream(f)))) : repository.loadItemFromFile(f);
+                    if (item != null) {
+                        if (isTyping) saveTypingItemToDisk(item);
+                        else repository.updateItem(item); // updateItem will move it via fileStore.moveItem
+
+                        if (!f.getAbsolutePath().equals(item.getFilePath())) {
+                            f.delete();
+                        }
+                    }
+                } catch (Exception e) {
+                    Log.e(TAG, "Failed to migrate file " + f.getName(), e);
+                }
+            }
+        }
+    }
+
+    private void migrateLegacyData() {
+        KeyboardExecutors.HIGH_PRIORITY_EXECUTOR.execute(() -> {
+            moveLegacyFilesToTimestampedFolders();
+            // Clipboard migration
+            File legacyFile = new File(context.getFilesDir(), PERSIST_FILE_NAME);
+            File legacyExport = new File(android.os.Environment.getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_DOWNLOADS), "ziaistan_keyboard_backup/clipboard_export.json");
+
+            if (legacyFile.exists()) {
+                if (migrateFile(legacyFile)) legacyFile.delete();
+            }
+            if (legacyExport.exists()) {
+                migrateFile(legacyExport);
+            }
+
+            // Typing History legacy JSON migration
+            File legacyTyping = new File(context.getFilesDir(), TYPING_HISTORY_FILE_NAME);
+            if (legacyTyping.exists()) {
+                try (FileInputStream fis = new FileInputStream(legacyTyping);
+                     BufferedReader reader = new BufferedReader(new InputStreamReader(fis, StandardCharsets.UTF_8))) {
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) sb.append(line);
+                    JSONArray array = new JSONArray(sb.toString());
+                    for (int i = 0; i < array.length(); i++) {
+                        ClipboardItem item = ClipboardItem.fromJSON(array.getJSONObject(i));
+                        saveTypingItemToDisk(item);
+                    }
+                    legacyTyping.delete();
+                } catch (Exception e) { Log.e(TAG, "Legacy typing migration error", e); }
+            }
+
+            // Migration from external typing history back to internal
+            File externalTypingDir = new File(android.os.Environment.getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_DOWNLOADS), "ziaistan_keyboard_backup/typing_history");
+            if (externalTypingDir.exists()) {
+                File[] files = externalTypingDir.listFiles();
+                if (files != null) {
+                    for (File f : files) {
+                        File internalFile = new File(getTypingHistoryDir(), f.getName());
+                        if (f.renameTo(internalFile)) {
+                            Log.d(TAG, "Migrated typing history item: " + f.getName());
+                        } else {
+                            // Try copy if rename fails
+                            try (InputStream in = new FileInputStream(f);
+                                 OutputStream out = new FileOutputStream(internalFile)) {
+                                byte[] buf = new byte[8192];
+                                int len;
+                                while ((len = in.read(buf)) > 0) out.write(buf, 0, len);
+                                f.delete();
+                            } catch (IOException e) { Log.e(TAG, "Failed to migrate " + f.getName(), e); }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    private File getTypingHistoryDir() {
+        File dir = new File(context.getFilesDir(), "typing_history");
+        if (!dir.exists()) dir.mkdirs();
+        return dir;
+    }
+
+    private boolean migrateFile(File file) {
+        try (FileInputStream fis = new FileInputStream(file);
+             BufferedReader reader = new BufferedReader(new InputStreamReader(fis, StandardCharsets.UTF_8))) {
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+            JSONArray array = new JSONArray(sb.toString());
+            for (int i = 0; i < array.length(); i++) {
+                try {
+                    ClipboardItem item = ClipboardItem.fromJSON(array.getJSONObject(i));
+                    // Synchronous-ish add for migration safety
+                    repository.addItemSynchronous(item);
+                } catch (JSONException e) {
+                    Log.e(TAG, "Migration error for item " + i, e);
+                }
+            }
+            return true;
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to migrate " + file.getName(), e);
+            return false;
+        }
+    }
+
     public List<ClipboardItem> getItems() {
-        return new ArrayList<>(items);
+        return repository.getItems();
     }
 
     public List<ClipboardItem> getTypingHistory() {
-        return new ArrayList<>(typingHistoryItems);
+        synchronized (typingHistoryItems) {
+            return new ArrayList<>(typingHistoryItems);
+        }
+    }
+
+    public ClipboardRepository getRepository() {
+        return repository;
     }
 
     public void startNewTypingSession() {
-
         currentTypingSessionItem = null;
     }
 
     public void updateCurrentTypingSession(String text) {
-        if (!Config.globalConfig().enable_typing_history) {
-            return;
-        }
-        if (text == null || text.trim().isEmpty()) {
+        if (!Config.globalConfig().enable_typing_history || text == null || text.isEmpty()) {
             return;
         }
 
         long currentTime = System.currentTimeMillis();
+        String hash = ClipboardItem.calculateHash(text);
 
-        if (currentTypingSessionItem == null) {
-
-
-
-
-
-
-
-            if (!typingHistoryItems.isEmpty() && typingHistoryItems.get(0).getText().equals(text)) {
-                currentTypingSessionItem = typingHistoryItems.get(0);
-                currentTypingSessionItem.setTimestamp(currentTime);
-            } else {
-                currentTypingSessionItem = new ClipboardItem(text, currentTime, false);
-                typingHistoryItems.add(0, currentTypingSessionItem);
-            }
-        } else {
-
-
-            if (currentTypingSessionItem.getText().equals(text)) {
-                return;
+        synchronized (typingHistoryItems) {
+            // Deduplicate by hash
+            for (int i = 0; i < Math.min(50, typingHistoryItems.size()); i++) {
+                ClipboardItem item = typingHistoryItems.get(i);
+                if (hash.equals(item.getContentHash())) {
+                    currentTypingSessionItem = item;
+                    item.setCreatedAt(currentTime);
+                    return;
+                }
             }
 
-            int index = typingHistoryItems.indexOf(currentTypingSessionItem);
-            if (index != -1) {
-                currentTypingSessionItem = new ClipboardItem(text, currentTime, currentTypingSessionItem.isPinned(), currentTypingSessionItem.isArchived(), currentTypingSessionItem.getName());
-                typingHistoryItems.set(index, currentTypingSessionItem);
-            } else {
-
-                currentTypingSessionItem = new ClipboardItem(text, currentTime, false);
+            if (currentTypingSessionItem == null) {
+                // Quick check first few items for substring matches or fuzzy matches
+                for (int i = 0; i < Math.min(10, typingHistoryItems.size()); i++) {
+                    ClipboardItem item = typingHistoryItems.get(i);
+                    String itemText = item.getText();
+                    if (itemText.length() < 5000 && text.length() < 5000) {
+                        if (itemText.contains(text) || text.contains(itemText) || Utils.fuzzyPhraseMatch(text, itemText) || Utils.fuzzyPhraseMatch(itemText, text)) {
+                            if (text.length() > itemText.length()) {
+                                item.setBody(new ClipboardItem.Body("text", text));
+                                item.setCreatedAt(currentTime);
+                            }
+                            currentTypingSessionItem = item;
+                            return;
+                        }
+                    }
+                }
+                currentTypingSessionItem = new ClipboardItem(text, currentTime, "typing");
                 typingHistoryItems.add(0, currentTypingSessionItem);
+            } else {
+                String currentText = currentTypingSessionItem.getText();
+                if (text.equals(currentText)) return;
+
+                if (text.startsWith(currentText) || Utils.fuzzyPhraseMatch(currentText, text)) {
+                    currentTypingSessionItem.setBody(new ClipboardItem.Body("text", text));
+                    currentTypingSessionItem.setCreatedAt(currentTime);
+                } else if (currentText.startsWith(text) || Utils.fuzzyPhraseMatch(text, currentText)) {
+                    // Ignore shorter/already-matched version
+                } else {
+                    currentTypingSessionItem = new ClipboardItem(text, currentTime, "typing");
+                    typingHistoryItems.add(0, currentTypingSessionItem);
+                }
+            }
+
+            while (typingHistoryItems.size() > 2000) {
+                typingHistoryItems.remove(typingHistoryItems.size() - 1);
             }
         }
-
-
-        while (typingHistoryItems.size() > 10000) {
-            typingHistoryItems.remove(typingHistoryItems.size() - 1);
-        }
-
 
         handler.removeCallbacks(persistTypingHistoryRunnable);
         handler.postDelayed(persistTypingHistoryRunnable, PERSIST_DELAY_MS);
+        notifyHistoryChange();
     }
 
-    public void saveTypingHistoryNow() {
-        handler.removeCallbacks(persistTypingHistoryRunnable);
-        persistTypingHistory();
+    private boolean typingHistoryHistoryMatches(String text) {
+        if (typingHistoryItems.isEmpty()) return false;
+        return typingHistoryItems.get(0).getText().equals(text);
     }
-
 
     public void addTypingHistory(String text) {
         updateCurrentTypingSession(text);
-        saveTypingHistoryNow();
+        persistTypingHistory();
     }
 
     public void addClip(String clip) {
@@ -194,216 +361,129 @@ public final class ClipboardHistoryService {
             return;
         }
 
-        long currentTime = System.currentTimeMillis();
+        if (clip.equals(_last_pasted_text)) {
+            _last_pasted_text = null;
+            return;
+        }
 
-        ClipboardItem newItem = new ClipboardItem(clip, currentTime, false);
-
-
-        items.remove(newItem);
-        items.add(newItem);
-
-
-        trimHistory();
-        sortItems(items);
-        persistClipboardItems();
-        notifyHistoryChange();
+        repository.addItem(new ClipboardItem(clip, System.currentTimeMillis(), "clipboard"), () -> {
+            notifyHistoryChange();
+            repository.syncWithDisk();
+        });
     }
 
     public void removeUnpinnedItemsByTime(long durationMillis, boolean isTypingHistory) {
-        long now = System.currentTimeMillis();
-        long threshold = now - durationMillis;
-        List<ClipboardItem> targetList = isTypingHistory ? typingHistoryItems : items;
-        boolean changed = false;
-        Iterator<ClipboardItem> it = targetList.iterator();
-        while (it.hasNext()) {
-            ClipboardItem item = it.next();
-            if (!item.isPinned() && !item.isArchived() && item.getTimestamp() >= threshold) {
-                it.remove();
-                changed = true;
+        long threshold = System.currentTimeMillis() - durationMillis;
+        if (isTypingHistory) {
+            synchronized (typingHistoryItems) {
+                typingHistoryItems.removeIf(item -> !item.isPinned() && !item.isArchived() && item.getCreatedAt() >= threshold);
+            }
+            persistTypingHistory();
+        } else {
+            for (ClipboardItem item : repository.getItems()) {
+                if (!item.isPinned() && !item.isArchived() && item.getCreatedAt() >= threshold) {
+                    repository.removeItem(item);
+                }
             }
         }
-        if (changed) {
-            if (isTypingHistory) persistTypingHistory(); else persistClipboardItems();
-            notifyHistoryChange();
-        }
+        notifyHistoryChange();
     }
 
     public void removeUnpinnedItemsOlderThan(long ageMillis, boolean isTypingHistory) {
-        long now = System.currentTimeMillis();
-        long threshold = now - ageMillis;
-        List<ClipboardItem> targetList = isTypingHistory ? typingHistoryItems : items;
-        boolean changed = false;
-        Iterator<ClipboardItem> it = targetList.iterator();
-        while (it.hasNext()) {
-            ClipboardItem item = it.next();
-            if (!item.isPinned() && !item.isArchived() && item.getTimestamp() < threshold) {
-                it.remove();
-                changed = true;
+        long threshold = System.currentTimeMillis() - ageMillis;
+        if (isTypingHistory) {
+            synchronized (typingHistoryItems) {
+                typingHistoryItems.removeIf(item -> !item.isPinned() && !item.isArchived() && item.getCreatedAt() < threshold);
+            }
+            persistTypingHistory();
+        } else {
+            for (ClipboardItem item : repository.getItems()) {
+                if (!item.isPinned() && !item.isArchived() && item.getCreatedAt() < threshold) {
+                    repository.removeItem(item);
+                }
             }
         }
-        if (changed) {
-            if (isTypingHistory) persistTypingHistory(); else persistClipboardItems();
-            notifyHistoryChange();
-        }
+        notifyHistoryChange();
     }
 
     public void removeAllUnpinned(boolean isTypingHistory) {
-        List<ClipboardItem> targetList = isTypingHistory ? typingHistoryItems : items;
-        boolean changed = false;
-        Iterator<ClipboardItem> it = targetList.iterator();
-        while (it.hasNext()) {
-            ClipboardItem item = it.next();
-            if (!item.isPinned() && !item.isArchived()) {
-                it.remove();
-                changed = true;
+        if (isTypingHistory) {
+            synchronized (typingHistoryItems) {
+                typingHistoryItems.removeIf(item -> !item.isPinned() && !item.isArchived());
+            }
+            persistTypingHistory();
+        } else {
+            for (ClipboardItem item : repository.getItems()) {
+                if (!item.isPinned() && !item.isArchived()) {
+                    repository.removeItem(item);
+                }
             }
         }
-        if (changed) {
-            if (isTypingHistory) persistTypingHistory(); else persistClipboardItems();
-            notifyHistoryChange();
-        }
+        notifyHistoryChange();
     }
 
     public void removeItem(ClipboardItem item) {
-        if (items.remove(item)) {
-
-            if (isSystemClipboard(item.getText())) {
-                if (VERSION.SDK_INT >= 28) {
-                    clipboardManager.clearPrimaryClip();
-                } else {
-                    clipboardManager.setPrimaryClip(ClipData.newPlainText("", ""));
-                }
-            }
-            persistClipboardItems();
-            notifyHistoryChange();
-        } else if (typingHistoryItems.remove(item)) {
-            if (item == currentTypingSessionItem) {
-                currentTypingSessionItem = null;
-            }
+        if (typingHistoryItems.remove(item)) {
+            if (item == currentTypingSessionItem) currentTypingSessionItem = null;
             persistTypingHistory();
-            notifyHistoryChange();
+        } else {
+            repository.removeItem(item);
         }
-    }
-
-    public void restoreItem(ClipboardItem item) {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        restoreItem(item, false);
+        notifyHistoryChange();
     }
 
     public void restoreItem(ClipboardItem item, boolean isTypingHistory) {
-        List<ClipboardItem> targetList = isTypingHistory ? typingHistoryItems : items;
-        if (!targetList.contains(item)) {
-            targetList.add(item);
-            sortItems(targetList);
-            if (isTypingHistory) persistTypingHistory(); else persistClipboardItems();
-            notifyHistoryChange();
+        if (isTypingHistory) {
+            if (!typingHistoryItems.contains(item)) {
+                typingHistoryItems.add(0, item);
+                persistTypingHistory();
+            }
+        } else {
+            repository.addItem(item, this::notifyHistoryChange);
         }
+        notifyHistoryChange();
     }
 
     public void archiveItem(ClipboardItem item, String name) {
-        boolean isTyping = typingHistoryItems.contains(item);
-        boolean isClip = items.contains(item);
-
-        if (isTyping || isClip) {
-            item.setArchived(true);
-            if (name == null || name.isEmpty()) {
-                String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date(System.currentTimeMillis()));
-                String text = item.getText();
-                String[] words = text.trim().split("\\s+");
-                int limit = Math.min(words.length, 7);
-
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < limit; i++) {
-                    if (i > 0) sb.append(" ");
-                    sb.append(words[i]);
-                }
-                sb.append(" - ").append(timestamp);
-                item.setName(sb.toString());
-            } else {
-                item.setName(name);
-            }
-            if (isTyping) {
-                sortItems(typingHistoryItems);
-                persistTypingHistory();
-            } else {
-                sortItems(items);
-                persistClipboardItems();
-            }
-            notifyHistoryChange();
-        }
-    }
-
-    public void renameItem(ClipboardItem item, String newName) {
-        boolean isTyping = typingHistoryItems.contains(item);
-        boolean isClip = items.contains(item);
-
-        if (isTyping || isClip) {
-            item.setName(newName);
-            if (isTyping) {
-                sortItems(typingHistoryItems);
-                persistTypingHistory();
-            } else {
-                sortItems(items);
-                persistClipboardItems();
-            }
-            notifyHistoryChange();
-        }
+        item.setArchived(true);
+        if (name != null) item.setName(name);
+        updateItem(item);
+        notifyHistoryChange();
     }
 
     public void unarchiveItem(ClipboardItem item) {
-        boolean isTyping = typingHistoryItems.contains(item);
-        boolean isClip = items.contains(item);
+        item.setArchived(false);
+        item.setName(null);
+        updateItem(item);
+        notifyHistoryChange();
+    }
 
-        if (isTyping || isClip) {
-            item.setArchived(false);
-            item.setName(null);
-            if (isTyping) {
-                sortItems(typingHistoryItems);
-                persistTypingHistory();
-            } else {
-                sortItems(items);
-                persistClipboardItems();
-            }
-            notifyHistoryChange();
-        }
+    public void renameItem(ClipboardItem item, String newName) {
+        item.setName(newName);
+        updateItem(item);
+        notifyHistoryChange();
     }
 
     public void togglePin(ClipboardItem item) {
-        boolean isTyping = typingHistoryItems.contains(item);
-        boolean isClip = items.contains(item);
+        item.setPinned(!item.isPinned());
+        updateItem(item);
+        notifyHistoryChange();
+    }
 
-        if (isTyping || isClip) {
-            item.setPinned(!item.isPinned());
-            item.setTimestamp(System.currentTimeMillis());
-            if (isTyping) {
-                sortItems(typingHistoryItems);
-                persistTypingHistory();
-            } else {
-                sortItems(items);
-                persistClipboardItems();
-            }
-            notifyHistoryChange();
+    private void updateItem(ClipboardItem item) {
+        if ("typing".equals(item.getSource())) {
+            KeyboardExecutors.HIGH_PRIORITY_EXECUTOR.execute(() -> {
+                saveTypingItemToDisk(item);
+            });
+        } else {
+            repository.updateItem(item);
         }
     }
 
     public void clearHistory() {
-        items.clear();
-        persistClipboardItems();
+        for (ClipboardItem item : repository.getItems()) {
+            repository.removeItem(item);
+        }
         notifyHistoryChange();
     }
 
@@ -412,214 +492,6 @@ public final class ClipboardHistoryService {
         currentTypingSessionItem = null;
         persistTypingHistory();
         notifyHistoryChange();
-    }
-
-    public void setOnClipboardHistoryChange(OnClipboardHistoryChange l) {
-        listener = l;
-    }
-
-    private void sortItems(List<ClipboardItem> list) {
-        Collections.sort(list, new Comparator<ClipboardItem>() {
-            @Override
-            public int compare(ClipboardItem o1, ClipboardItem o2) {
-                if (o1.isArchived() != o2.isArchived()) {
-                    return o1.isArchived() ? 1 : -1;
-                }
-                if (o1.isArchived()) {
-                    String n1 = o1.getName() != null ? o1.getName() : "";
-                    String n2 = o2.getName() != null ? o2.getName() : "";
-                    return n1.compareToIgnoreCase(n2);
-                }
-                if (o1.isPinned() == o2.isPinned()) {
-                    return o1.isPinned() ? Long.compare(o1.getTimestamp(), o2.getTimestamp())
-                                         : Long.compare(o2.getTimestamp(), o1.getTimestamp());
-                }
-                return o1.isPinned() ? 1 : -1;
-            }
-        });
-    }
-
-    private void sortItems() {
-        sortItems(items);
-    }
-
-    private void trimHistory() {
-
-    }
-
-    private void notifyHistoryChange() {
-        if (listener != null) {
-            listener.on_clipboard_history_change();
-        }
-    }
-
-    private void addCurrentClip() {
-        ClipData clip = clipboardManager.getPrimaryClip();
-        if (clip == null) return;
-        int count = clip.getItemCount();
-        for (int i = 0; i < count; i++) {
-            CharSequence text = clip.getItemAt(i).getText();
-            if (text != null) {
-                addClip(text.toString());
-            }
-        }
-    }
-
-    private boolean isSystemClipboard(String text) {
-        ClipData clip = clipboardManager.getPrimaryClip();
-        if (clip != null && clip.getItemCount() > 0) {
-            CharSequence clipText = clip.getItemAt(0).getText();
-            return clipText != null && clipText.toString().equals(text);
-        }
-        return false;
-    }
-
-    private void loadItems() {
-        File file = new File(context.getFilesDir(), PERSIST_FILE_NAME);
-        if (!file.exists()) {
-            migrateFromPrefs();
-            return;
-        }
-
-        try (FileInputStream fis = new FileInputStream(file);
-             BufferedReader reader = new BufferedReader(new InputStreamReader(fis, StandardCharsets.UTF_8))) {
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                sb.append(line);
-            }
-            JSONArray jsonArray = new JSONArray(sb.toString());
-            items.clear();
-            for (int i = 0; i < jsonArray.length(); i++) {
-                try {
-                    items.add(ClipboardItem.fromJSON(jsonArray.getJSONObject(i)));
-                } catch (JSONException e) {
-                    Log.e(TAG, "Skipping malformed item in clipboard history", e);
-                }
-            }
-            sortItems(items);
-        } catch (IOException | JSONException e) {
-            Log.e(TAG, "Failed to load clipboard history", e);
-        }
-    }
-
-    private void loadTypingHistory() {
-        File file = new File(context.getFilesDir(), TYPING_HISTORY_FILE_NAME);
-        if (!file.exists()) {
-            return;
-        }
-
-        try (FileInputStream fis = new FileInputStream(file);
-             BufferedReader reader = new BufferedReader(new InputStreamReader(fis, StandardCharsets.UTF_8))) {
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                sb.append(line);
-            }
-            JSONArray jsonArray = new JSONArray(sb.toString());
-            typingHistoryItems.clear();
-            for (int i = 0; i < jsonArray.length(); i++) {
-                try {
-                    typingHistoryItems.add(ClipboardItem.fromJSON(jsonArray.getJSONObject(i)));
-                } catch (JSONException e) {
-                    Log.e(TAG, "Skipping malformed item in typing history", e);
-                }
-            }
-            sortItems(typingHistoryItems);
-        } catch (IOException | JSONException e) {
-            Log.e(TAG, "Failed to load typing history", e);
-        }
-    }
-
-    private void persistClipboardItems() {
-        KeyboardExecutors.HIGH_PRIORITY_EXECUTOR.execute(() -> {
-            JSONArray jsonArray = new JSONArray();
-            synchronized (items) {
-                for (ClipboardItem item : items) {
-                    try {
-                        jsonArray.put(item.toJSON());
-                    } catch (JSONException e) {
-                        Log.e(TAG, "Failed to convert item to JSON", e);
-                    }
-                }
-            }
-
-            String jsonPayload = jsonArray.toString();
-
-            File file = new File(context.getFilesDir(), PERSIST_FILE_NAME);
-            try (FileOutputStream fos = new FileOutputStream(file);
-                 OutputStreamWriter writer = new OutputStreamWriter(fos, StandardCharsets.UTF_8)) {
-                writer.write(jsonPayload);
-            } catch (IOException e) {
-                Log.e(TAG, "Failed to persist clipboard history", e);
-            }
-
-            // Also write to external backup for real-time sync
-            try {
-                File externalDir = new File(android.os.Environment.getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_DOWNLOADS), "ziaistan_keyboard_backup");
-                if (!externalDir.exists()) {
-                    externalDir.mkdirs();
-                }
-                File externalFile = new File(externalDir, "clipboard_export.json");
-                try (FileOutputStream fos = new FileOutputStream(externalFile);
-                     OutputStreamWriter writer = new OutputStreamWriter(fos, StandardCharsets.UTF_8)) {
-                    writer.write(jsonPayload);
-                }
-                // Trigger Drive Sync
-                DriveSyncHelper.syncFileToDrive(context, externalFile, "application/json");
-            } catch (Exception e) {
-                Log.e(TAG, "Failed to export clipboard history to external storage", e);
-            }
-        });
-    }
-
-    private void persistTypingHistory() {
-
-        List<ClipboardItem> copy;
-        synchronized (typingHistoryItems) {
-             copy = new ArrayList<>(typingHistoryItems);
-        }
-
-        KeyboardExecutors.HIGH_PRIORITY_EXECUTOR.execute(() -> {
-            JSONArray jsonArray = new JSONArray();
-            for (ClipboardItem item : copy) {
-                try {
-                    jsonArray.put(item.toJSON());
-                } catch (JSONException e) {
-                    Log.e(TAG, "Failed to convert item to JSON", e);
-                }
-            }
-
-            String jsonPayload = jsonArray.toString();
-
-            File file = new File(context.getFilesDir(), TYPING_HISTORY_FILE_NAME);
-            try (FileOutputStream fos = new FileOutputStream(file);
-                 OutputStreamWriter writer = new OutputStreamWriter(fos, StandardCharsets.UTF_8)) {
-                writer.write(jsonPayload);
-            } catch (IOException e) {
-                Log.e(TAG, "Failed to persist typing history", e);
-            }
-        });
-    }
-
-    private void migrateFromPrefs() {
-        SharedPreferences store = context.getSharedPreferences("pinned_clipboards", Context.MODE_PRIVATE);
-        String arr_s = store.getString("pinned", null);
-        if (arr_s == null) return;
-
-        try {
-            JSONArray arr = new JSONArray(arr_s);
-            long currentTime = System.currentTimeMillis();
-            for (int i = 0; i < arr.length(); i++) {
-                String text = arr.getString(i);
-                items.add(new ClipboardItem(text, currentTime + i, true));
-            }
-            sortItems(items);
-            persistClipboardItems();
-            store.edit().clear().apply();
-        } catch (JSONException e) {
-            Log.e(TAG, "Failed to migrate pinned clips", e);
-        }
     }
 
     public void importFromUri(Uri uri) {
@@ -638,18 +510,17 @@ public final class ClipboardHistoryService {
     }
 
     public void mergeWithFile(File file) {
-        StringBuilder sb = new StringBuilder();
         try (FileInputStream fis = new FileInputStream(file);
              BufferedReader reader = new BufferedReader(new InputStreamReader(fis, StandardCharsets.UTF_8))) {
+            StringBuilder sb = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
                 sb.append(line);
             }
+            mergeJsonData(sb.toString());
         } catch (IOException e) {
             Log.e(TAG, "Failed to read import file", e);
-            return;
         }
-        mergeJsonData(sb.toString());
     }
 
     private void mergeJsonData(String jsonString) {
@@ -667,25 +538,15 @@ public final class ClipboardHistoryService {
 
             if (jsonArray == null) return;
 
-            Set<ClipboardItem> existingItems = new HashSet<>(items);
-            int importedCount = 0;
             for (int i = 0; i < jsonArray.length(); i++) {
                 try {
                     ClipboardItem newItem = ClipboardItem.fromJSON(jsonArray.getJSONObject(i));
-                    if (newItem.getText() != null && !newItem.getText().isEmpty() && !existingItems.contains(newItem)) {
-                        items.add(newItem);
-                        existingItems.add(newItem);
-                        importedCount++;
-                    }
+                    repository.addItem(newItem, null);
                 } catch (JSONException e) {
                     Log.e(TAG, "Skipping malformed item during merge", e);
                 }
             }
-            if (importedCount > 0) {
-                sortItems(items);
-                persistClipboardItems();
-                notifyHistoryChange();
-            }
+            notifyHistoryChange();
         } catch (JSONException e) {
             Log.e(TAG, "Failed to parse import data", e);
         }
@@ -693,7 +554,7 @@ public final class ClipboardHistoryService {
 
     public void exportToUri(Uri uri) {
         JSONArray jsonArray = new JSONArray();
-        for (ClipboardItem item : items) {
+        for (ClipboardItem item : repository.getItems()) {
             try {
                 jsonArray.put(item.toJSON());
             } catch (JSONException e) {
@@ -707,6 +568,267 @@ public final class ClipboardHistoryService {
         } catch (IOException | JSONException e) {
             Log.e(TAG, "Failed to export clipboard history", e);
         }
+    }
+
+    public List<SentenceMatch> getSentenceCompletions(String currentPrefix) {
+        if (!Config.globalConfig().enable_suggestions) return Collections.emptyList();
+        if (currentPrefix == null || currentPrefix.length() < 3) return Collections.emptyList();
+
+        List<SentenceMatch> completions = new ArrayList<>();
+        Set<String> seen = new HashSet<>();
+
+        // Scan Clipboard Items
+        List<ClipboardItem> cbItems = repository.getItemsRaw();
+        synchronized (cbItems) {
+            for (ClipboardItem item : cbItems) {
+                collectMatches(item, currentPrefix, completions, seen);
+                if (completions.size() >= 20) break;
+            }
+        }
+
+        // Scan External Files via IndexingService
+        List<IndexingService.CompletionResult> extCompletions = IndexingService.getInstance(context).getCompletions(currentPrefix);
+        if (!extCompletions.isEmpty()) {
+            // Prioritize results based on user-defined file priority
+            final String priorityStr = Config.globalConfig().clipboard_autocomplete_file_priority;
+            final List<String> priorityList = (priorityStr == null || priorityStr.isEmpty())
+                ? Collections.emptyList()
+                : Arrays.asList(priorityStr.split(","));
+
+            Collections.sort(extCompletions, (a, b) -> {
+                int indexA = priorityList.indexOf(a.sourceFile);
+                int indexB = priorityList.indexOf(b.sourceFile);
+
+                if (indexA != -1 && indexB != -1) return Integer.compare(indexA, indexB);
+                if (indexA != -1) return -1;
+                if (indexB != -1) return 1;
+
+                // Fallback to "notes" prioritization if no specific priority is set
+                boolean aIsNotes = a.sourceFile.toLowerCase().contains("notes");
+                boolean bIsNotes = b.sourceFile.toLowerCase().contains("notes");
+                if (aIsNotes && !bIsNotes) return -1;
+                if (!aIsNotes && bIsNotes) return 1;
+                return a.sourceFile.compareTo(b.sourceFile);
+            });
+
+            for (IndexingService.CompletionResult result : extCompletions) {
+                if (result.text.length() <= currentPrefix.length()) continue;
+
+                if (result.text.regionMatches(true, 0, currentPrefix, 0, currentPrefix.length())) {
+                    String correctedPrefix = result.text.substring(0, currentPrefix.length());
+                    String suffix = result.text.substring(currentPrefix.length());
+                    suffix = limitWords(suffix, Config.globalConfig().clipboard_autocomplete_word_count);
+                    if (suffix != null && !suffix.isEmpty()) {
+                        String full = correctedPrefix + suffix;
+                        if (seen.add(full)) {
+                            completions.add(new SentenceMatch(currentPrefix, correctedPrefix, suffix));
+                        }
+                    }
+                }
+            }
+        }
+
+        return completions;
+    }
+
+
+    private void collectMatches(ClipboardItem item, String currentPrefix, List<SentenceMatch> results, Set<String> seen) {
+        if (item.getFilePath() != null && item.getFilePath().contains("/trash/")) return;
+        String text = repository.getFullTextSynchronous(item);
+        if (text == null || text.length() < currentPrefix.length()) return;
+
+        int prefixLen = currentPrefix.length();
+        for (int i = 0; i <= text.length() - prefixLen; i++) {
+            if (i > 0 && Utils.isWordPart(text.charAt(i - 1))) continue;
+
+            String sub = text.substring(i, i + prefixLen);
+            if (Utils.fuzzyPhraseMatch(currentPrefix, sub)) {
+                String correctedPrefix = sub;
+                String suffix = text.substring(i + prefixLen);
+                suffix = limitWords(suffix, Config.globalConfig().clipboard_autocomplete_word_count);
+
+                if (suffix != null && !suffix.isEmpty()) {
+                    String full = correctedPrefix + suffix;
+                    if (seen.add(full)) {
+                        results.add(new SentenceMatch(currentPrefix, correctedPrefix, suffix));
+                        if (results.size() >= 20) return;
+                    }
+                }
+            }
+        }
+    }
+
+    private String limitWords(String text, int maxWords) {
+        if (text == null || text.isEmpty()) return text;
+        String[] words = text.split("\\s+");
+        if (words.length <= maxWords) return text;
+
+        int wordCount = 0;
+        int lastIdx = 0;
+        for (int i = 0; i < text.length(); i++) {
+            if (Character.isWhitespace(text.charAt(i))) {
+                if (i > 0 && !Character.isWhitespace(text.charAt(i-1))) {
+                    wordCount++;
+                    if (wordCount == maxWords) {
+                        lastIdx = i;
+                        break;
+                    }
+                }
+            }
+        }
+        if (wordCount < maxWords) return text;
+        return text.substring(0, lastIdx);
+    }
+
+    public void setOnClipboardHistoryChange(OnClipboardHistoryChange l) {
+        listener = l;
+    }
+
+    private void notifyHistoryChange() {
+        if (listener != null) {
+            handler.post(() -> {
+                if (listener != null) {
+                    listener.on_clipboard_history_change();
+                }
+            });
+        }
+    }
+
+    private void addCurrentClip() {
+        ClipData clip = clipboardManager.getPrimaryClip();
+        if (clip == null) return;
+        for (int i = 0; i < clip.getItemCount(); i++) {
+            CharSequence text = clip.getItemAt(i).getText();
+            if (text != null) addClip(text.toString());
+        }
+    }
+
+    private void loadTypingHistory() {
+        KeyboardExecutors.HIGH_PRIORITY_EXECUTOR.execute(() -> {
+            File baseDir = getTypingHistoryDir();
+            List<File> allFiles = new ArrayList<>();
+            scanTypingFiles(baseDir, allFiles);
+
+            List<ClipboardItem> allLoaded = new ArrayList<>();
+            for (File file : allFiles) {
+                if (!file.getName().endsWith(".json")) continue;
+                try (FileInputStream fis = new FileInputStream(file);
+                     BufferedReader reader = new BufferedReader(new InputStreamReader(fis, StandardCharsets.UTF_8))) {
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) sb.append(line);
+                    allLoaded.add(ClipboardItem.fromJSON(new JSONObject(sb.toString())));
+                } catch (Exception e) { Log.e(TAG, "Load typing item error", e); }
+            }
+
+            Collections.sort(allLoaded, (a, b) -> Long.compare(b.getCreatedAt(), a.getCreatedAt()));
+
+            List<ClipboardItem> deduplicated = new ArrayList<>();
+            Set<String> seenHashes = new HashSet<>();
+            for (ClipboardItem item : allLoaded) {
+                String hash = item.getContentHash();
+                if (hash == null || hash.isEmpty()) {
+                    hash = ClipboardItem.calculateHash(item.getText());
+                }
+
+                if (hash != null && !hash.isEmpty()) {
+                    if (seenHashes.add(hash)) {
+                        deduplicated.add(item);
+                    } else {
+                        // Delete duplicate file
+                        if (item.getFilePath() != null) {
+                            File file = new File(item.getFilePath());
+                            if (file.exists()) file.delete();
+                        }
+                    }
+                } else {
+                    deduplicated.add(item);
+                }
+            }
+
+            // Post-load deduplication to remove shorter versions within 5 minutes of a longer version
+            Iterator<ClipboardItem> it = deduplicated.iterator();
+            while (it.hasNext()) {
+                ClipboardItem current = it.next();
+                String currentText = current.getText();
+                for (ClipboardItem other : deduplicated) {
+                    if (current == other) continue;
+                    String otherText = other.getText();
+                    if (otherText.length() > currentText.length() && (otherText.startsWith(currentText) || Utils.fuzzyPhraseMatch(currentText, otherText))) {
+                        // If they are within 5 minutes
+                        if (Math.abs(current.getCreatedAt() - other.getCreatedAt()) < 5 * 60 * 1000) {
+                            if (current.getFilePath() != null) {
+                                File f = new File(current.getFilePath());
+                                if (f.exists()) f.delete();
+                            }
+                            it.remove();
+                            break;
+                        }
+                    }
+                }
+            }
+
+            synchronized (typingHistoryItems) {
+                typingHistoryItems.clear();
+                typingHistoryItems.addAll(deduplicated);
+            }
+            notifyHistoryChange();
+        });
+    }
+
+    private void persistTypingHistory() {
+        ClipboardItem current = currentTypingSessionItem;
+        if (current == null) return;
+
+        KeyboardExecutors.HIGH_PRIORITY_EXECUTOR.execute(() -> {
+            saveTypingItemToDisk(current);
+        });
+    }
+
+    private String getDateString(long timestamp) {
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd-MM-yyyy", java.util.Locale.US);
+        return sdf.format(new java.util.Date(timestamp));
+    }
+
+    private void scanTypingFiles(File dir, List<File> results) {
+        if (dir.getName().equalsIgnoreCase("trash")) return;
+        File[] files = dir.listFiles();
+        if (files == null) return;
+        for (File f : files) {
+            if (f.isDirectory()) {
+                scanTypingFiles(f, results);
+            } else {
+                results.add(f);
+            }
+        }
+    }
+
+    private void saveTypingItemToDisk(ClipboardItem item) {
+        File baseDir = getTypingHistoryDir();
+        String dateStr = getDateString(item.getCreatedAt());
+        String mainFolder = (item.isPinned() || item.isArchived()) ? "pinned_and_archived" : "unpinned";
+        File dir = new File(baseDir, mainFolder + "/" + dateStr);
+        if (!dir.exists()) dir.mkdirs();
+
+        String fileName = item.getId() + ".json";
+        File file = new File(dir, fileName);
+
+        // If item already had a path, move it if necessary
+        if (item.getFilePath() != null) {
+            File oldFile = new File(item.getFilePath());
+            if (oldFile.exists() && !oldFile.getAbsolutePath().equals(file.getAbsolutePath())) {
+                if (!oldFile.renameTo(file)) {
+                    // fall back to rewrite if rename fails
+                }
+            }
+        }
+
+        item.setFilePath(file.getAbsolutePath());
+
+        try (FileOutputStream fos = new FileOutputStream(file);
+             OutputStreamWriter writer = new OutputStreamWriter(fos, StandardCharsets.UTF_8)) {
+            writer.write(item.toJSON().toString(2));
+        } catch (Exception e) { Log.e(TAG, "Persist typing item error", e); }
     }
 
     public interface OnClipboardHistoryChange {

@@ -47,6 +47,7 @@
     <SwitchPreference android:key="smart_punctuation" android:title="@string/pref_smart_punctuation" android:defaultValue="false"/>
     <SwitchPreference android:key="auto_switch_back_emoji" android:title="@string/pref_auto_switch_back_emoji" android:defaultValue="true"/>
     <SwitchPreference android:key="auto_add_user_words" android:title="@string/pref_auto_add_user_words" android:defaultValue="false"/>
+    <SwitchPreference android:key="add_user_words_on_double_space" android:title="Add user words on double space" android:summary="Add the kept word to custom dictionary on double space or DOUBLE_SPACE key press" android:defaultValue="false"/>
     <SwitchPreference android:key="block_offensive_words" android:title="@string/pref_block_offensive_words" android:defaultValue="true"/>
     <SwitchPreference android:key="incognito_mode" android:title="@string/pref_incognito_mode" android:summary="@string/pref_incognito_mode_summary" android:defaultValue="false"/>
     <CheckBoxPreference android:key="autocapitalisation" android:title="@string/pref_autocapitalisation_title" android:summary="@string/pref_autocapitalisation_summary" android:defaultValue="true"/>
@@ -160,6 +161,43 @@
         android:title="Enable Typing History"
         android:summary="Record typing sessions to prevent data loss"
         android:defaultValue="true"/>
+    <juloo.keyboard2.prefs.IntSlideBarPreference
+        android:key="clipboard_autocomplete_word_count"
+        android:title="@string/pref_clipboard_autocomplete_word_count"
+        android:defaultValue="5"
+        min="1"
+        max="15"/>
+    <EditTextPreference
+        android:key="clipboard_autocomplete_trigger_words"
+        android:title="@string/pref_clipboard_autocomplete_trigger_words"
+        android:summary="Comma-separated trigger words (optional)"
+        android:defaultValue=""/>
+    <juloo.keyboard2.prefs.IntSlideBarPreference
+        android:key="clipboard_autocomplete_min_words"
+        android:title="@string/pref_clipboard_autocomplete_min_words"
+        android:defaultValue="3"
+        min="1"
+        max="10"/>
+    <SwitchPreference
+        android:key="clipboard_show_inline_suggestions"
+        android:title="Show inline suggestions"
+        android:summary="Show sentence autocompletion as grey ghost text inline"
+        android:defaultValue="true"/>
+    <SwitchPreference
+        android:key="clipboard_show_strip_suggestions"
+        android:title="Show suggestions strip suggestions"
+        android:summary="Show full/suffix phrase completions in the suggestions strip"
+        android:defaultValue="true"/>
+    <Preference
+        android:key="clipboard_autocomplete_file_priority_settings"
+        android:title="Clipboard autocompletion prioritization"
+        android:summary="Drag to prioritize external text files"/>
+    <juloo.keyboard2.prefs.IntSlideBarPreference
+        android:key="clipboard_multi_suggestions_size"
+        android:title="Clipboard Multi suggestions size"
+        android:defaultValue="14"
+        min="8"
+        max="30"/>
    </PreferenceScreen>
    <PreferenceScreen android:title="Password Manager">
        <intent android:action="android.intent.action.MAIN" android:targetPackage="juloo.keyboard2" android:targetClass="juloo.keyboard2.passwordmanager.ui.PasswordManagerActivity"/>

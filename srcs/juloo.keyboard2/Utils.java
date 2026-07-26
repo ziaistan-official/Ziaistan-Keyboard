@@ -119,12 +119,42 @@ public final class Utils
     return word != null && word.length() < 3;
   }
 
-  public static String matchCase(String original, String replacement) {
-      if (original == null || original.isEmpty() || replacement == null || replacement.isEmpty()) {
-          return replacement;
-      }
+  public static boolean isMistakenSpace(char c) {
+    char lower = Character.toLowerCase(c);
+    return "zxcvbnm".indexOf(lower) != -1 || "زخچوبنم".indexOf(lower) != -1;
+  }
 
-      boolean allCaps = true;
+  public static boolean fuzzyPhraseMatch(String typed, String stored) {
+    if (typed == null || stored == null) return false;
+    if (typed.isEmpty()) return true;
+
+    int ti = 0;
+    int si = 0;
+
+    while (ti < typed.length() && si < stored.length()) {
+      char tc = Character.toLowerCase(typed.charAt(ti));
+      char sc = Character.toLowerCase(stored.charAt(si));
+
+      if (tc == sc) {
+        ti++;
+        si++;
+      } else if (sc == ' ' && isMistakenSpace(tc)) {
+        ti++;
+        si++;
+      } else {
+        return false;
+      }
+    }
+
+    return ti == typed.length();
+  }
+
+  public static String matchCase(String original, String replacement) {
+    if (original == null || original.isEmpty() || replacement == null || replacement.isEmpty()) {
+      return replacement;
+    }
+
+    boolean allCaps = true;
       boolean titleCase = Character.isUpperCase(original.codePointAt(0));
       boolean firstLower = Character.isLowerCase(original.codePointAt(0));
 

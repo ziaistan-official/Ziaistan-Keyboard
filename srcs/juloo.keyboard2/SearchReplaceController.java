@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -184,6 +185,23 @@ public class SearchReplaceController {
             }
         });
 
+        searchInput.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH ||
+                actionId == android.view.inputmethod.EditorInfo.IME_ACTION_DONE ||
+                (event != null && event.getKeyCode() == android.view.KeyEvent.KEYCODE_ENTER && event.getAction() == android.view.KeyEvent.ACTION_DOWN)) {
+
+                if (isClipboardMode) {
+                    String query = searchInput.getText().toString();
+                    dialog.dismiss();
+                    if (context instanceof Keyboard2) {
+                        ((Keyboard2) context).openClipboardWithSearch(query, typingHistoryCheck.isChecked());
+                    }
+                    return true;
+                }
+            }
+            return false;
+        });
+
         dialog.show();
         searchInput.requestFocus();
     }
@@ -221,21 +239,50 @@ public class SearchReplaceController {
         if (allItems == null) return;
         List<ClipboardItem> filtered = new ArrayList<>();
         String q = query.toLowerCase();
+        boolean hasQuery = !q.isEmpty();
+
         for (ClipboardItem item : allItems) {
-            if (item.getText().toLowerCase().contains(q) ||
-               (item.getName() != null && item.getName().toLowerCase().contains(q))) {
+            String text = clipboardService.getRepository().getFullTextSynchronous(item);
+            boolean matches = false;
+            if (text != null && text.toLowerCase().contains(q)) {
+                matches = true;
+            } else if (item.getName() != null && item.getName().toLowerCase().contains(q)) {
+                matches = true;
+            }
+
+            if (matches) {
+                if (hasQuery) item.setExpanded(true);
                 filtered.add(item);
+            } else {
+                item.setExpanded(false);
             }
         }
+        adapter.setQuery(query);
         adapter.setItems(filtered);
     }
 
     private class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
         private List<ClipboardItem> items = new ArrayList<>();
+        private String mQuery = "";
+        private final int highlightColor;
+        private final int textColor;
+
+        SearchAdapter() {
+            Context themeContext = new android.view.ContextThemeWrapper(context, Config.globalConfig().theme);
+            Theme theme = new Theme(themeContext, null);
+            // Use theme.activatedColor with high alpha for the background,
+            // and theme.labelColor for the text to ensure contrast in both themes.
+            this.highlightColor = (theme.activatedColor & 0x00FFFFFF) | 0x88000000;
+            this.textColor = theme.labelColor;
+        }
 
         void setItems(List<ClipboardItem> items) {
             this.items = items;
             notifyDataSetChanged();
+        }
+
+        void setQuery(String query) {
+            this.mQuery = query;
         }
 
         @NonNull
@@ -248,16 +295,104 @@ public class SearchReplaceController {
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             ClipboardItem item = items.get(position);
-            holder.text.setText(item.getText());
-            holder.pinIcon.setVisibility(item.isPinned() ? View.VISIBLE : View.GONE);
-            holder.menuButton.setVisibility(View.GONE);
+
+            if (mQuery != null && !mQuery.isEmpty()) {
+                if (item.hasBody() && item.getText() != null && !item.getText().isEmpty()) {
+                    bindWithContext(holder, item);
+                } else {
+                    // Fallback to preview if body not loaded, but try load it
+                    holder.text.setText(item.getContentPreview());
+                    clipboardService.getRepository().loadFullContent(context, item, i -> {
+                        receiver.getHandler().post(() -> {
+                            if (holder.getAdapterPosition() == position) {
+                                bindWithContext(holder, item);
+                            }
+                        });
+                    });
+                }
+            } else {
+                String fullText = item.getText();
+                holder.text.setText(fullText != null && !fullText.isEmpty() ? fullText : item.getContentPreview());
+            }
+
+            holder.statusGlyph.setVisibility(View.GONE);
+            if (item.isPinned()) {
+                holder.statusGlyph.setImageResource(R.drawable.ic_pin);
+                holder.statusGlyph.setVisibility(View.VISIBLE);
+            } else if (item.isArchived()) {
+                holder.statusGlyph.setImageResource(R.drawable.ic_archive);
+                holder.statusGlyph.setVisibility(View.VISIBLE);
+            }
+
+            holder.menuButton.setVisibility(View.VISIBLE);
+            holder.menuButton.setOnClickListener(v -> {
+                item.setExpanded(!item.isExpanded());
+                notifyItemChanged(position);
+            });
 
             holder.itemView.setOnClickListener(v -> {
+                String commitText = clipboardService.getRepository().getFullTextSynchronous(item);
                 if (context instanceof Keyboard2) {
-                    ((Keyboard2) context).setPendingCommitText(item.getText());
+                    ((Keyboard2) context).setPendingCommitText(commitText);
                 }
                 dialog.dismiss();
             });
+        }
+
+        private void bindWithContext(ViewHolder holder, ClipboardItem item) {
+            String text = clipboardService.getRepository().getFullTextSynchronous(item);
+            if (text == null) text = "";
+
+            String lowerText = text.toLowerCase();
+            String lowerQuery = mQuery.toLowerCase();
+
+            if (item.isExpanded()) {
+                android.text.SpannableStringBuilder ssb = new android.text.SpannableStringBuilder(text);
+                int startSearch = 0;
+                while (true) {
+                    int index = lowerText.indexOf(lowerQuery, startSearch);
+                    if (index == -1) break;
+
+                    int highlightEnd = index + mQuery.length();
+                    ssb.setSpan(new android.text.style.BackgroundColorSpan(highlightColor), index, highlightEnd, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    ssb.setSpan(new android.text.style.ForegroundColorSpan(textColor), index, highlightEnd, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    ssb.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD), index, highlightEnd, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                    startSearch = highlightEnd;
+                }
+                holder.text.setText(ssb);
+                holder.text.setMaxLines(Integer.MAX_VALUE);
+            } else {
+                int index = lowerText.indexOf(lowerQuery);
+                if (index != -1) {
+                    int contextLimit = 64;
+                    int start = Math.max(0, index - contextLimit);
+                    int end = Math.min(text.length(), index + mQuery.length() + contextLimit);
+
+                    String matchSegment = text.substring(start, end);
+                    String prefix = (start > 0 ? "..." : "");
+                    String suffix = (end < text.length() ? "..." : "");
+                    String contextText = prefix + matchSegment + suffix;
+                    android.text.SpannableStringBuilder ssb = new android.text.SpannableStringBuilder(contextText);
+
+                    int highlightStart = prefix.length() + (index - start);
+                    int highlightEnd = highlightStart + mQuery.length();
+
+                    highlightStart = Math.max(0, Math.min(highlightStart, ssb.length()));
+                    highlightEnd = Math.max(highlightStart, Math.min(highlightEnd, ssb.length()));
+
+                    if (highlightStart < highlightEnd) {
+                        ssb.setSpan(new android.text.style.BackgroundColorSpan(highlightColor), highlightStart, highlightEnd, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        ssb.setSpan(new android.text.style.ForegroundColorSpan(textColor), highlightStart, highlightEnd, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        ssb.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD), highlightStart, highlightEnd, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    }
+
+                    holder.text.setText(ssb);
+                } else {
+                    holder.text.setText(text.substring(0, Math.min(text.length(), 200)));
+                }
+                holder.text.setMaxLines(3);
+            }
         }
 
         @Override
@@ -267,13 +402,13 @@ public class SearchReplaceController {
 
         class ViewHolder extends RecyclerView.ViewHolder {
             final TextView text;
-            final View pinIcon;
+            final ImageView statusGlyph;
             final View menuButton;
 
             ViewHolder(View view) {
                 super(view);
                 text = view.findViewById(R.id.clipboard_item_text);
-                pinIcon = view.findViewById(R.id.clipboard_item_pin_icon);
+                statusGlyph = view.findViewById(R.id.clipboard_item_status_glyph);
                 menuButton = view.findViewById(R.id.clipboard_item_menu);
                 text.setMaxLines(3);
             }

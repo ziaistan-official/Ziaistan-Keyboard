@@ -27,6 +27,7 @@ public final class Config
   public final float sublabelTextSize;
 
 
+  public String clipboard_autocomplete_trigger_words;
 
   public List<KeyboardData> layouts;
   public boolean show_numpad = false;
@@ -83,6 +84,13 @@ public final class Config
   public int typing_hud_x;
   public int typing_hud_y;
 
+  public int clipboard_autocomplete_word_count;
+  public int clipboard_autocomplete_min_words;
+  public String clipboard_autocomplete_file_priority;
+  public int clipboard_multi_suggestions_size;
+  public boolean clipboard_show_inline_suggestions;
+  public boolean clipboard_show_strip_suggestions;
+
   public String suggestion_source_priority;
   public String suggestion_search_priority;
   public Map<String, Integer> suggestion_category_colors;
@@ -132,6 +140,7 @@ public final class Config
   public boolean smart_punctuation;
   public boolean show_clipboard_suggestion;
   public boolean auto_add_user_words;
+  public boolean add_user_words_on_double_space;
   public boolean force_landscape_fullscreen;
   public boolean colored_sublabels;
   public boolean draw_key_borders;
@@ -286,6 +295,14 @@ public final class Config
     typing_hud_x = _prefs.getInt("typing_hud_x", -1);
     typing_hud_y = _prefs.getInt("typing_hud_y", -1);
 
+    clipboard_autocomplete_word_count = _prefs.getInt("clipboard_autocomplete_word_count", 5);
+    clipboard_autocomplete_min_words = _prefs.getInt("clipboard_autocomplete_min_words", 3);
+    clipboard_autocomplete_file_priority = _prefs.getString("clipboard_autocomplete_file_priority", "");
+    clipboard_multi_suggestions_size = _prefs.getInt("clipboard_multi_suggestions_size", 14);
+    clipboard_show_inline_suggestions = _prefs.getBoolean("clipboard_show_inline_suggestions", true);
+    clipboard_show_strip_suggestions = _prefs.getBoolean("clipboard_show_strip_suggestions", true);
+
+    clipboard_autocomplete_trigger_words = _prefs.getString("clipboard_autocomplete_trigger_words", "");
     suggestion_source_priority = _prefs.getString("suggestion_source_priority", "typed,filters,next_word,custom,common,wordlist");
     suggestion_search_priority = _prefs.getString("suggestion_search_priority", "prefix,keyboard_aware,deletion,insertion,substitution,transposition,doubling,singling");
     suggestion_category_colors = loadCategoryColors();
@@ -335,6 +352,7 @@ public final class Config
     smart_punctuation = _prefs.getBoolean("smart_punctuation", false);
     show_clipboard_suggestion = _prefs.getBoolean("show_clipboard_suggestion", true);
     auto_add_user_words = _prefs.getBoolean("auto_add_user_words", false);
+    add_user_words_on_double_space = _prefs.getBoolean("add_user_words_on_double_space", false);
     force_landscape_fullscreen = _prefs.getBoolean("force_landscape_fullscreen", false);
     colored_sublabels = _prefs.getBoolean("colored_sublabels", false);
     draw_key_borders = _prefs.getBoolean("draw_key_borders", false);

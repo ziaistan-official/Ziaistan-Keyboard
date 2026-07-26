@@ -41,8 +41,10 @@ public final class KeyValue implements Comparable<KeyValue>
     OPEN_TERMUX_COMMANDS,
     MOUSE_PAD,
     SEARCH_REPLACE,
+    TOGGLE_SUGGESTIONS,
     SWITCH_GLYPHS,
     INSERT_TIMESTAMP,
+    DOUBLE_SPACE,
   }
 
 
@@ -653,6 +655,7 @@ public final class KeyValue implements Comparable<KeyValue>
               case OPEN_TERMUX_COMMANDS: return "termux_commands";
               case MOUSE_PAD: return "mouse_pad";
               case SEARCH_REPLACE: return "search_replace";
+              case TOGGLE_SUGGESTIONS: return "toggle_suggestions";
               case SWITCH_GLYPHS: return "switch_glyphs";
               case INSERT_TIMESTAMP: return "insert_timestamp";
               default: return kv.getEvent().name().toLowerCase();
@@ -851,8 +854,10 @@ public final class KeyValue implements Comparable<KeyValue>
       case "search_replace":
       case "find_replace":
       case "find & replace": return eventKey("🔍", Event.SEARCH_REPLACE, 0);
+      case "toggle_suggestions": return eventKey("⇶", Event.TOGGLE_SUGGESTIONS, 0);
       case "switch_glyphs": return eventKey("𓇔", Event.SWITCH_GLYPHS, 0);
       case "insert_timestamp": return eventKey("timestamp", Event.INSERT_TIMESTAMP, FLAG_SMALLER_FONT);
+      case "double_space": return eventKey("double_space", Event.DOUBLE_SPACE, FLAG_SMALLER_FONT);
 
 
       case "esc": return keyeventKey("Esc", KeyEvent.KEYCODE_ESCAPE, FLAG_SMALLER_FONT);

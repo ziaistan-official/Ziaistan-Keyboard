@@ -37,16 +37,6 @@
         </FrameLayout>
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/close_clipboard_button"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/ic_arrow_downward"
-        android:contentDescription="@string/close_clipboard" />
-
-
     <FrameLayout
         android:id="@+id/clipboard_undo_container"
         android:layout_width="wrap_content"

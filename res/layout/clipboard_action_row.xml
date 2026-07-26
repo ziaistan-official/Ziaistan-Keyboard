@@ -13,9 +13,46 @@
         style="?android:attr/buttonBarButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0.8"
         android:text="@string/clipboard_back_to_keyboard"
-        android:textColor="?attr/colorLabel" />
+        android:textColor="?attr/colorLabel"
+        android:textSize="10sp" />
+
+    <EditText
+        android:id="@+id/clipboard_search_input"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="0"
+        android:hint="Search..."
+        android:textSize="12sp"
+        android:textColor="?attr/colorLabel"
+        android:textColorHint="?attr/colorSubLabel"
+        android:background="@null"
+        android:padding="4dp"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:imeOptions="actionSearch"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/clipboard_expand_all_button"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:text="Expand All"
+        android:textColor="?attr/colorLabel"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/clipboard_collapse_all_button"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:text="Collapse All"
+        android:textColor="?attr/colorLabel"
+        android:textSize="10sp" />
 
     <Button
         android:id="@+id/clipboard_import_button"
@@ -24,7 +61,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="@string/clipboard_import"
-        android:textColor="?attr/colorLabel" />
+        android:textColor="?attr/colorLabel"
+        android:textSize="10sp" />
 
     <Button
         android:id="@+id/clipboard_export_button"
@@ -33,12 +71,21 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="@string/clipboard_export"
-        android:textColor="?attr/colorLabel" />
+        android:textColor="?attr/colorLabel"
+        android:textSize="10sp" />
+
+    <ImageButton
+        android:id="@+id/clipboard_sort_button"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_sort"
+        android:tint="?attr/colorLabel" />
 
     <ImageButton
         android:id="@+id/clipboard_clear_button"
         style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="85px"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_delete"
         android:tint="?attr/colorLabel"

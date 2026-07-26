@@ -33,6 +33,8 @@ The system utilizes background thread pools to process multiple correction algor
 ### Smart Revert System
 - **Temporary Suspension:** If you manually reverse a correction via backspace, the keyboard remembers this and suspends auto-correction for that specific word during the current sentence.
 - **Re-enablement:** Deleting and retyping the word reactivates the engine for future instances.
+- **Double Space & DOUBLE_SPACE Bypass:** Double-pressing the space bar (within 1500ms) or pressing a custom-assigned `DOUBLE_SPACE` action key (mappable in Actions customization) instantly reverts the recently made autocorrect, keeping your misspelled or unlisted word verbatim followed by a single space.
+- **Selective Dictionary Learning:** If "Add user words on double space" is enabled under Settings > Behavior, words kept/reverted via double space or the `DOUBLE_SPACE` key are automatically added to your custom user dictionary. This isolates vocab learning to intentional double-tap saves rather than general typing or backspace-driven reverts.
 
 ---
 
@@ -59,22 +61,40 @@ The system manages language-specific and global files:
 - **Manual File Editing:** Located in **Settings > Behavior > Custom Dictionary > Manual File Editing**. Allows power users to drill down into JSON structures and import compatible files using a non-destructive merge algorithm.
 
 
-## Clipboard System
+## Clipboard and Sentence Autocompletion System
 
-A completely refactored, grid-based clipboard manager with advanced search and gesture controls.
+A sophisticated, multi-layered clipboard management and sentence-level autocompletion engine designed for extreme productivity.
 
-### Interface and Gestures
-- **Modern Design:** Fluid `RecyclerView` grid with theme-aware `CardView` containers.
-- **Tap:** Pastes content at the cursor.
-- **Long-Press:** Pins/unpins items (pinned items move to the bottom in chronological order).
-- **Swipe Left:** Archives items with a timestamp and content preview.
-- **Swipe Right:** Deletes items with a 25-second "Undo" recovery option.
-- **Search Integration:** Dedicated top search bar with real-time filtering, term highlighting, and asynchronous performance for large histories.
+### Advanced Clipboard Manager
+- **Grid-Based Interface:** A modern, fluid `RecyclerView` grid using theme-aware `CardView` containers for high visibility and easy selection.
+- **Date-Based Folders & Persistent States:** Items are grouped into hierarchical folders by copy dates. Folders are collapsed by default on startup for a clean layout. Folder and context item expansion/collapse states are persistently preserved across closes and opens.
+- **Search & Replace Integration:** Pressing Enter on search inputs inside the "Search & Replace" clipboard mode dialog directly opens the clipboard panel, highlighting matching terms with theme-aware colors and 64-character context limits while auto-expanding parent and date-based folders.
+- **Intuitive Gestures:**
+    - **Single Tap:** Instantly pastes the selected item at your cursor position.
+    - **Long-Press:** Pins or unpins items. Pinned items are saved permanently and displayed with a pin icon.
+    - **Swipe Left:** Archives the item, moving it to a dedicated archive for better history organization.
+    - **Swipe Right:** Deletes the item with a 25-second safety "Undo" window for accidental removals.
+- **Data Portability:** Full support for exporting and importing your history via JSON files, complete with intelligent duplicate prevention and automatic FileObserver reentrancy locking.
 
-### Management
-- **Import/Export:** Full history export/import via JSON with duplicate prevention.
-- **Renaming:** Archived items can be renamed via an overlay interface.
-- **Navigation:** Dedicated back button and proper system navigation bar integration. Enabled by default in **Settings > Clipboard**.
+### Sentence Autocompletion (Ghost Text)
+This feature allows you to complete entire sentences based on your clipboard history and external text datasets.
+- **Ghost Text Display:** Suggestions appear as grey "ghost text" directly in your text field.
+- **Independent Autocomplete Toggles:** Settings includes independent toggle preference buttons under Settings > Clipboard to enable or disable inline ghost text suggestions and suggestions strip suggestions separately.
+- **External Dataset Indexing:** The keyboard can index any `.txt` file placed in `/Downloads/ziaistan_keyboard_backup/sentence_autocompletion/`. Whether it's your own notes, a Wikipedia dataset, or a list of frequent Urdu/English phrases, the keyboard builds a lightning-fast "Trie" index for instant matching.
+- **Configurable Multi-Suggestions:** When multiple completions are found, a floating "1 of X" indicator appears above your cursor (or keyboard). You can customize the size of this indicator in **Settings > Clipboard > Clipboard Multi suggestions size**.
+- **User-Defined File Priority:** You can precisely control which files the keyboard prefers. Navigate to **Settings > Clipboard > Clipboard autocompletion prioritization** to drag-and-drop your files into a custom priority order.
+
+### Smart Navigation & Acceptance
+Master your suggestions with specialized key controls:
+- **TAB Key:** Instantly accepts the entire remaining suggestion and commits it to your text.
+- **DPAD RIGHT:** Accepts the suggestion **word-by-word**. The keyboard intelligently maintains a 5-word "lookahead" in ghost text so you always have context for what's coming next.
+- **DPAD LEFT (Uncomplete):** If you've accepted words using the DPAD, you can use DPAD LEFT to "uncomplete" or back out of the suggestion word-by-word. This provides granular control that standard autocompletes lack. *Note: Uncompletion is disabled if you accepted the entire suggestion via TAB to prevent accidental text deletion.*
+
+### Getting Started for Non-Technical Users
+1. **Enable it:** Go to **Settings > Clipboard** and ensure "Enable suggestions" is checked.
+2. **Add Data:** Simply copy long sentences to your clipboard, or drop `.txt` files into the `ziaistan_keyboard_backup/sentence_autocompletion/` folder on your phone.
+3. **Index:** Go to the "File Prioritization" setting to trigger an initial index of your files. You'll see a progress bar as the keyboard learns your data.
+4. **Type:** Start typing the beginning of a sentence. Once you hit the "Min Words" threshold (default 3), the keyboard will suggest the rest in grey!
 
 ---
 

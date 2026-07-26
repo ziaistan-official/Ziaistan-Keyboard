@@ -131,6 +131,12 @@
         android:label="Manual File Editing" />
 
     <activity
+        android:name="juloo.keyboard2.FilePriorityActivity"
+        android:theme="@style/settingsTheme"
+        android:exported="false"
+        android:label="File Prioritization" />
+
+    <activity
         android:name="juloo.keyboard2.ReadmeActivity"
         android:theme="@style/settingsTheme"
         android:exported="false"

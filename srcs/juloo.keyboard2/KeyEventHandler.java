@@ -12,11 +12,15 @@ import android.os.Looper;
 import android.os.Handler;
 import android.text.InputType;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.style.AbsoluteSizeSpan;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.widget.Toast;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.ExtractedText;
 import android.view.inputmethod.ExtractedTextRequest;
@@ -95,6 +99,7 @@ public final class KeyEventHandler
   private String lastPrefix = "";
   private String lastContext = "";
   private String lastWordForCorrection = "";
+  private String lastPhraseTrigger = "";
 
   private static class SuggestionCache {
       String context;
@@ -176,8 +181,17 @@ public final class KeyEventHandler
   }
 
 
+  public void finished() {
+    finished(_recv.getCurrentInputConnection());
+  }
+
+  public void finished(InputConnection ic) {
+    clearGhostText(ic);
+  }
+
   public void started(EditorInfo info)
   {
+    clearGhostText(null);
     _undoRedoManager.clear();
     contextHistory.clear();
     InputConnection ic = _recv.getCurrentInputConnection();
@@ -362,18 +376,35 @@ public final class KeyEventHandler
 
     if (justAutoCorrected) {
         if (key.getKind() == KeyValue.Kind.Keyevent && key.getKeyevent() == KeyEvent.KEYCODE_DEL) {
-            revertAutoCorrection();
+            revertAutoCorrection(false);
             return;
         }
 
-        justAutoCorrected = false;
+        boolean isSpaceOrDoubleSpace = false;
+        if (key.getKind() == KeyValue.Kind.Keyevent && key.getKeyevent() == KeyEvent.KEYCODE_SPACE) {
+            isSpaceOrDoubleSpace = true;
+        } else if (key.getKind() == KeyValue.Kind.Char && key.getChar() == ' ') {
+            isSpaceOrDoubleSpace = true;
+        } else if (key.getKind() == KeyValue.Kind.Event && key.getEvent() == KeyValue.Event.DOUBLE_SPACE) {
+            isSpaceOrDoubleSpace = true;
+        }
+
+        if (!isSpaceOrDoubleSpace) {
+            justAutoCorrected = false;
+        }
     }
 
     Pointers.Modifiers old_mods = _mods;
     update_meta_state(mods);
     switch (key.getKind())
     {
-      case Char: send_text(String.valueOf(key.getChar())); break;
+      case Char:
+          if (key.getChar() == '\t' && currentCompletionGhostText != null) {
+              acceptCompletion();
+          } else {
+              send_text(String.valueOf(key.getChar()));
+          }
+          break;
       case String: send_text(key.getString()); break;
       case ModifiedChar:
         {
@@ -387,7 +418,9 @@ public final class KeyEventHandler
         }
         break;
       case Event:
-        if (key.getEvent() == KeyValue.Event.EXPORT_DATA) {
+        if (key.getEvent() == KeyValue.Event.DOUBLE_SPACE) {
+            handleDoubleSpaceKey();
+        } else if (key.getEvent() == KeyValue.Event.EXPORT_DATA) {
           Toast.makeText(_recv.getContext(), "Export from keyboard settings.", Toast.LENGTH_LONG).show();
         } else if (key.getEvent() == KeyValue.Event.OPEN_PASSWORD_MANAGER) {
            Intent intent = new Intent();
@@ -420,80 +453,90 @@ public final class KeyEventHandler
         }
         break;
       case Keyevent:
-          if (key.getKeyevent() == KeyEvent.KEYCODE_DEL) {
-              InputConnection conn = _recv.getCurrentInputConnection();
-              if (Config.globalConfig().revert_on_backspace && justAutoCorrected) {
-                  revertAutoCorrection();
-                  justAutoCorrected = false;
-                  return;
+        {
+          final int keyCode = key.getKeyevent();
+          final InputConnection conn = _recv.getCurrentInputConnection();
+
+          if (currentCompletionGhostText != null || !_ghost_accept_history.isEmpty()) {
+              if (keyCode == KeyEvent.KEYCODE_TAB && currentCompletionGhostText != null) {
+                  acceptCompletion();
+                  break;
+              } else if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT && currentCompletionGhostText != null) {
+                  acceptOneWord();
+                  break;
+              } else if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
+                  if (!_ghost_accept_history.isEmpty()) {
+                      uncompleteOneWord();
+                      break;
+                  }
+              } else if (keyCode == KeyEvent.KEYCODE_DPAD_UP && currentGhostCompletions != null && currentGhostCompletions.size() > 1) {
+                  currentGhostIndex = (currentGhostIndex - 1 + currentGhostCompletions.size()) % currentGhostCompletions.size();
+                  showGhostText(conn);
+                  break;
+              } else if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN && currentGhostCompletions != null && currentGhostCompletions.size() > 1) {
+                  currentGhostIndex = (currentGhostIndex + 1) % currentGhostCompletions.size();
+                  showGhostText(conn);
+                  break;
               }
+          }
 
+          if (keyCode == KeyEvent.KEYCODE_DEL) {
+              if (conn != null) {
+                  if (currentCompletionGhostText != null) {
+                      clearGhostText(conn);
+                  }
 
-              if (Config.globalConfig().delete_swallows_space && conn != null) {
-                   CharSequence before = conn.getTextBeforeCursor(2, 0);
-                   if (before != null && before.length() >= 2) {
-                       if (Character.isWhitespace(before.charAt(before.length()-1)) &&
-                           Character.isWhitespace(before.charAt(before.length()-2))) {
-                           commitDeleteSurroundingText(conn, 1, 0);
+                  if (Config.globalConfig().revert_on_backspace && justAutoCorrected) {
+                      revertAutoCorrection(false);
+                      justAutoCorrected = false;
+                      return;
+                  }
+
+                  if (Config.globalConfig().delete_swallows_space) {
+                       CharSequence before = conn.getTextBeforeCursor(2, 0);
+                       if (before != null && before.length() >= 2) {
+                           if (Character.isWhitespace(before.charAt(before.length()-1)) &&
+                               Character.isWhitespace(before.charAt(before.length()-2))) {
+                               commitDeleteSurroundingText(conn, 1, 0);
+                           }
                        }
-                   }
-              }
+                  }
 
+                  if (!revertedWords.isEmpty()) {
+                      CharSequence textBefore = conn.getTextBeforeCursor(1, 0);
+                      if (textBefore != null && textBefore.length() > 0) {
+                          if (!Utils.isWordPart(textBefore.charAt(0))) revertedWords.clear();
+                      } else {
+                          revertedWords.clear();
+                      }
+                  }
 
-
-              if (conn != null && !revertedWords.isEmpty()) {
-                  CharSequence textBefore = conn.getTextBeforeCursor(2, 0);
-                  if (textBefore != null && textBefore.length() > 0) {
-                      char charToDelete = textBefore.charAt(textBefore.length() - 1);
-                      if (Utils.isWordPart(charToDelete)) {
-
-                          if (textBefore.length() == 1) {
-                              revertedWords.clear();
-                          } else {
-                              char charBefore = textBefore.charAt(textBefore.length() - 2);
-                              if (!Utils.isWordPart(charBefore)) {
-                                  revertedWords.clear();
+                  CharSequence selected = conn.getSelectedText(0);
+                  if (selected != null && selected.length() > 0) {
+                      recordAndCommitText(conn, "");
+                  } else {
+                      CharSequence before = conn.getTextBeforeCursor(2, 0);
+                      int deleteLength = 1;
+                      if (before != null && before.length() > 0) {
+                          if (Character.isLowSurrogate(before.charAt(before.length() - 1))) {
+                              if (before.length() >= 2 && Character.isHighSurrogate(before.charAt(before.length() - 2))) {
+                                  deleteLength = 2;
                               }
                           }
                       }
-
-
-                  } else {
-
-                      revertedWords.clear();
+                      if (!commitDeleteSurroundingText(conn, deleteLength, 0)) {
+                          send_key_down_up(KeyEvent.KEYCODE_DEL);
+                      }
                   }
+                  captureTypingHistory(false);
+              } else {
+                  send_key_down_up(keyCode);
               }
-          }
-          if (key.getKeyevent() == KeyEvent.KEYCODE_DEL) {
-
-               InputConnection conn = _recv.getCurrentInputConnection();
-               if (conn != null) {
-                   CharSequence selected = conn.getSelectedText(0);
-                   if (selected != null && selected.length() > 0) {
-
-                       recordAndCommitText(conn, "");
-                   } else {
-
-
-                       CharSequence before = conn.getTextBeforeCursor(2, 0);
-                       int deleteLength = 1;
-                       if (before != null && before.length() > 0) {
-                           if (Character.isLowSurrogate(before.charAt(before.length() - 1))) {
-                               if (before.length() >= 2 && Character.isHighSurrogate(before.charAt(before.length() - 2))) {
-                                   deleteLength = 2;
-                               }
-                           }
-                       }
-                       commitDeleteSurroundingText(conn, deleteLength, 0);
-                   }
-               }
           } else {
-               send_key_down_up(key.getKeyevent());
-          }
-          if (key.getKeyevent() == KeyEvent.KEYCODE_DEL) {
-              captureTypingHistory();
+              send_key_down_up(keyCode);
           }
           break;
+        }
       case Modifier: break;
       case Editing: handle_editing_key(key.getEditing()); break;
       case Compose_pending: _recv.set_compose_pending(true); break;
@@ -559,11 +602,25 @@ public final class KeyEventHandler
       recordWordAndSequence(word);
   }
 
+  private String currentCompletionGhostText = null;
+  private List<String> currentGhostCompletions = null;
+  private int currentGhostIndex = 0;
+  private android.widget.PopupWindow indicatorPopup = null;
+  private android.widget.TextView indicatorText = null;
+
+  private long _last_history_capture = 0;
   private void captureTypingHistory() {
+      captureTypingHistory(true);
+  }
+
+  private void captureTypingHistory(boolean triggerAutocompletion) {
       if (Config.globalConfig().incognito_mode) return;
+
+      long now = System.currentTimeMillis();
+      _last_history_capture = now;
+
       InputConnection ic = _recv.getCurrentInputConnection();
       if (ic == null) return;
-
 
       EditorInfo editorInfo = _recv.getCurrentInputEditorInfo();
       if (editorInfo != null) {
@@ -574,14 +631,344 @@ public final class KeyEventHandler
          if (isPassword) return;
       }
 
-      ExtractedText et = ic.getExtractedText(new ExtractedTextRequest(), 0);
-      if (et != null && et.text != null) {
-          final String text = et.text.toString();
-          final Context context = _recv.getContext();
-          KeyboardExecutors.HIGH_PRIORITY_EXECUTOR.execute(() -> {
-              ClipboardHistoryService.get_service(context).updateCurrentTypingSession(text);
+      CharSequence before = ic.getTextBeforeCursor(200, 0);
+      if (before != null && triggerAutocompletion) {
+          updateGhostAutocompletion(ic, before.toString());
+      }
+
+      recordTypingHistorySnapshot();
+  }
+
+  private void recordTypingHistorySnapshot() {
+      if (Config.globalConfig().incognito_mode) return;
+      InputConnection ic = _recv.getCurrentInputConnection();
+      if (ic == null) return;
+
+      EditorInfo editorInfo = _recv.getCurrentInputEditorInfo();
+      if (editorInfo != null) {
+         int variation = editorInfo.inputType & InputType.TYPE_MASK_VARIATION;
+         boolean isPassword = (variation == InputType.TYPE_TEXT_VARIATION_PASSWORD ||
+                       variation == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD ||
+                       variation == InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD);
+         if (isPassword) return;
+      }
+
+      final String ghost = currentCompletionGhostText;
+      final Context context = _recv.getContext();
+      KeyboardExecutors.HIGH_PRIORITY_EXECUTOR.execute(() -> {
+          InputConnection currentIc = _recv.getCurrentInputConnection();
+          if (currentIc == null) return;
+          ExtractedText et = currentIc.getExtractedText(new ExtractedTextRequest(), 0);
+          if (et != null && et.text != null) {
+              String fullText = et.text.toString();
+              if (ghost != null && fullText.endsWith(ghost)) {
+                  fullText = fullText.substring(0, fullText.length() - ghost.length());
+              }
+              ClipboardHistoryService.get_service(context).updateCurrentTypingSession(fullText);
+          }
+      });
+  }
+
+  private String getLastNWords(String text, int n) {
+      int wordCount = 0;
+      int i = text.length() - 1;
+      boolean inWord = false;
+
+      // Skip trailing whitespace
+      while (i >= 0 && Character.isWhitespace(text.charAt(i))) {
+          i--;
+      }
+
+      int end = i + 1;
+      while (i >= 0 && wordCount < n) {
+          char c = text.charAt(i);
+          if (Character.isWhitespace(c)) {
+              if (inWord) {
+                  wordCount++;
+                  if (wordCount == n) break;
+              }
+              inWord = false;
+          } else {
+              inWord = true;
+          }
+          i--;
+      }
+
+      if (i < 0 && inWord) wordCount++;
+
+      if (wordCount < n) return null;
+
+      return text.substring(i + 1, end);
+  }
+
+  private long _ghost_task_id = 0;
+  private final Handler _ghost_handler = new Handler(Looper.getMainLooper());
+  private Runnable _ghost_runnable = null;
+
+  private void updateGhostAutocompletion(InputConnection ic, String currentText) {
+      if (!Config.globalConfig().clipboard_show_inline_suggestions) {
+          clearGhostText(ic);
+          return;
+      }
+      if (!_ghost_accept_history.isEmpty()) return; // Don't interrupt active navigation
+
+      if (_ghost_runnable != null) {
+          _ghost_handler.removeCallbacks(_ghost_runnable);
+      }
+
+      _ghost_runnable = () -> triggerGhostAutocompletion(ic, currentText);
+      _ghost_handler.postDelayed(_ghost_runnable, 500);
+  }
+
+  private void triggerGhostAutocompletion(InputConnection ic, String currentText) {
+      CharSequence after = ic.getTextAfterCursor(1, 0);
+      if (after != null && after.length() > 0) {
+          clearGhostText(ic);
+          return;
+      }
+
+      String prefix = getLastNWords(currentText, Config.globalConfig().clipboard_autocomplete_min_words);
+      if (prefix == null) {
+          clearGhostText(ic);
+          return;
+      }
+
+      String triggerWordsStr = Config.globalConfig().clipboard_autocomplete_trigger_words;
+      if (triggerWordsStr != null && !triggerWordsStr.trim().isEmpty()) {
+          String[] triggers = triggerWordsStr.split(",");
+          boolean matched = false;
+          String prefixLower = prefix.toLowerCase();
+          for (String t : triggers) {
+              String trimmed = t.trim().toLowerCase();
+              if (!trimmed.isEmpty() && prefixLower.contains(trimmed)) {
+                  matched = true;
+                  break;
+              }
+          }
+          if (!matched) {
+              clearGhostText(ic);
+              return;
+          }
+      }
+
+      final long taskId = ++_ghost_task_id;
+      final Context ctx = _recv.getContext();
+
+      final String finalPrefix = prefix;
+      KeyboardExecutors.SUGGESTION_EXECUTOR.execute(() -> {
+          List<ClipboardHistoryService.SentenceMatch> matches = ClipboardHistoryService.get_service(ctx).getSentenceCompletions(finalPrefix);
+          List<String> completions = new ArrayList<>();
+          for (ClipboardHistoryService.SentenceMatch m : matches) {
+              if (m.originalTyped.equals(m.correctedPrefix)) {
+                  completions.add(m.completion);
+              }
+          }
+
+          _recv.getHandler().post(() -> {
+              if (taskId != _ghost_task_id) return;
+
+              InputConnection currentIc = _recv.getCurrentInputConnection();
+              if (currentIc == null) return;
+
+              if (!completions.isEmpty()) {
+                  currentGhostCompletions = completions;
+                  currentGhostIndex = 0;
+                  showGhostText(currentIc);
+              } else {
+                  clearGhostText(currentIc);
+              }
+          });
+      });
+  }
+
+  private void showGhostText(InputConnection ic) {
+      if (currentGhostCompletions == null || currentGhostCompletions.isEmpty()) return;
+      if (currentGhostIndex < 0) currentGhostIndex = 0;
+      if (currentGhostIndex >= currentGhostCompletions.size()) currentGhostIndex = currentGhostCompletions.size() - 1;
+
+      String completion = currentGhostCompletions.get(currentGhostIndex);
+      currentCompletionGhostText = completion;
+
+      SpannableStringBuilder ssb = new SpannableStringBuilder(completion);
+      ssb.setSpan(new ForegroundColorSpan(0x88AAAAAA), 0, completion.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+      ic.setComposingText(ssb, 0);
+
+      showIndicatorPopup();
+  }
+
+  private void showIndicatorPopup() {
+      if (currentGhostCompletions == null || currentGhostCompletions.size() <= 1) {
+          hideIndicatorPopup();
+          return;
+      }
+
+      _recv.getHandler().post(() -> {
+          Context ctx = _recv.getContext();
+          if (indicatorPopup == null) {
+              indicatorText = new android.widget.TextView(ctx);
+              indicatorText.setTextColor(0xFFFFFFFF);
+              indicatorText.setTextSize(Config.globalConfig().clipboard_multi_suggestions_size * 0.5f);
+              indicatorText.setBackgroundResource(android.R.drawable.toast_frame);
+              indicatorText.setPadding(10, 5, 10, 5);
+
+              indicatorPopup = new android.widget.PopupWindow(indicatorText,
+                  android.view.ViewGroup.LayoutParams.WRAP_CONTENT,
+                  android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
+              indicatorPopup.setTouchable(false);
+          }
+
+          indicatorText.setText((currentGhostIndex + 1) + " of " + currentGhostCompletions.size());
+
+          View inputView = _recv.getKeyboardView();
+          if (inputView != null && inputView.getWindowToken() != null) {
+              try {
+                  // Fallback: show at top of keyboard if we don't have cursor position
+                  indicatorPopup.showAtLocation(inputView, android.view.Gravity.TOP | android.view.Gravity.CENTER_HORIZONTAL, 0, -50);
+              } catch (Exception e) {}
+          }
+      });
+  }
+
+  private void hideIndicatorPopup() {
+      if (indicatorPopup != null) {
+          _recv.getHandler().post(() -> {
+              if (indicatorPopup != null && indicatorPopup.isShowing()) {
+                  try {
+                      indicatorPopup.dismiss();
+                  } catch (Exception e) {}
+              }
           });
       }
+  }
+
+  private void clearGhostText(InputConnection ic) {
+      if (ic != null && currentCompletionGhostText != null) {
+          ic.beginBatchEdit();
+          ic.setComposingText("", 0);
+          ic.finishComposingText();
+          ic.endBatchEdit();
+      }
+      currentCompletionGhostText = null;
+      currentGhostCompletions = null;
+      currentGhostIndex = 0;
+      _ghost_accept_history.clear();
+      hideIndicatorPopup();
+  }
+
+  private void acceptCompletion() {
+      InputConnection ic = _recv.getCurrentInputConnection();
+      if (ic != null && (currentCompletionGhostText != null || !_ghost_accept_history.isEmpty())) {
+          String toCommit = getFullRemainingCompletion();
+          ic.beginBatchEdit();
+          ic.setComposingText("", 0);
+          ic.finishComposingText();
+          if (!toCommit.isEmpty()) {
+              ic.commitText(toCommit, 1);
+          }
+          ic.endBatchEdit();
+          clearGhostText(null); // Just clear local state
+      }
+  }
+
+  private final List<String> _ghost_accept_history = new ArrayList<>();
+
+  private void acceptOneWord() {
+      InputConnection ic = _recv.getCurrentInputConnection();
+      if (ic != null && currentCompletionGhostText != null) {
+          String text = currentCompletionGhostText;
+          int i = 0;
+          while (i < text.length() && text.charAt(i) == ' ') i++;
+          while (i < text.length() && text.charAt(i) != ' ') i++;
+          while (i < text.length() && text.charAt(i) == ' ') i++;
+
+          if (i > 0) {
+              String toCommit = text.substring(0, i);
+
+              ic.beginBatchEdit();
+              ic.setComposingText("", 0);
+              ic.finishComposingText();
+              ic.commitText(toCommit, 1);
+
+              _ghost_accept_history.add(toCommit);
+
+              String fullRemaining = getFullRemainingCompletion();
+              String lookahead = limitWords(fullRemaining, 5);
+
+              if (lookahead != null && !lookahead.isEmpty()) {
+                  currentCompletionGhostText = lookahead;
+                  SpannableStringBuilder ssb = new SpannableStringBuilder(lookahead);
+                  ssb.setSpan(new ForegroundColorSpan(0x88AAAAAA), 0, lookahead.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                  ic.setComposingText(ssb, 0);
+              } else {
+                  currentCompletionGhostText = null;
+              }
+              ic.endBatchEdit();
+          }
+      }
+  }
+
+  private String getFullRemainingCompletion() {
+      if (currentGhostCompletions == null || currentGhostIndex >= currentGhostCompletions.size()) return "";
+      String full = currentGhostCompletions.get(currentGhostIndex);
+
+      StringBuilder accepted = new StringBuilder();
+      for (String s : _ghost_accept_history) accepted.append(s);
+
+      if (full.startsWith(accepted.toString())) {
+          return full.substring(accepted.length());
+      }
+      return "";
+  }
+
+  private void uncompleteOneWord() {
+      InputConnection ic = _recv.getCurrentInputConnection();
+      if (ic != null) {
+          if (!_ghost_accept_history.isEmpty()) {
+              String lastWord = _ghost_accept_history.remove(_ghost_accept_history.size() - 1);
+              ic.beginBatchEdit();
+              ic.deleteSurroundingText(lastWord.length(), 0);
+
+              String fullRemaining = getFullRemainingCompletion();
+              String lookahead = limitWords(fullRemaining, 5);
+
+              currentCompletionGhostText = lookahead;
+              SpannableStringBuilder ssb = new SpannableStringBuilder(lookahead);
+              ssb.setSpan(new ForegroundColorSpan(0x88AAAAAA), 0, lookahead.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+              ic.setComposingText(ssb, 0);
+              ic.endBatchEdit();
+              showIndicatorPopup();
+          } else if (currentCompletionGhostText != null) {
+              ic.setComposingText("", 0);
+              currentCompletionGhostText = null;
+              hideIndicatorPopup();
+          }
+      }
+  }
+
+  private String limitWords(String text, int maxWords) {
+      if (text == null || text.isEmpty()) return text;
+      String[] words = text.split("\\s+");
+      if (words.length <= maxWords) return text;
+
+      int wordCount = 0;
+      int lastIdx = 0;
+      boolean inWord = false;
+      for (int i = 0; i < text.length(); i++) {
+          if (Character.isWhitespace(text.charAt(i))) {
+              if (inWord) {
+                  wordCount++;
+                  inWord = false;
+                  if (wordCount == maxWords) {
+                      lastIdx = i;
+                      break;
+                  }
+              }
+          } else {
+              inWord = true;
+          }
+      }
+      if (wordCount < maxWords) return text;
+      return text.substring(0, lastIdx);
   }
 
   public void startRenaming(String currentName) {
@@ -650,10 +1037,16 @@ public final class KeyEventHandler
   {
     if (content != null) {
         lastPastedLength = content.length();
-
         _recv.showUndoPasteButton();
+
+        InputConnection conn = _recv.getCurrentInputConnection();
+        if (conn != null) {
+            recordAndCommitText(conn, content);
+        } else {
+            ClipboardManager cm = (ClipboardManager) _recv.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+            cm.setPrimaryClip(ClipData.newPlainText(null, content));
+        }
     }
-    send_text(content);
   }
 
   public void undoLastPaste() {
@@ -848,18 +1241,20 @@ public final class KeyEventHandler
 
     if (" ".equals(text.toString())) {
         long currentTime = System.currentTimeMillis();
-        if (currentTime - lastSpaceTime < 500) {
-            if (Config.globalConfig().double_space_period) {
-                InputConnection ic = _recv.getCurrentInputConnection();
-                if (ic != null) {
-                    commitDeleteSurroundingText(ic, 1, 0);
-                    sendTextVerbatim(". ");
-                }
+        if (currentTime - lastSpaceTime < 1500) {
+            if (justAutoCorrected) {
+                revertAutoCorrection(true);
+                sendTextVerbatim(" ", false);
             } else {
-                _recv.showTutorial(_suggestionProvider.getTutorial());
-
-
-
+                if (Config.globalConfig().double_space_period) {
+                    InputConnection ic = _recv.getCurrentInputConnection();
+                    if (ic != null) {
+                        commitDeleteSurroundingText(ic, 1, 0);
+                        sendTextVerbatim(". ");
+                    }
+                } else {
+                    sendTextVerbatim(" ", false);
+                }
             }
         } else {
             if (Config.globalConfig().auto_add_user_words) {
@@ -1208,6 +1603,7 @@ public final class KeyEventHandler
       VibratorCompat.vibrate(_recv.getContext(), Config.globalConfig().vibrate_duration);
     }
     refreshFieldWords();
+    captureTypingHistory();
   }
 
 
@@ -1274,6 +1670,7 @@ public final class KeyEventHandler
       case CUT:
           if(is_selection_not_empty()) {
               if (conn != null) {
+                  clearGhostText(conn);
                   CharSequence selected = conn.getSelectedText(0);
                   if (selected != null) {
                       ClipboardManager cm = (ClipboardManager) _recv.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
@@ -1315,13 +1712,19 @@ public final class KeyEventHandler
       case AUTOFILL: send_context_menu_action(android.R.id.autofill); break;
       case DELETE_WORD:
           if (Config.globalConfig().swipe_delete_word) {
-              if (conn != null) handleDeleteWord(conn, false);
+              if (conn != null) {
+                  clearGhostText(conn);
+                  handleDeleteWord(conn, false);
+              }
               else send_key_down_up(KeyEvent.KEYCODE_DEL, KeyEvent.META_CTRL_ON | KeyEvent.META_CTRL_LEFT_ON);
           }
           break;
       case FORWARD_DELETE_WORD:
           if (Config.globalConfig().swipe_delete_word) {
-              if (conn != null) handleDeleteWord(conn, true);
+              if (conn != null) {
+                  clearGhostText(conn);
+                  handleDeleteWord(conn, true);
+              }
               else send_key_down_up(KeyEvent.KEYCODE_FORWARD_DEL, KeyEvent.META_CTRL_ON | KeyEvent.META_CTRL_LEFT_ON);
           }
           break;
@@ -1860,10 +2263,42 @@ public final class KeyEventHandler
               _keyboardAwareSuggester
           );
 
+          String phraseTrigger = getLastNWords(fullContext, Config.globalConfig().clipboard_autocomplete_min_words);
+
+          if (Config.globalConfig().clipboard_show_strip_suggestions && phraseTrigger != null && !phraseTrigger.isEmpty()) {
+              lastPhraseTrigger = phraseTrigger;
+              List<ClipboardHistoryService.SentenceMatch> matches = ClipboardHistoryService.get_service(_recv.getContext()).getSentenceCompletions(phraseTrigger);
+              for (ClipboardHistoryService.SentenceMatch m : matches) {
+                  boolean exact = m.originalTyped.equalsIgnoreCase(m.correctedPrefix);
+                  String suggestionText;
+                  if (exact) {
+                      // exact match prefix, suggest suffix
+                      suggestionText = m.completion;
+                      // Ensure suffix doesn't start with a partial word
+                      if (!suggestionText.isEmpty() && !Character.isWhitespace(suggestionText.charAt(0)) && !m.correctedPrefix.isEmpty() && !Character.isWhitespace(m.correctedPrefix.charAt(m.correctedPrefix.length()-1))) {
+                           // Broken word suffix, skip
+                           continue;
+                      }
+                  } else {
+                      // fuzzy match prefix, suggest full phrase
+                      suggestionText = m.correctedPrefix + m.completion;
+                  }
+
+                  if (!suggestionText.trim().isEmpty()) {
+                      SuggestionProvider.Suggestion s = new SuggestionProvider.Suggestion(suggestionText, exact ? "clipboard_phrase_suffix" : "clipboard_phrase_full", 0, SuggestionProvider.WordSource.CLIPBOARD);
+                      if (exact) results.add(0, s); else results.add(s);
+                  }
+              }
+          }
+
           if (newTask.isCancelled()) return;
 
           final List<SuggestionProvider.Suggestion> prioritized = filterAndPrioritize(results, newTask.context);
           postSuggestions(newTask, prioritized, finalMode);
+
+          if (newTask.charBeforeMatch && !newTask.prefix.isEmpty()) {
+              updateGhostAutocompletion(ic, fullContext);
+          }
       });
   }
 
@@ -1917,7 +2352,13 @@ public final class KeyEventHandler
       String finalSuggestion = suggestion.word;
 
       conn.beginBatchEdit();
-      if (justAutoCorrected && correctedWord != null) {
+
+      if (suggestion.source != null && suggestion.source.startsWith("clipboard_phrase")) {
+          if ("clipboard_phrase_full".equals(suggestion.source) && !lastPhraseTrigger.isEmpty()) {
+              commitDeleteSurroundingText(conn, lastPhraseTrigger.length(), 0);
+          }
+          // if suffix, delete nothing, just append.
+      } else if (justAutoCorrected && correctedWord != null) {
           wordToReplace = correctedWord;
           conn.deleteSurroundingText(correctedWord.length() + 1, 0);
           // If we just autocorrected, we should try to match the case of the ORIGINAL word before correction
@@ -1970,7 +2411,7 @@ public final class KeyEventHandler
       correctedWord = null;
   }
 
-  private void revertAutoCorrection() {
+  private void revertAutoCorrection(boolean learnWord) {
       _suggestionCache.context = null; // Invalidate cache
       InputConnection conn = _recv.getCurrentInputConnection();
       if (conn == null || correctedWord == null || originalWord == null) {
@@ -1998,6 +2439,9 @@ public final class KeyEventHandler
 
       revertedWords.add(originalWord.toLowerCase());
 
+      if (learnWord && Config.globalConfig().add_user_words_on_double_space && originalWord.length() > 1 && !isWordInDictionary(originalWord)) {
+          updateCustomDictionary(java.util.Collections.singleton(originalWord));
+      }
 
       justAutoCorrected = false;
       expectedCursorPos = -1;
@@ -2006,6 +2450,15 @@ public final class KeyEventHandler
 
 
       updateSuggestionsFromPrefix();
+  }
+
+  private void handleDoubleSpaceKey() {
+      if (justAutoCorrected) {
+          revertAutoCorrection(true);
+          sendTextVerbatim(" ", false);
+      } else {
+          sendTextVerbatim(" ", false);
+      }
   }
 
   public static interface IReceiver
@@ -2029,6 +2482,7 @@ public final class KeyEventHandler
     java.util.Map<Character, android.graphics.RectF> getKeyCoordinates();
     String getScript();
     void updateTypingHUD(String typed, String corrected, boolean showArrow);
+    View getKeyboardView();
   }
 
   class Autocapitalisation_callback implements Autocapitalisation.Callback
@@ -2146,6 +2600,8 @@ public final class KeyEventHandler
 
     private void recordAndCommitText(InputConnection ic, CharSequence text) {
         if (ic == null) return;
+        currentCompletionGhostText = null;
+        if (text.length() > 0) _ghost_accept_history.clear();
         CharSequence selected = ic.getSelectedText(0);
         if (selected != null && selected.length() > 0) {
             _undoRedoManager.recordReplace(selected.toString(), text.toString());
@@ -2155,12 +2611,12 @@ public final class KeyEventHandler
         ic.commitText(text, 1);
     }
 
-    private void commitDeleteSurroundingText(InputConnection ic, int before, int after) {
-        if (ic == null) return;
+    private boolean commitDeleteSurroundingText(InputConnection ic, int before, int after) {
+        if (ic == null) return false;
         CharSequence b = ic.getTextBeforeCursor(before, 0);
         CharSequence a = ic.getTextAfterCursor(after, 0);
         _undoRedoManager.recordDelete(b != null ? b.toString() : "", a != null ? a.toString() : "");
-        ic.deleteSurroundingText(before, after);
+        return ic.deleteSurroundingText(before, after);
     }
 
     private void handleDeleteWord(InputConnection conn, boolean forward) {

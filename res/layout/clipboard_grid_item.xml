@@ -1,54 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:padding="1dp"
-    android:background="?attr/colorLabel">
+    android:padding="4dp">
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
+        android:id="@+id/clipboard_item_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardBackgroundColor="?attr/colorKey"
-        card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="2dp">
+        android:orientation="vertical"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="8dp">
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/clipboard_item_status_glyph"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="8dp"
+                android:tint="?attr/colorLabel"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/clipboard_item_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:maxLines="4"
                 android:ellipsize="end"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="?attr/colorLabel" />
+                android:maxLines="3"
+                android:textColor="?attr/colorLabel"
+                android:textSize="14sp" />
+
+            <CheckBox
+                android:id="@+id/clipboard_item_checkmark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:clickable="false"
+                android:focusable="false" />
 
             <ImageView
-                android:id="@+id/clipboard_item_pin_icon"
+                android:id="@+id/clipboard_item_menu"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginStart="8dp"
-                android:src="@drawable/ic_pin"
-                android:visibility="gone"
-                android:contentDescription="@string/clipboard_pinned_item_desc"/>
-
-            <ImageButton
-                android:id="@+id/clipboard_item_menu"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="8dp"
-                android:padding="12dp"
-                android:src="@android:drawable/ic_menu_more"
-                android:background="?android:attr/selectableItemBackground"
-                android:visibility="gone"
-                android:contentDescription="@string/clipboard_pinned_item_desc"/>
+                android:src="@drawable/ic_more_vert"
+                android:tint="?attr/colorLabel"
+                android:visibility="visible" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
 </FrameLayout>

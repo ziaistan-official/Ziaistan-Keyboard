@@ -1159,7 +1159,7 @@ public class SuggestionProvider {
         }
     }
 
-    public enum WordSource { TYPED, FILTERS, NEXT_WORD, CUSTOM, COMMON, WORDLIST, FIELD, NONE }
+    public enum WordSource { TYPED, FILTERS, NEXT_WORD, CUSTOM, COMMON, WORDLIST, FIELD, CLIPBOARD, NONE }
 
     private WordSource getDictionarySource(String word) {
         if (word == null || word.isEmpty()) {

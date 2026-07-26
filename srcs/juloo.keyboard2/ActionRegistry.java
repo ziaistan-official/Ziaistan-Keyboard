@@ -98,6 +98,7 @@ public class ActionRegistry {
 
         ICON_MAP.put("Paste", "\uE032");
         ICON_MAP.put("Copy", "\uE030");
+        ICON_MAP.put("Double Space (No Correct)", "␣␣");
         ICON_MAP.put("Cut", "\uE031");
         ICON_MAP.put("Delete", "\uE011");
         ICON_MAP.put("Enter", "\uE00E");
@@ -260,6 +261,7 @@ public class ActionRegistry {
             case "select_all,delete_word": return "∅";
             case "select_all,copy": return "❐";
             case "select_all,cut": return "✁";
+            case "double_space": return "␣␣";
             default:
                 if (kv.getKind() == KeyValue.Kind.Editing || kv.getKind() == KeyValue.Kind.Event || kv.getKind() == KeyValue.Kind.Keyevent || kv.getKind() == KeyValue.Kind.Modifier || kv.getKind() == KeyValue.Kind.Macro) {
                     return "⚙";
@@ -407,6 +409,7 @@ public class ActionRegistry {
         addButton(list, "voice_typing", "Voice Typing");
         addButton(list, "clipboard", "Clipboard Pane");
         addButton(list, "search_replace", "Find & Replace");
+        addButton(list, "double_space", "Double Space (No Correct)");
 
         // Special Events
         for (KeyValue.Event e : KeyValue.Event.values()) {

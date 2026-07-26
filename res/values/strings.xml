@@ -249,4 +249,7 @@
     <string name="pref_typing_hud_bg_color">HUD Background Color (ARGB Hex)</string>
     <string name="pref_typing_hud_txt_color">HUD Text Color (ARGB Hex)</string>
     <string name="pref_typing_hud_txt_size">HUD Text Size</string>
+    <string name="pref_clipboard_autocomplete_word_count">Clipboard Auto Completion Word Count</string>
+    <string name="pref_clipboard_autocomplete_min_words">Min Words to Trigger Autocompletion</string>
+    <string name="pref_clipboard_autocomplete_trigger_words">Trigger Words for Autocompletion</string>
 </resources>

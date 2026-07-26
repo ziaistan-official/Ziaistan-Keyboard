@@ -51,6 +51,7 @@ public class Keyboard2 extends InputMethodService
 {
   private View _inputView;
   private Keyboard2View _keyboardView;
+  private boolean _forceKeepClipboardPaneOnNextStart = false;
   private KeyEventHandler _keyeventhandler;
   private SuggestionProvider _suggestionProvider;
   private LayoutBasedAutoCorrectionProvider _autoCorrectionProvider;
@@ -278,6 +279,7 @@ public class Keyboard2 extends InputMethodService
     _keyboardView.reset();
     Logs.set_debug_logs(getResources().getBoolean(R.bool.debug_logs));
     ClipboardHistoryService.on_startup(this, _keyeventhandler);
+    IndexingService.getInstance(this).startIndexing();
     _foldStateTracker.setChangedCallback(() -> { refresh_config(); });
 
     IntentFilter filter = new IntentFilter();
@@ -474,7 +476,15 @@ public class Keyboard2 extends InputMethodService
                 ic.beginBatchEdit();
                 for (PendingAction action : mPendingActions) {
                     switch (action.type) {
-                        case COMMIT: ic.commitText(action.text, 1); break;
+                        case COMMIT:
+                            if (action.text.length() > 1024) {
+                                for (int i = 0; i < action.text.length(); i += 1024) {
+                                    ic.commitText(action.text.substring(i, Math.min(i + 1024, action.text.length())), 1);
+                                }
+                            } else {
+                                ic.commitText(action.text, 1);
+                            }
+                            break;
                         case SELECTION: ic.setSelection(action.start, action.end); break;
                         case KEY:
                             long now = System.currentTimeMillis();
@@ -501,9 +511,11 @@ public class Keyboard2 extends InputMethodService
     _currentSpecialLayout = refresh_special_layout(info);
     _keyboardView.setKeyboard(current_layout());
     _keyeventhandler.started(info);
-    if (restarting && ((_clipboard_pane != null && _clipboard_pane.isShown()) || (_emojiPane != null && _emojiPane.isShown()))) {
+    if (_forceKeepClipboardPaneOnNextStart || (restarting && ((_clipboard_pane != null && _clipboard_pane.isShown()) || (_emojiPane != null && _emojiPane.isShown())))) {
+      _forceKeepClipboardPaneOnNextStart = false;
       return;
     }
+    _forceKeepClipboardPaneOnNextStart = false;
     setInputView(_inputView);
     _keyeventhandler.triggerUpdateSuggestions();
     Logs.debug_startup_input_view(info, _config);
@@ -595,6 +607,12 @@ public class Keyboard2 extends InputMethodService
   }
 
   @Override
+  public void onWindowHidden() {
+    super.onWindowHidden();
+    if (_keyeventhandler != null) _keyeventhandler.finished(getCurrentInputConnection());
+  }
+
+  @Override
   public void onUpdateSelection(int oldSelStart, int oldSelEnd, int newSelStart, int newSelEnd, int candidatesStart, int candidatesEnd)
   {
     super.onUpdateSelection(oldSelStart, oldSelEnd, newSelStart, newSelEnd, candidatesStart, candidatesEnd);
@@ -607,6 +625,7 @@ public class Keyboard2 extends InputMethodService
   public void onFinishInputView(boolean finishingInput)
   {
     super.onFinishInputView(finishingInput);
+    if (_keyeventhandler != null) _keyeventhandler.finished();
     if (_config != null && !_config.incognito_mode) {
       InputConnection ic = getCurrentInputConnection();
       if (ic != null) {
@@ -827,7 +846,7 @@ public class Keyboard2 extends InputMethodService
 
   private class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.ViewHolder> {
       private List<SuggestionProvider.Suggestion> suggestions = new ArrayList<>();
-      private int displayLimit = 5;
+      private int displayLimit = 3;
 
       public void setSuggestions(List<SuggestionProvider.Suggestion> suggestions, boolean incremental) {
           if (this.suggestions.equals(suggestions)) return;
@@ -854,7 +873,7 @@ public class Keyboard2 extends InputMethodService
 
           this.suggestions = suggestions;
           if (!incremental) {
-              this.displayLimit = 5;
+              this.displayLimit = 3;
           }
           notifyDataSetChanged();
       }
@@ -862,7 +881,7 @@ public class Keyboard2 extends InputMethodService
       public void increaseLimit() {
           if (displayLimit < suggestions.size()) {
               int oldLimit = getItemCount();
-              displayLimit = Math.min(suggestions.size(), displayLimit + 50);
+              displayLimit = suggestions.size();
               int newLimit = getItemCount();
               if (newLimit > oldLimit) {
                   notifyItemRangeInserted(oldLimit, newLimit - oldLimit);
@@ -884,7 +903,7 @@ public class Keyboard2 extends InputMethodService
               // Account for 3dp margin on each side (total 6dp per slot)
               float density = parent.getContext().getResources().getDisplayMetrics().density;
               int marginPx = (int) (3 * density * 2);
-              lp.width = (parentWidth / 4) - marginPx;
+              lp.width = (parentWidth / 3) - marginPx;
               view.setLayoutParams(lp);
           }
           return new ViewHolder(view);
@@ -968,8 +987,7 @@ public class Keyboard2 extends InputMethodService
       @Override
       public int getItemCount() {
           if (suggestions.isEmpty()) return 0;
-          // Always at least 4 to maintain the 4 equal sections requirement
-          return Math.max(4, Math.min(suggestions.size(), displayLimit));
+          return Math.min(suggestions.size(), displayLimit);
       }
 
       class ViewHolder extends RecyclerView.ViewHolder {
@@ -1199,9 +1217,6 @@ public class Keyboard2 extends InputMethodService
           if (_clipboard_pane == null) {
             _clipboard_pane = (ClipboardView) inflate_view(R.layout.clipboard_pane);
             _clipboard_pane.setKeyboardReceiver(this);
-            _clipboard_pane.findViewById(R.id.close_clipboard_button).setOnClickListener(v -> {
-                handle_event_key(KeyValue.Event.SWITCH_BACK_CLIPBOARD);
-            });
           }
           if (_keyboardView != null && _keyboardView.getHeight() > 0) {
               _clipboard_pane.setKeyboardHeight(_keyboardView.getHeight());
@@ -1214,9 +1229,6 @@ public class Keyboard2 extends InputMethodService
           if (_clipboard_pane == null) {
             _clipboard_pane = (ClipboardView) inflate_view(R.layout.clipboard_pane);
             _clipboard_pane.setKeyboardReceiver(this);
-            _clipboard_pane.findViewById(R.id.close_clipboard_button).setOnClickListener(v -> {
-                handle_event_key(KeyValue.Event.SWITCH_BACK_CLIPBOARD);
-            });
           }
           if (_keyboardView != null && _keyboardView.getHeight() > 0) {
               _clipboard_pane.setKeyboardHeight(_keyboardView.getHeight());
@@ -1247,6 +1259,14 @@ public class Keyboard2 extends InputMethodService
             conn.performEditorAction(actionId);
           break;
 
+        case TOGGLE_SUGGESTIONS: {
+          _config.enable_suggestions = !_config.enable_suggestions;
+          Config.globalPrefs().edit().putBoolean("enable_suggestions", _config.enable_suggestions).apply();
+          _keyeventhandler.triggerUpdateSuggestions();
+          _keyboardView.showTutorial("Clipboard Auto Completion : " + (_config.enable_suggestions ? "ON" : "OFF"));
+          _keyboardView.invalidate();
+          break;
+        }
         case SWITCH_FORWARD:
           incrTextLayout(1);
           break;
@@ -1503,6 +1523,11 @@ public class Keyboard2 extends InputMethodService
         if ("cycle_theme".equals(command)) {
             cycleKeyboardTheme();
         }
+    }
+
+    @Override
+    public View getKeyboardView() {
+        return _keyboardView;
     }
 
     public void undoLastPaste() {
@@ -1798,4 +1823,18 @@ public class Keyboard2 extends InputMethodService
 
       _voiceTypingManager.startListening(locale);
   }
+
+    public void openClipboardWithSearch(String query, boolean isTypingHistory) {
+        _forceKeepClipboardPaneOnNextStart = true;
+        if (_clipboard_pane == null) {
+            _clipboard_pane = (ClipboardView) inflate_view(R.layout.clipboard_pane);
+            _clipboard_pane.setKeyboardReceiver(this.new Receiver());
+        }
+        if (_keyboardView != null && _keyboardView.getHeight() > 0) {
+            _clipboard_pane.setKeyboardHeight(_keyboardView.getHeight());
+        }
+        _clipboard_pane.showTypingHistory(isTypingHistory);
+        setInputView(_clipboard_pane);
+        _clipboard_pane.performSearchFromExternal(query);
+    }
 }

@@ -70,6 +70,15 @@ public class SettingsActivity extends PreferenceActivity
     findPreference("keyboard_height_unfolded").setEnabled(foldableDevice);
     findPreference("keyboard_height_landscape_unfolded").setEnabled(foldableDevice);
 
+    android.preference.Preference filePriorityPref = findPreference("clipboard_autocomplete_file_priority_settings");
+    if (filePriorityPref != null) {
+        filePriorityPref.setOnPreferenceClickListener(p -> {
+            android.content.Intent intent1 = new android.content.Intent(this, FilePriorityActivity.class);
+            startActivity(intent1);
+            return true;
+        });
+    }
+
     android.widget.ListView list = getListView();
     if (list != null) {
         int padding = (int) android.util.TypedValue.applyDimension(
